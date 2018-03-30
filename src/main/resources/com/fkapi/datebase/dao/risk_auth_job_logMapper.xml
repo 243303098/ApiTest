@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.risk_auth_job_logMapper">
+	<resultMap id="risk_auth_job_logMapper" type="com.fkapi.datebase.domain.risk_auth_job_log">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="cust_id" jdbcType="BIGINT" property="custId" />
+		<result column="old_status" jdbcType="VARCHAR" property="oldStatus" />
+		<result column="new_status" jdbcType="VARCHAR" property="newStatus" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+	</resultMap>
+	<sql id="risk_auth_job_log">
+		id, cust_id, old_status, new_status, gmt_create, gmt_modified
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="risk_auth_job_logMapper">
+		select
+		<include refid="risk_auth_job_log" />
+		from risk_auth_job_log
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from risk_auth_job_log
+		where cust_id = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.risk_auth_job_log">
+		insert into risk_auth_job_log (cust_id, old_status,
+		new_status, gmt_create, gmt_modified
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, #{item.oldStatus}, #{item.newStatus}, #{item.gmtCreate},
+			#{item.gmtModified})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.risk_auth_job_log">
+		insert into risk_auth_job_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="custId != null">
+				cust_id,
+			</if>
+			<if test="oldStatus != null">
+				old_status,
+			</if>
+			<if test="newStatus != null">
+				new_status,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="oldStatus != null">
+				#{oldStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="newStatus != null">
+				#{newStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.risk_auth_job_log">
+		update risk_auth_job_log
+		<set>
+			<if test="custId != null">
+				cust_id = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="oldStatus != null">
+				old_status = #{oldStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="newStatus != null">
+				new_status = #{newStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.risk_auth_job_log">
+		update risk_auth_job_log
+		set cust_id = #{custId,jdbcType=BIGINT},
+		old_status = #{oldStatus,jdbcType=VARCHAR},
+		new_status = #{newStatus,jdbcType=VARCHAR},
+		gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

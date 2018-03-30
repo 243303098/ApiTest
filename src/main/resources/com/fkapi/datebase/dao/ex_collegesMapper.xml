@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.ex_collegesMapper">
+  <resultMap id="ex_collegesMap" type="com.fkapi.datebase.domain.ex_colleges">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
+    <result column="isEyy" jdbcType="BIT" property="iseyy" />
+    <result column="isJbw" jdbcType="BIT" property="isjbw" />
+    <result column="isYan" jdbcType="BIT" property="isyan" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="college_under" jdbcType="VARCHAR" property="collegeUnder" />
+    <result column="schooling" jdbcType="VARCHAR" property="schooling" />
+    <result column="school_types" jdbcType="VARCHAR" property="schoolTypes" />
+    <result column="colleges_types" jdbcType="VARCHAR" property="collegesTypes" />
+    <result column="profession_count" jdbcType="INTEGER" property="professionCount" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="modifiedTime" jdbcType="TIMESTAMP" property="modifiedtime" />
+    <result column="college_tier" jdbcType="VARCHAR" property="collegeTier" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+  <sql id="ex_colleges">
+    id, college_name, isEyy, isJbw, isYan, location, college_under, schooling, school_types, 
+    colleges_types, profession_count, PROVINCE, CITY, createTime, modifiedTime, college_tier, 
+    del_flag
+  </sql>
+  <select id="selectByCollegeName" parameterType="java.lang.String" resultMap="ex_collegesMap">
+    select 
+    <include refid="ex_colleges" />
+    from ex_colleges
+    where college_name = #{collegeName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ex_colleges
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.ex_colleges">
+    insert into ex_colleges (id, college_name, isEyy, 
+      isJbw, isYan, location, college_under, 
+      schooling, school_types, colleges_types, 
+      profession_count, PROVINCE, CITY, 
+      createTime, modifiedTime, college_tier, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{collegeName,jdbcType=VARCHAR}, #{iseyy,jdbcType=BIT}, 
+      #{isjbw,jdbcType=BIT}, #{isyan,jdbcType=BIT}, #{location,jdbcType=VARCHAR}, #{collegeUnder,jdbcType=VARCHAR}, 
+      #{schooling,jdbcType=VARCHAR}, #{schoolTypes,jdbcType=VARCHAR}, #{collegesTypes,jdbcType=VARCHAR}, 
+      #{professionCount,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{modifiedtime,jdbcType=TIMESTAMP}, #{collegeTier,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.ex_colleges">
+    insert into ex_colleges
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="collegeName != null">
+        college_name,
+      </if>
+      <if test="iseyy != null">
+        isEyy,
+      </if>
+      <if test="isjbw != null">
+        isJbw,
+      </if>
+      <if test="isyan != null">
+        isYan,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="collegeUnder != null">
+        college_under,
+      </if>
+      <if test="schooling != null">
+        schooling,
+      </if>
+      <if test="schoolTypes != null">
+        school_types,
+      </if>
+      <if test="collegesTypes != null">
+        colleges_types,
+      </if>
+      <if test="professionCount != null">
+        profession_count,
+      </if>
+      <if test="province != null">
+        PROVINCE,
+      </if>
+      <if test="city != null">
+        CITY,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="modifiedtime != null">
+        modifiedTime,
+      </if>
+      <if test="collegeTier != null">
+        college_tier,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="collegeName != null">
+        #{collegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="iseyy != null">
+        #{iseyy,jdbcType=BIT},
+      </if>
+      <if test="isjbw != null">
+        #{isjbw,jdbcType=BIT},
+      </if>
+      <if test="isyan != null">
+        #{isyan,jdbcType=BIT},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeUnder != null">
+        #{collegeUnder,jdbcType=VARCHAR},
+      </if>
+      <if test="schooling != null">
+        #{schooling,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolTypes != null">
+        #{schoolTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="collegesTypes != null">
+        #{collegesTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="professionCount != null">
+        #{professionCount,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedtime != null">
+        #{modifiedtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collegeTier != null">
+        #{collegeTier,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.ex_colleges">
+    update ex_colleges
+    <set>
+      <if test="collegeName != null">
+        college_name = #{collegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="iseyy != null">
+        isEyy = #{iseyy,jdbcType=BIT},
+      </if>
+      <if test="isjbw != null">
+        isJbw = #{isjbw,jdbcType=BIT},
+      </if>
+      <if test="isyan != null">
+        isYan = #{isyan,jdbcType=BIT},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeUnder != null">
+        college_under = #{collegeUnder,jdbcType=VARCHAR},
+      </if>
+      <if test="schooling != null">
+        schooling = #{schooling,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolTypes != null">
+        school_types = #{schoolTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="collegesTypes != null">
+        colleges_types = #{collegesTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="professionCount != null">
+        profession_count = #{professionCount,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedtime != null">
+        modifiedTime = #{modifiedtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collegeTier != null">
+        college_tier = #{collegeTier,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.ex_colleges">
+    update ex_colleges
+    set college_name = #{collegeName,jdbcType=VARCHAR},
+      isEyy = #{iseyy,jdbcType=BIT},
+      isJbw = #{isjbw,jdbcType=BIT},
+      isYan = #{isyan,jdbcType=BIT},
+      location = #{location,jdbcType=VARCHAR},
+      college_under = #{collegeUnder,jdbcType=VARCHAR},
+      schooling = #{schooling,jdbcType=VARCHAR},
+      school_types = #{schoolTypes,jdbcType=VARCHAR},
+      colleges_types = #{collegesTypes,jdbcType=VARCHAR},
+      profession_count = #{professionCount,jdbcType=INTEGER},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      modifiedTime = #{modifiedtime,jdbcType=TIMESTAMP},
+      college_tier = #{collegeTier,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

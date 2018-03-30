@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.risk_python_scoreMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.risk_python_score">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cust_id" jdbcType="BIGINT" property="custId" />
+    <result column="score" jdbcType="DECIMAL" property="score" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cust_id, score, create_time, update_time
+  </sql>
+  <select id="selectByCustId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from risk_python_score
+    where cust_id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByCustId" parameterType="java.lang.Long">
+    delete from risk_python_score
+    where cust_id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.risk_python_score">
+    insert into risk_python_score (cust_id, score,
+      create_time, update_time)
+    values
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+    (#{item.custId,jdbcType=BIGINT}, #{item.score,jdbcType=DECIMAL},
+      #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.risk_python_score">
+    insert into risk_python_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="custId != null">
+        cust_id,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.risk_python_score">
+    update risk_python_score
+    <set>
+      <if test="custId != null">
+        cust_id = #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.risk_python_score">
+    update risk_python_score
+    set cust_id = #{custId,jdbcType=BIGINT},
+      score = #{score,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

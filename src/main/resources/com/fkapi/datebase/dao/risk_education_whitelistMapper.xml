@@ -1,0 +1,21 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.risk_education_whitelistMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.risk_education_whitelist">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CUST_ID, CREATE_TIME
+  </sql>
+  <delete id="deleteByCustId" parameterType="java.lang.Long">
+    delete from risk_education_whitelist
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.risk_education_whitelist">
+    insert into risk_education_whitelist (CUST_ID, CREATE_TIME
+      )
+    values (#{custId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+</mapper>

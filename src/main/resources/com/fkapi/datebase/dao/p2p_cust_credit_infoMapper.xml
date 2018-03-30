@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_cust_credit_infoMapper">
+	<resultMap id="p2p_cust_credit_infoMapper"
+		type="com.fkapi.datebase.domain.p2p_cust_credit_info">
+		<id column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="CREDIT_SCORE" jdbcType="INTEGER" property="creditScore" />
+		<result column="OLD_CREDIT_SCORE" jdbcType="INTEGER" property="oldCreditScore" />
+		<result column="CREDIT_AMOUNT" jdbcType="DECIMAL" property="creditAmount" />
+		<result column="NXB_AMOUNT" jdbcType="DECIMAL" property="nxbAmount" />
+		<result column="OLD_CREDIT_AMOUNT" jdbcType="DECIMAL" property="oldCreditAmount" />
+		<result column="OLD_NXB_AMOUNT" jdbcType="DECIMAL" property="oldNxbAmount" />
+		<result column="USED_CREDIT_AMOUNT" jdbcType="DECIMAL"
+			property="usedCreditAmount" />
+		<result column="IS_ACTIVITY" jdbcType="CHAR" property="isActivity" />
+		<result column="CITY_LEVEL" jdbcType="INTEGER" property="cityLevel" />
+		<result column="SEGMENT_ID" jdbcType="VARCHAR" property="segmentId" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="VERSION" jdbcType="BIGINT" property="version" />
+		<result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+		<result column="OLD_SEGMENT_ID" jdbcType="VARCHAR" property="oldSegmentId" />
+		<result column="ITEM_CFG_VAL" jdbcType="INTEGER" property="itemCfgVal" />
+		<result column="CREDIT_AUTH" jdbcType="INTEGER" property="creditAuth" />
+		<result column="OLD_CREDIT_AUTH" jdbcType="INTEGER" property="oldCreditAuth" />
+		<result column="NDK_AMOUNT" jdbcType="DECIMAL" property="ndkAmount" />
+		<result column="OLD_NDK_AMOUNT" jdbcType="DECIMAL" property="oldNdkAmount" />
+		<result column="GROUP_SIGN" jdbcType="VARCHAR" property="groupSign" />
+		<result column="SEGMENT" jdbcType="INTEGER" property="segment" />
+		<result column="NDK_CONVERT_BASE_AMOUNT" jdbcType="DECIMAL"
+			property="ndkConvertBaseAmount" />
+		<result column="CONVERT_WAIT_REPAY_LOAN" jdbcType="VARCHAR"
+			property="convertWaitRepayLoan" />
+		<result column="GROUP_SIGN_2" jdbcType="VARCHAR" property="groupSign2" />
+	</resultMap>
+	<sql id="p2p_cust_credit_info">
+		CUST_ID, CREDIT_SCORE, OLD_CREDIT_SCORE, CREDIT_AMOUNT, NXB_AMOUNT,
+		OLD_CREDIT_AMOUNT,
+		OLD_NXB_AMOUNT, USED_CREDIT_AMOUNT, IS_ACTIVITY, CITY_LEVEL, SEGMENT_ID, CREATE_TIME,
+		UPDATE_TIME, VERSION, DEL_FLAG, OLD_SEGMENT_ID, ITEM_CFG_VAL,
+		CREDIT_AUTH, OLD_CREDIT_AUTH,
+		NDK_AMOUNT, OLD_NDK_AMOUNT, GROUP_SIGN, SEGMENT, NDK_CONVERT_BASE_AMOUNT,
+		CONVERT_WAIT_REPAY_LOAN,
+		GROUP_SIGN_2
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="p2p_cust_credit_infoMapper">
+		select
+		<include refid="p2p_cust_credit_info" />
+		from p2p_cust_credit_info
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from p2p_cust_credit_info
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_cust_credit_info">
+		insert into p2p_cust_credit_info (CUST_ID, CREDIT_SCORE,
+		OLD_CREDIT_SCORE,
+		CREDIT_AMOUNT, NXB_AMOUNT, OLD_CREDIT_AMOUNT,
+		OLD_NXB_AMOUNT, USED_CREDIT_AMOUNT, IS_ACTIVITY,
+		CITY_LEVEL, SEGMENT_ID, CREATE_TIME,
+		UPDATE_TIME, VERSION, DEL_FLAG,
+		OLD_SEGMENT_ID, ITEM_CFG_VAL, CREDIT_AUTH,
+		OLD_CREDIT_AUTH, NDK_AMOUNT, OLD_NDK_AMOUNT,
+		GROUP_SIGN, SEGMENT, NDK_CONVERT_BASE_AMOUNT,
+		CONVERT_WAIT_REPAY_LOAN, GROUP_SIGN_2)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, '30', '0', '1600', '200', '0', '0', '0', 'N', '2', NULL, '2017-06-07
+			09:20:49', '2017-06-07 09:49:45', '3', 'N', NULL, '15', '39', NULL,
+			'100', '0', 'sample', '5', NULL, NULL, NULL)
+		</foreach>
+	</insert>
+
+	<update id="updateByCustId" parameterType="com.fkapi.datebase.domain.p2p_cust_credit_info">
+	update p2p_cust_credit_info
+	<set>
+		<if test="creditScore != null">
+			CREDIT_SCORE = #{creditScore,jdbcType=INTEGER},
+		</if>
+		<if test="oldCreditScore != null">
+			OLD_CREDIT_SCORE = #{oldCreditScore,jdbcType=INTEGER},
+		</if>
+		<if test="creditAmount != null">
+			CREDIT_AMOUNT = #{creditAmount,jdbcType=DECIMAL},
+		</if>
+		<if test="nxbAmount != null">
+			NXB_AMOUNT = #{nxbAmount,jdbcType=DECIMAL},
+		</if>
+		<if test="oldCreditAmount != null">
+			OLD_CREDIT_AMOUNT = #{oldCreditAmount,jdbcType=DECIMAL},
+		</if>
+		<if test="oldNxbAmount != null">
+			OLD_NXB_AMOUNT = #{oldNxbAmount,jdbcType=DECIMAL},
+		</if>
+		<if test="usedCreditAmount != null">
+			USED_CREDIT_AMOUNT = #{usedCreditAmount,jdbcType=DECIMAL},
+		</if>
+		<if test="isActivity != null">
+			IS_ACTIVITY = #{isActivity,jdbcType=CHAR},
+		</if>
+		<if test="cityLevel != null">
+			CITY_LEVEL = #{cityLevel,jdbcType=INTEGER},
+		</if>
+		<if test="segmentId != null">
+			SEGMENT_ID = #{segmentId,jdbcType=VARCHAR},
+		</if>
+		<if test="createTime != null">
+			CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateTime != null">
+			UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+		</if>
+		<if test="version != null">
+			VERSION = #{version,jdbcType=BIGINT},
+		</if>
+		<if test="delFlag != null">
+			DEL_FLAG = #{delFlag,jdbcType=CHAR},
+		</if>
+		<if test="oldSegmentId != null">
+			OLD_SEGMENT_ID = #{oldSegmentId,jdbcType=VARCHAR},
+		</if>
+		<if test="itemCfgVal != null">
+			ITEM_CFG_VAL = #{itemCfgVal,jdbcType=INTEGER},
+		</if>
+		<if test="creditAuth != null">
+			CREDIT_AUTH = #{creditAuth,jdbcType=INTEGER},
+		</if>
+		<if test="oldCreditAuth != null">
+			OLD_CREDIT_AUTH = #{oldCreditAuth,jdbcType=INTEGER},
+		</if>
+		<if test="ndkAmount != null">
+			NDK_AMOUNT = #{ndkAmount,jdbcType=DECIMAL},
+		</if>
+		<if test="oldNdkAmount != null">
+			OLD_NDK_AMOUNT = #{oldNdkAmount,jdbcType=DECIMAL},
+		</if>
+		<if test="groupSign != null">
+			GROUP_SIGN = #{groupSign,jdbcType=VARCHAR},
+		</if>
+		<if test="segment != null">
+			SEGMENT = #{segment,jdbcType=INTEGER},
+		</if>
+		<if test="ndkConvertBaseAmount != null">
+			NDK_CONVERT_BASE_AMOUNT = #{ndkConvertBaseAmount,jdbcType=DECIMAL},
+		</if>
+		<if test="convertWaitRepayLoan != null">
+			CONVERT_WAIT_REPAY_LOAN = #{convertWaitRepayLoan,jdbcType=VARCHAR},
+		</if>
+		<if test="groupSign2 != null">
+			GROUP_SIGN_2 = #{groupSign2,jdbcType=VARCHAR},
+		</if>
+	</set>
+	where CUST_ID = #{custId,jdbcType=BIGINT}
+	</update>
+</mapper>

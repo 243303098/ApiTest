@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.risk_audit_item_logMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.risk_audit_item_log">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="PROJECT_NO" jdbcType="VARCHAR" property="projectNo" />
+    <result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+    <result column="ITEM" jdbcType="VARCHAR" property="item" />
+    <result column="AUDIT_RESULT" jdbcType="VARCHAR" property="auditResult" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="EXECUTE_MILLISECOND" jdbcType="BIGINT" property="executeMillisecond" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PROJECT_NO, CUST_ID, ITEM, AUDIT_RESULT, DESCRIPTION, EXECUTE_MILLISECOND, CREATE_TIME
+  </sql>
+  <select id="selectByCustIdAndItem" parameterType="com.fkapi.datebase.domain.risk_audit_item_log" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from risk_audit_item_log
+    where CUST_ID = #{custId,jdbcType=BIGINT} AND ITEM = #{item,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByCustId" parameterType="java.lang.Long">
+    delete from risk_audit_item_log
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+  </delete>
+
+</mapper>

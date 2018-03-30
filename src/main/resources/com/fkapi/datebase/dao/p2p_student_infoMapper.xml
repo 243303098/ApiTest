@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_student_infoMapper">
+	<resultMap id="p2p_student_info" type="com.fkapi.datebase.domain.p2p_student_info">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="ACTION_TYPE" jdbcType="CHAR" property="actionType" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="COLLEGES_ID" jdbcType="BIGINT" property="collegesId" />
+		<result column="RELATIVE_STU_ID" jdbcType="BIGINT" property="relativeStuId" />
+		<result column="SEX" jdbcType="CHAR" property="sex" />
+		<result column="DOCUMENT_NO" jdbcType="VARCHAR" property="documentNo" />
+		<result column="NATION" jdbcType="VARCHAR" property="nation" />
+		<result column="BIRTH" jdbcType="DATE" property="birth" />
+		<result column="COLLEGE" jdbcType="VARCHAR" property="college" />
+		<result column="CLASSES" jdbcType="VARCHAR" property="classes" />
+		<result column="COLG_LEVEL" jdbcType="VARCHAR" property="colgLevel" />
+		<result column="FACULTY" jdbcType="VARCHAR" property="faculty" />
+		<result column="MAJOR" jdbcType="VARCHAR" property="major" />
+		<result column="STU_NO" jdbcType="VARCHAR" property="stuNo" />
+		<result column="MODALITY" jdbcType="VARCHAR" property="modality" />
+		<result column="ENTRANCE_TIME" jdbcType="DATE" property="entranceTime" />
+		<result column="EDUCATIONAL" jdbcType="VARCHAR" property="educational" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+		<result column="STATUS" jdbcType="VARCHAR" property="status" />
+		<result column="SIGN_TXT" jdbcType="VARCHAR" property="signTxt" />
+		<result column="DREAMS" jdbcType="VARCHAR" property="dreams" />
+		<result column="RELATIONSHIP" jdbcType="VARCHAR" property="relationship" />
+		<result column="BIRTH_SECRET" jdbcType="CHAR" property="birthSecret" />
+		<result column="SCHOOL_NAME_SECRET" jdbcType="CHAR" property="schoolNameSecret" />
+		<result column="SEX_SECRET" jdbcType="CHAR" property="sexSecret" />
+		<result column="RELATIONSHIP_SECRET" jdbcType="CHAR"
+			property="relationshipSecret" />
+		<result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+		<result column="CITY" jdbcType="VARCHAR" property="city" />
+		<result column="PARENT_SECRET" jdbcType="CHAR" property="parentSecret" />
+		<result column="APP_MARKET" jdbcType="VARCHAR" property="appMarket" />
+		<result column="EXTEND1" jdbcType="VARCHAR" property="extend1" />
+		<result column="EXTEND2" jdbcType="VARCHAR" property="extend2" />
+		<result column="EXTEND3" jdbcType="VARCHAR" property="extend3" />
+		<result column="STATE" jdbcType="INTEGER" property="state" />
+		<result column="RESULT_CODE" jdbcType="VARCHAR" property="resultCode" />
+		<result column="CREATOR" jdbcType="BIGINT" property="creator" />
+		<result column="MODIFIER" jdbcType="BIGINT" property="modifier" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	<sql id="p2p_student_info">
+		ID, ACTION_TYPE, CUST_ID, COLLEGES_ID, RELATIVE_STU_ID,
+		SEX, DOCUMENT_NO,
+		NATION,
+		BIRTH, COLLEGE, CLASSES, COLG_LEVEL, FACULTY,
+		MAJOR, STU_NO, MODALITY,
+		ENTRANCE_TIME,
+		EDUCATIONAL, TYPE, STATUS,
+		SIGN_TXT, DREAMS, RELATIONSHIP, BIRTH_SECRET,
+		SCHOOL_NAME_SECRET,
+		SEX_SECRET, RELATIONSHIP_SECRET, PROVINCE, CITY, PARENT_SECRET,
+		APP_MARKET,
+		EXTEND1,
+		EXTEND2, EXTEND3, STATE, RESULT_CODE, CREATOR,
+		MODIFIER, CREATE_TIME,
+		UPDATE_TIME
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="p2p_student_info">
+		select
+		<include refid="p2p_student_info" />
+		from p2p_student_info
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from
+		p2p_student_info
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="java.util.List">
+		insert into p2p_student_info (ACTION_TYPE, CUST_ID,
+		COLLEGES_ID,
+		RELATIVE_STU_ID, SEX,
+		DOCUMENT_NO, NATION, BIRTH,
+		COLLEGE, CLASSES,
+		COLG_LEVEL,
+		FACULTY, MAJOR, STU_NO,
+		MODALITY, ENTRANCE_TIME,
+		EDUCATIONAL,
+		TYPE, STATUS, SIGN_TXT,
+		DREAMS, RELATIONSHIP, BIRTH_SECRET,
+		SCHOOL_NAME_SECRET, SEX_SECRET, RELATIONSHIP_SECRET,
+		PROVINCE, CITY,
+		PARENT_SECRET,
+		APP_MARKET, EXTEND1, EXTEND2,
+		EXTEND3, STATE,
+		RESULT_CODE,
+		CREATOR, MODIFIER, CREATE_TIME,
+		UPDATE_TIME)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			('0', #{item.custId}, #{item.collegesId}, NULL, NULL, NULL, NULL,
+			NULL, #{item.college}, NULL, NULL, NULL, NULL, NULL, NULL, #{item.entranceTime}, NULL,
+			NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, #{item.province}, #{item.city},
+			'0', NULL, 'N', NULL, NULL, NULL, NULL, #{item.custId}, #{item.custId},
+			#{item.createTime}, #{item.updateTime})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_student_info">
+		insert into p2p_student_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="actionType != null">
+				ACTION_TYPE,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="collegesId != null">
+				COLLEGES_ID,
+			</if>
+			<if test="relativeStuId != null">
+				RELATIVE_STU_ID,
+			</if>
+			<if test="sex != null">
+				SEX,
+			</if>
+			<if test="documentNo != null">
+				DOCUMENT_NO,
+			</if>
+			<if test="nation != null">
+				NATION,
+			</if>
+			<if test="birth != null">
+				BIRTH,
+			</if>
+			<if test="college != null">
+				COLLEGE,
+			</if>
+			<if test="classes != null">
+				CLASSES,
+			</if>
+			<if test="colgLevel != null">
+				COLG_LEVEL,
+			</if>
+			<if test="faculty != null">
+				FACULTY,
+			</if>
+			<if test="major != null">
+				MAJOR,
+			</if>
+			<if test="stuNo != null">
+				STU_NO,
+			</if>
+			<if test="modality != null">
+				MODALITY,
+			</if>
+			<if test="entranceTime != null">
+				ENTRANCE_TIME,
+			</if>
+			<if test="educational != null">
+				EDUCATIONAL,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="signTxt != null">
+				SIGN_TXT,
+			</if>
+			<if test="dreams != null">
+				DREAMS,
+			</if>
+			<if test="relationship != null">
+				RELATIONSHIP,
+			</if>
+			<if test="birthSecret != null">
+				BIRTH_SECRET,
+			</if>
+			<if test="schoolNameSecret != null">
+				SCHOOL_NAME_SECRET,
+			</if>
+			<if test="sexSecret != null">
+				SEX_SECRET,
+			</if>
+			<if test="relationshipSecret != null">
+				RELATIONSHIP_SECRET,
+			</if>
+			<if test="province != null">
+				PROVINCE,
+			</if>
+			<if test="city != null">
+				CITY,
+			</if>
+			<if test="parentSecret != null">
+				PARENT_SECRET,
+			</if>
+			<if test="appMarket != null">
+				APP_MARKET,
+			</if>
+			<if test="extend1 != null">
+				EXTEND1,
+			</if>
+			<if test="extend2 != null">
+				EXTEND2,
+			</if>
+			<if test="extend3 != null">
+				EXTEND3,
+			</if>
+			<if test="state != null">
+				STATE,
+			</if>
+			<if test="resultCode != null">
+				RESULT_CODE,
+			</if>
+			<if test="creator != null">
+				CREATOR,
+			</if>
+			<if test="modifier != null">
+				MODIFIER,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="actionType != null">
+				#{actionType,jdbcType=CHAR},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="collegesId != null">
+				#{collegesId,jdbcType=BIGINT},
+			</if>
+			<if test="relativeStuId != null">
+				#{relativeStuId,jdbcType=BIGINT},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=CHAR},
+			</if>
+			<if test="documentNo != null">
+				#{documentNo,jdbcType=VARCHAR},
+			</if>
+			<if test="nation != null">
+				#{nation,jdbcType=VARCHAR},
+			</if>
+			<if test="birth != null">
+				#{birth,jdbcType=DATE},
+			</if>
+			<if test="college != null">
+				#{college,jdbcType=VARCHAR},
+			</if>
+			<if test="classes != null">
+				#{classes,jdbcType=VARCHAR},
+			</if>
+			<if test="colgLevel != null">
+				#{colgLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="faculty != null">
+				#{faculty,jdbcType=VARCHAR},
+			</if>
+			<if test="major != null">
+				#{major,jdbcType=VARCHAR},
+			</if>
+			<if test="stuNo != null">
+				#{stuNo,jdbcType=VARCHAR},
+			</if>
+			<if test="modality != null">
+				#{modality,jdbcType=VARCHAR},
+			</if>
+			<if test="entranceTime != null">
+				#{entranceTime,jdbcType=DATE},
+			</if>
+			<if test="educational != null">
+				#{educational,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="signTxt != null">
+				#{signTxt,jdbcType=VARCHAR},
+			</if>
+			<if test="dreams != null">
+				#{dreams,jdbcType=VARCHAR},
+			</if>
+			<if test="relationship != null">
+				#{relationship,jdbcType=VARCHAR},
+			</if>
+			<if test="birthSecret != null">
+				#{birthSecret,jdbcType=CHAR},
+			</if>
+			<if test="schoolNameSecret != null">
+				#{schoolNameSecret,jdbcType=CHAR},
+			</if>
+			<if test="sexSecret != null">
+				#{sexSecret,jdbcType=CHAR},
+			</if>
+			<if test="relationshipSecret != null">
+				#{relationshipSecret,jdbcType=CHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="parentSecret != null">
+				#{parentSecret,jdbcType=CHAR},
+			</if>
+			<if test="appMarket != null">
+				#{appMarket,jdbcType=VARCHAR},
+			</if>
+			<if test="extend1 != null">
+				#{extend1,jdbcType=VARCHAR},
+			</if>
+			<if test="extend2 != null">
+				#{extend2,jdbcType=VARCHAR},
+			</if>
+			<if test="extend3 != null">
+				#{extend3,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=INTEGER},
+			</if>
+			<if test="resultCode != null">
+				#{resultCode,jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=BIGINT},
+			</if>
+			<if test="modifier != null">
+				#{modifier,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByCustId" parameterType="com.fkapi.datebase.domain.p2p_student_info">
+		update p2p_student_info
+		<set>
+			<if test="actionType != null">
+				ACTION_TYPE = #{actionType,jdbcType=CHAR},
+			</if>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="collegesId != null">
+				COLLEGES_ID = #{collegesId,jdbcType=BIGINT},
+			</if>
+			<if test="relativeStuId != null">
+				RELATIVE_STU_ID = #{relativeStuId,jdbcType=BIGINT},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=CHAR},
+			</if>
+			<if test="documentNo != null">
+				DOCUMENT_NO = #{documentNo,jdbcType=VARCHAR},
+			</if>
+			<if test="nation != null">
+				NATION = #{nation,jdbcType=VARCHAR},
+			</if>
+			<if test="birth != null">
+				BIRTH = #{birth,jdbcType=DATE},
+			</if>
+			<if test="college != null">
+				COLLEGE = #{college,jdbcType=VARCHAR},
+			</if>
+			<if test="classes != null">
+				CLASSES = #{classes,jdbcType=VARCHAR},
+			</if>
+			<if test="colgLevel != null">
+				COLG_LEVEL = #{colgLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="faculty != null">
+				FACULTY = #{faculty,jdbcType=VARCHAR},
+			</if>
+			<if test="major != null">
+				MAJOR = #{major,jdbcType=VARCHAR},
+			</if>
+			<if test="stuNo != null">
+				STU_NO = #{stuNo,jdbcType=VARCHAR},
+			</if>
+			<if test="modality != null">
+				MODALITY = #{modality,jdbcType=VARCHAR},
+			</if>
+			<if test="entranceTime != null">
+				ENTRANCE_TIME = #{entranceTime,jdbcType=DATE},
+			</if>
+			<if test="educational != null">
+				EDUCATIONAL = #{educational,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="signTxt != null">
+				SIGN_TXT = #{signTxt,jdbcType=VARCHAR},
+			</if>
+			<if test="dreams != null">
+				DREAMS = #{dreams,jdbcType=VARCHAR},
+			</if>
+			<if test="relationship != null">
+				RELATIONSHIP = #{relationship,jdbcType=VARCHAR},
+			</if>
+			<if test="birthSecret != null">
+				BIRTH_SECRET = #{birthSecret,jdbcType=CHAR},
+			</if>
+			<if test="schoolNameSecret != null">
+				SCHOOL_NAME_SECRET = #{schoolNameSecret,jdbcType=CHAR},
+			</if>
+			<if test="sexSecret != null">
+				SEX_SECRET = #{sexSecret,jdbcType=CHAR},
+			</if>
+			<if test="relationshipSecret != null">
+				RELATIONSHIP_SECRET =
+				#{relationshipSecret,jdbcType=CHAR},
+			</if>
+			<if test="province != null">
+				PROVINCE = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				CITY = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="parentSecret != null">
+				PARENT_SECRET = #{parentSecret,jdbcType=CHAR},
+			</if>
+			<if test="appMarket != null">
+				APP_MARKET = #{appMarket,jdbcType=VARCHAR},
+			</if>
+			<if test="extend1 != null">
+				EXTEND1 = #{extend1,jdbcType=VARCHAR},
+			</if>
+			<if test="extend2 != null">
+				EXTEND2 = #{extend2,jdbcType=VARCHAR},
+			</if>
+			<if test="extend3 != null">
+				EXTEND3 = #{extend3,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=INTEGER},
+			</if>
+			<if test="resultCode != null">
+				RESULT_CODE = #{resultCode,jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR = #{creator,jdbcType=BIGINT},
+			</if>
+			<if test="modifier != null">
+				MODIFIER = #{modifier,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_student_info">
+		update
+		p2p_student_info
+		set ACTION_TYPE = #{actionType,jdbcType=CHAR},
+		CUST_ID
+		= #{custId,jdbcType=BIGINT},
+		COLLEGES_ID =
+		#{collegesId,jdbcType=BIGINT},
+		RELATIVE_STU_ID =
+		#{relativeStuId,jdbcType=BIGINT},
+		SEX = #{sex,jdbcType=CHAR},
+		DOCUMENT_NO = #{documentNo,jdbcType=VARCHAR},
+		NATION =
+		#{nation,jdbcType=VARCHAR},
+		BIRTH = #{birth,jdbcType=DATE},
+		COLLEGE =
+		#{college,jdbcType=VARCHAR},
+		CLASSES = #{classes,jdbcType=VARCHAR},
+		COLG_LEVEL = #{colgLevel,jdbcType=VARCHAR},
+		FACULTY =
+		#{faculty,jdbcType=VARCHAR},
+		MAJOR = #{major,jdbcType=VARCHAR},
+		STU_NO =
+		#{stuNo,jdbcType=VARCHAR},
+		MODALITY = #{modality,jdbcType=VARCHAR},
+		ENTRANCE_TIME = #{entranceTime,jdbcType=DATE},
+		EDUCATIONAL =
+		#{educational,jdbcType=VARCHAR},
+		TYPE = #{type,jdbcType=VARCHAR},
+		STATUS = #{status,jdbcType=VARCHAR},
+		SIGN_TXT =
+		#{signTxt,jdbcType=VARCHAR},
+		DREAMS = #{dreams,jdbcType=VARCHAR},
+		RELATIONSHIP = #{relationship,jdbcType=VARCHAR},
+		BIRTH_SECRET =
+		#{birthSecret,jdbcType=CHAR},
+		SCHOOL_NAME_SECRET =
+		#{schoolNameSecret,jdbcType=CHAR},
+		SEX_SECRET =
+		#{sexSecret,jdbcType=CHAR},
+		RELATIONSHIP_SECRET =
+		#{relationshipSecret,jdbcType=CHAR},
+		PROVINCE =
+		#{province,jdbcType=VARCHAR},
+		CITY = #{city,jdbcType=VARCHAR},
+		PARENT_SECRET = #{parentSecret,jdbcType=CHAR},
+		APP_MARKET =
+		#{appMarket,jdbcType=VARCHAR},
+		EXTEND1 = #{extend1,jdbcType=VARCHAR},
+		EXTEND2 = #{extend2,jdbcType=VARCHAR},
+		EXTEND3 =
+		#{extend3,jdbcType=VARCHAR},
+		STATE = #{state,jdbcType=INTEGER},
+		RESULT_CODE = #{resultCode,jdbcType=VARCHAR},
+		CREATOR =
+		#{creator,jdbcType=BIGINT},
+		MODIFIER = #{modifier,jdbcType=BIGINT},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

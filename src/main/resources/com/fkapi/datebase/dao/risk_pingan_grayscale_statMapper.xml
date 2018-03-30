@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.risk_pingan_grayscale_statMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.risk_pingan_grayscale_stat">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cust_id" jdbcType="BIGINT" property="custId" />
+    <result column="numsCon" jdbcType="INTEGER" property="numscon" />
+    <result column="l1wwdcn_TNumsCon" jdbcType="INTEGER" property="l1wwdcnTnumscon" />
+    <result column="l1wwdcn_TNumsCon_bank" jdbcType="INTEGER" property="l1wwdcnTnumsconBank" />
+    <result column="l1wwdcn_TNumsCon_cf" jdbcType="INTEGER" property="l1wwdcnTnumsconCf" />
+    <result column="l1wwdcn_TNumsCon_f" jdbcType="INTEGER" property="l1wwdcnTnumsconF" />
+    <result column="l1wwdcn_TNumsCon_if" jdbcType="INTEGER" property="l1wwdcnTnumsconIf" />
+    <result column="l1wwdcn_TNumsCon_org" jdbcType="INTEGER" property="l1wwdcnTnumsconOrg" />
+    <result column="l1wwdcn_TTimesIn" jdbcType="INTEGER" property="l1wwdcnTtimesin" />
+    <result column="l1wwdcn_TTimesOut" jdbcType="INTEGER" property="l1wwdcnTtimesout" />
+    <result column="l1mwdcn_TNumsCon" jdbcType="INTEGER" property="l1mwdcnTnumscon" />
+    <result column="l1mwdcn_TNumsCon_bank" jdbcType="INTEGER" property="l1mwdcnTnumsconBank" />
+    <result column="l1mwdcn_TNumsCon_cf" jdbcType="INTEGER" property="l1mwdcnTnumsconCf" />
+    <result column="l1mwdcn_TNumsCon_f" jdbcType="INTEGER" property="l1mwdcnTnumsconF" />
+    <result column="l1mwdcn_TNumsCon_if" jdbcType="INTEGER" property="l1mwdcnTnumsconIf" />
+    <result column="l1mwdcn_TNumsCon_org" jdbcType="INTEGER" property="l1mwdcnTnumsconOrg" />
+    <result column="l1mwdcn_TTimesIn" jdbcType="INTEGER" property="l1mwdcnTtimesin" />
+    <result column="l1mwdcn_TTimesOut" jdbcType="INTEGER" property="l1mwdcnTtimesout" />
+    <result column="l3mwdcn_TNumsCon" jdbcType="INTEGER" property="l3mwdcnTnumscon" />
+    <result column="l3mwdcn_TNumsCon_bank" jdbcType="INTEGER" property="l3mwdcnTnumsconBank" />
+    <result column="l3mwdcn_TNumsCon_cf" jdbcType="INTEGER" property="l3mwdcnTnumsconCf" />
+    <result column="l3mwdcn_TNumsCon_f" jdbcType="INTEGER" property="l3mwdcnTnumsconF" />
+    <result column="l3mwdcn_TNumsCon_if" jdbcType="INTEGER" property="l3mwdcnTnumsconIf" />
+    <result column="l3mwdcn_TNumsCon_org" jdbcType="INTEGER" property="l3mwdcnTnumsconOrg" />
+    <result column="l3mwdcn_TTimesIn" jdbcType="INTEGER" property="l3mwdcnTtimesin" />
+    <result column="l3mwdcn_TTimesOut" jdbcType="INTEGER" property="l3mwdcnTtimesout" />
+    <result column="allwdcn_TNumsCon" jdbcType="INTEGER" property="allwdcnTnumscon" />
+    <result column="allwdcn_TNumsCon_bank" jdbcType="INTEGER" property="allwdcnTnumsconBank" />
+    <result column="allwdcn_TNumsCon_cf" jdbcType="INTEGER" property="allwdcnTnumsconCf" />
+    <result column="allwdcn_TNumsCon_f" jdbcType="INTEGER" property="allwdcnTnumsconF" />
+    <result column="allwdcn_TNumsCon_if" jdbcType="INTEGER" property="allwdcnTnumsconIf" />
+    <result column="allwdcn_TNumsCon_org" jdbcType="INTEGER" property="allwdcnTnumsconOrg" />
+    <result column="allwdcn_TTimesIn" jdbcType="INTEGER" property="allwdcnTtimesin" />
+    <result column="allwdcn_TTimesOut" jdbcType="INTEGER" property="allwdcnTtimesout" />
+    <result column="l2wwdcn_TNumsCon_orgtype" jdbcType="INTEGER" property="l2wwdcnTnumsconOrgtype" />
+    <result column="l3wwdcn_TNumsCon_if" jdbcType="INTEGER" property="l3wwdcnTnumsconIf" />
+    <result column="l2mwdcn_TNumsIn" jdbcType="INTEGER" property="l2mwdcnTnumsin" />
+    <result column="l2mwdcn_MaxTimesCon" jdbcType="INTEGER" property="l2mwdcnMaxtimescon" />
+    <result column="l2mencn_TDaysCon" jdbcType="INTEGER" property="l2mencnTdayscon" />
+    <result column="l3mwdcn_AddTNumsIn_org" jdbcType="INTEGER" property="l3mwdcnAddtnumsinOrg" />
+    <result column="l3mwdcn_MaxDaysIn" jdbcType="INTEGER" property="l3mwdcnMaxdaysin" />
+    <result column="l4mwdcn_TNumsCon_orgtype" jdbcType="INTEGER" property="l4mwdcnTnumsconOrgtype" />
+    <result column="l4mwdcn_TTimesIn_nonbank" jdbcType="INTEGER" property="l4mwdcnTtimesinNonbank" />
+    <result column="l4mwdcn_TDurCon" jdbcType="INTEGER" property="l4mwdcnTdurcon" />
+    <result column="l4mwdcn_TTimesCon" jdbcType="INTEGER" property="l4mwdcnTtimescon" />
+    <result column="l4mwdcn_TDurIn" jdbcType="INTEGER" property="l4mwdcnTdurin" />
+    <result column="l5mwdcn_TDaysCon" jdbcType="INTEGER" property="l5mwdcnTdayscon" />
+    <result column="l5mwdcm_TDurCon" jdbcType="INTEGER" property="l5mwdcmTdurcon" />
+    <result column="allwdcn_TDurIn_f" jdbcType="INTEGER" property="allwdcnTdurinF" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cust_id, numsCon, l1wwdcn_TNumsCon, l1wwdcn_TNumsCon_bank, l1wwdcn_TNumsCon_cf, 
+    l1wwdcn_TNumsCon_f, l1wwdcn_TNumsCon_if, l1wwdcn_TNumsCon_org, l1wwdcn_TTimesIn, 
+    l1wwdcn_TTimesOut, l1mwdcn_TNumsCon, l1mwdcn_TNumsCon_bank, l1mwdcn_TNumsCon_cf, 
+    l1mwdcn_TNumsCon_f, l1mwdcn_TNumsCon_if, l1mwdcn_TNumsCon_org, l1mwdcn_TTimesIn, 
+    l1mwdcn_TTimesOut, l3mwdcn_TNumsCon, l3mwdcn_TNumsCon_bank, l3mwdcn_TNumsCon_cf, 
+    l3mwdcn_TNumsCon_f, l3mwdcn_TNumsCon_if, l3mwdcn_TNumsCon_org, l3mwdcn_TTimesIn, 
+    l3mwdcn_TTimesOut, allwdcn_TNumsCon, allwdcn_TNumsCon_bank, allwdcn_TNumsCon_cf, 
+    allwdcn_TNumsCon_f, allwdcn_TNumsCon_if, allwdcn_TNumsCon_org, allwdcn_TTimesIn, 
+    allwdcn_TTimesOut, l2wwdcn_TNumsCon_orgtype, l3wwdcn_TNumsCon_if, l2mwdcn_TNumsIn, 
+    l2mwdcn_MaxTimesCon, l2mencn_TDaysCon, l3mwdcn_AddTNumsIn_org, l3mwdcn_MaxDaysIn, 
+    l4mwdcn_TNumsCon_orgtype, l4mwdcn_TTimesIn_nonbank, l4mwdcn_TDurCon, l4mwdcn_TTimesCon, 
+    l4mwdcn_TDurIn, l5mwdcn_TDaysCon, l5mwdcm_TDurCon, allwdcn_TDurIn_f, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from risk_pingan_grayscale_stat
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByCustId" parameterType="java.lang.Long">
+    delete from risk_pingan_grayscale_stat
+    where cust_id = #{custId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.risk_pingan_grayscale_stat">
+    insert into risk_pingan_grayscale_stat (id, cust_id, numsCon, 
+      l1wwdcn_TNumsCon, l1wwdcn_TNumsCon_bank, l1wwdcn_TNumsCon_cf, 
+      l1wwdcn_TNumsCon_f, l1wwdcn_TNumsCon_if, l1wwdcn_TNumsCon_org, 
+      l1wwdcn_TTimesIn, l1wwdcn_TTimesOut, l1mwdcn_TNumsCon, 
+      l1mwdcn_TNumsCon_bank, l1mwdcn_TNumsCon_cf, 
+      l1mwdcn_TNumsCon_f, l1mwdcn_TNumsCon_if, l1mwdcn_TNumsCon_org, 
+      l1mwdcn_TTimesIn, l1mwdcn_TTimesOut, l3mwdcn_TNumsCon, 
+      l3mwdcn_TNumsCon_bank, l3mwdcn_TNumsCon_cf, 
+      l3mwdcn_TNumsCon_f, l3mwdcn_TNumsCon_if, l3mwdcn_TNumsCon_org, 
+      l3mwdcn_TTimesIn, l3mwdcn_TTimesOut, allwdcn_TNumsCon, 
+      allwdcn_TNumsCon_bank, allwdcn_TNumsCon_cf, 
+      allwdcn_TNumsCon_f, allwdcn_TNumsCon_if, allwdcn_TNumsCon_org, 
+      allwdcn_TTimesIn, allwdcn_TTimesOut, l2wwdcn_TNumsCon_orgtype, 
+      l3wwdcn_TNumsCon_if, l2mwdcn_TNumsIn, l2mwdcn_MaxTimesCon, 
+      l2mencn_TDaysCon, l3mwdcn_AddTNumsIn_org, 
+      l3mwdcn_MaxDaysIn, l4mwdcn_TNumsCon_orgtype, 
+      l4mwdcn_TTimesIn_nonbank, l4mwdcn_TDurCon, 
+      l4mwdcn_TTimesCon, l4mwdcn_TDurIn, l5mwdcn_TDaysCon, 
+      l5mwdcm_TDurCon, allwdcn_TDurIn_f, create_time
+      )
+    values
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.custId,jdbcType=INTEGER}, '0', '0', '0', '0', '0', '0', '0', '0',
+      '0', '0', '0', '0', '0', '0', '0', '0', #{item.l1mwdcnTtimesout,jdbcType=INTEGER}, '0', '0', '0',
+      #{item.l3mwdcnTnumsconF,jdbcType=INTEGER},'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+      '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', #{item.createTime})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.risk_pingan_grayscale_stat">
+    insert into risk_pingan_grayscale_stat
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="custId != null">
+        cust_id,
+      </if>
+      <if test="numscon != null">
+        numsCon,
+      </if>
+      <if test="l1wwdcnTnumscon != null">
+        l1wwdcn_TNumsCon,
+      </if>
+      <if test="l1wwdcnTnumsconBank != null">
+        l1wwdcn_TNumsCon_bank,
+      </if>
+      <if test="l1wwdcnTnumsconCf != null">
+        l1wwdcn_TNumsCon_cf,
+      </if>
+      <if test="l1wwdcnTnumsconF != null">
+        l1wwdcn_TNumsCon_f,
+      </if>
+      <if test="l1wwdcnTnumsconIf != null">
+        l1wwdcn_TNumsCon_if,
+      </if>
+      <if test="l1wwdcnTnumsconOrg != null">
+        l1wwdcn_TNumsCon_org,
+      </if>
+      <if test="l1wwdcnTtimesin != null">
+        l1wwdcn_TTimesIn,
+      </if>
+      <if test="l1wwdcnTtimesout != null">
+        l1wwdcn_TTimesOut,
+      </if>
+      <if test="l1mwdcnTnumscon != null">
+        l1mwdcn_TNumsCon,
+      </if>
+      <if test="l1mwdcnTnumsconBank != null">
+        l1mwdcn_TNumsCon_bank,
+      </if>
+      <if test="l1mwdcnTnumsconCf != null">
+        l1mwdcn_TNumsCon_cf,
+      </if>
+      <if test="l1mwdcnTnumsconF != null">
+        l1mwdcn_TNumsCon_f,
+      </if>
+      <if test="l1mwdcnTnumsconIf != null">
+        l1mwdcn_TNumsCon_if,
+      </if>
+      <if test="l1mwdcnTnumsconOrg != null">
+        l1mwdcn_TNumsCon_org,
+      </if>
+      <if test="l1mwdcnTtimesin != null">
+        l1mwdcn_TTimesIn,
+      </if>
+      <if test="l1mwdcnTtimesout != null">
+        l1mwdcn_TTimesOut,
+      </if>
+      <if test="l3mwdcnTnumscon != null">
+        l3mwdcn_TNumsCon,
+      </if>
+      <if test="l3mwdcnTnumsconBank != null">
+        l3mwdcn_TNumsCon_bank,
+      </if>
+      <if test="l3mwdcnTnumsconCf != null">
+        l3mwdcn_TNumsCon_cf,
+      </if>
+      <if test="l3mwdcnTnumsconF != null">
+        l3mwdcn_TNumsCon_f,
+      </if>
+      <if test="l3mwdcnTnumsconIf != null">
+        l3mwdcn_TNumsCon_if,
+      </if>
+      <if test="l3mwdcnTnumsconOrg != null">
+        l3mwdcn_TNumsCon_org,
+      </if>
+      <if test="l3mwdcnTtimesin != null">
+        l3mwdcn_TTimesIn,
+      </if>
+      <if test="l3mwdcnTtimesout != null">
+        l3mwdcn_TTimesOut,
+      </if>
+      <if test="allwdcnTnumscon != null">
+        allwdcn_TNumsCon,
+      </if>
+      <if test="allwdcnTnumsconBank != null">
+        allwdcn_TNumsCon_bank,
+      </if>
+      <if test="allwdcnTnumsconCf != null">
+        allwdcn_TNumsCon_cf,
+      </if>
+      <if test="allwdcnTnumsconF != null">
+        allwdcn_TNumsCon_f,
+      </if>
+      <if test="allwdcnTnumsconIf != null">
+        allwdcn_TNumsCon_if,
+      </if>
+      <if test="allwdcnTnumsconOrg != null">
+        allwdcn_TNumsCon_org,
+      </if>
+      <if test="allwdcnTtimesin != null">
+        allwdcn_TTimesIn,
+      </if>
+      <if test="allwdcnTtimesout != null">
+        allwdcn_TTimesOut,
+      </if>
+      <if test="l2wwdcnTnumsconOrgtype != null">
+        l2wwdcn_TNumsCon_orgtype,
+      </if>
+      <if test="l3wwdcnTnumsconIf != null">
+        l3wwdcn_TNumsCon_if,
+      </if>
+      <if test="l2mwdcnTnumsin != null">
+        l2mwdcn_TNumsIn,
+      </if>
+      <if test="l2mwdcnMaxtimescon != null">
+        l2mwdcn_MaxTimesCon,
+      </if>
+      <if test="l2mencnTdayscon != null">
+        l2mencn_TDaysCon,
+      </if>
+      <if test="l3mwdcnAddtnumsinOrg != null">
+        l3mwdcn_AddTNumsIn_org,
+      </if>
+      <if test="l3mwdcnMaxdaysin != null">
+        l3mwdcn_MaxDaysIn,
+      </if>
+      <if test="l4mwdcnTnumsconOrgtype != null">
+        l4mwdcn_TNumsCon_orgtype,
+      </if>
+      <if test="l4mwdcnTtimesinNonbank != null">
+        l4mwdcn_TTimesIn_nonbank,
+      </if>
+      <if test="l4mwdcnTdurcon != null">
+        l4mwdcn_TDurCon,
+      </if>
+      <if test="l4mwdcnTtimescon != null">
+        l4mwdcn_TTimesCon,
+      </if>
+      <if test="l4mwdcnTdurin != null">
+        l4mwdcn_TDurIn,
+      </if>
+      <if test="l5mwdcnTdayscon != null">
+        l5mwdcn_TDaysCon,
+      </if>
+      <if test="l5mwdcmTdurcon != null">
+        l5mwdcm_TDurCon,
+      </if>
+      <if test="allwdcnTdurinF != null">
+        allwdcn_TDurIn_f,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="numscon != null">
+        #{numscon,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumscon != null">
+        #{l1wwdcnTnumscon,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumsconBank != null">
+        #{l1wwdcnTnumsconBank,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumsconCf != null">
+        #{l1wwdcnTnumsconCf,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumsconF != null">
+        #{l1wwdcnTnumsconF,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumsconIf != null">
+        #{l1wwdcnTnumsconIf,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumsconOrg != null">
+        #{l1wwdcnTnumsconOrg,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTtimesin != null">
+        #{l1wwdcnTtimesin,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTtimesout != null">
+        #{l1wwdcnTtimesout,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumscon != null">
+        #{l1mwdcnTnumscon,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumsconBank != null">
+        #{l1mwdcnTnumsconBank,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumsconCf != null">
+        #{l1mwdcnTnumsconCf,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumsconF != null">
+        #{l1mwdcnTnumsconF,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumsconIf != null">
+        #{l1mwdcnTnumsconIf,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumsconOrg != null">
+        #{l1mwdcnTnumsconOrg,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTtimesin != null">
+        #{l1mwdcnTtimesin,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTtimesout != null">
+        #{l1mwdcnTtimesout,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumscon != null">
+        #{l3mwdcnTnumscon,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumsconBank != null">
+        #{l3mwdcnTnumsconBank,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumsconCf != null">
+        #{l3mwdcnTnumsconCf,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumsconF != null">
+        #{l3mwdcnTnumsconF,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumsconIf != null">
+        #{l3mwdcnTnumsconIf,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumsconOrg != null">
+        #{l3mwdcnTnumsconOrg,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTtimesin != null">
+        #{l3mwdcnTtimesin,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTtimesout != null">
+        #{l3mwdcnTtimesout,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumscon != null">
+        #{allwdcnTnumscon,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumsconBank != null">
+        #{allwdcnTnumsconBank,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumsconCf != null">
+        #{allwdcnTnumsconCf,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumsconF != null">
+        #{allwdcnTnumsconF,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumsconIf != null">
+        #{allwdcnTnumsconIf,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumsconOrg != null">
+        #{allwdcnTnumsconOrg,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTtimesin != null">
+        #{allwdcnTtimesin,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTtimesout != null">
+        #{allwdcnTtimesout,jdbcType=INTEGER},
+      </if>
+      <if test="l2wwdcnTnumsconOrgtype != null">
+        #{l2wwdcnTnumsconOrgtype,jdbcType=INTEGER},
+      </if>
+      <if test="l3wwdcnTnumsconIf != null">
+        #{l3wwdcnTnumsconIf,jdbcType=INTEGER},
+      </if>
+      <if test="l2mwdcnTnumsin != null">
+        #{l2mwdcnTnumsin,jdbcType=INTEGER},
+      </if>
+      <if test="l2mwdcnMaxtimescon != null">
+        #{l2mwdcnMaxtimescon,jdbcType=INTEGER},
+      </if>
+      <if test="l2mencnTdayscon != null">
+        #{l2mencnTdayscon,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnAddtnumsinOrg != null">
+        #{l3mwdcnAddtnumsinOrg,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnMaxdaysin != null">
+        #{l3mwdcnMaxdaysin,jdbcType=INTEGER},
+      </if>
+      <if test="l4mwdcnTnumsconOrgtype != null">
+        #{l4mwdcnTnumsconOrgtype,jdbcType=INTEGER},
+      </if>
+      <if test="l4mwdcnTtimesinNonbank != null">
+        #{l4mwdcnTtimesinNonbank,jdbcType=INTEGER},
+      </if>
+      <if test="l4mwdcnTdurcon != null">
+        #{l4mwdcnTdurcon,jdbcType=INTEGER},
+      </if>
+      <if test="l4mwdcnTtimescon != null">
+        #{l4mwdcnTtimescon,jdbcType=INTEGER},
+      </if>
+      <if test="l4mwdcnTdurin != null">
+        #{l4mwdcnTdurin,jdbcType=INTEGER},
+      </if>
+      <if test="l5mwdcnTdayscon != null">
+        #{l5mwdcnTdayscon,jdbcType=INTEGER},
+      </if>
+      <if test="l5mwdcmTdurcon != null">
+        #{l5mwdcmTdurcon,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTdurinF != null">
+        #{allwdcnTdurinF,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.risk_pingan_grayscale_stat">
+    update risk_pingan_grayscale_stat
+    <set>
+      <if test="custId != null">
+        cust_id = #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="numscon != null">
+        numsCon = #{numscon,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumscon != null">
+        l1wwdcn_TNumsCon = #{l1wwdcnTnumscon,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumsconBank != null">
+        l1wwdcn_TNumsCon_bank = #{l1wwdcnTnumsconBank,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumsconCf != null">
+        l1wwdcn_TNumsCon_cf = #{l1wwdcnTnumsconCf,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumsconF != null">
+        l1wwdcn_TNumsCon_f = #{l1wwdcnTnumsconF,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumsconIf != null">
+        l1wwdcn_TNumsCon_if = #{l1wwdcnTnumsconIf,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTnumsconOrg != null">
+        l1wwdcn_TNumsCon_org = #{l1wwdcnTnumsconOrg,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTtimesin != null">
+        l1wwdcn_TTimesIn = #{l1wwdcnTtimesin,jdbcType=INTEGER},
+      </if>
+      <if test="l1wwdcnTtimesout != null">
+        l1wwdcn_TTimesOut = #{l1wwdcnTtimesout,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumscon != null">
+        l1mwdcn_TNumsCon = #{l1mwdcnTnumscon,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumsconBank != null">
+        l1mwdcn_TNumsCon_bank = #{l1mwdcnTnumsconBank,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumsconCf != null">
+        l1mwdcn_TNumsCon_cf = #{l1mwdcnTnumsconCf,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumsconF != null">
+        l1mwdcn_TNumsCon_f = #{l1mwdcnTnumsconF,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumsconIf != null">
+        l1mwdcn_TNumsCon_if = #{l1mwdcnTnumsconIf,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTnumsconOrg != null">
+        l1mwdcn_TNumsCon_org = #{l1mwdcnTnumsconOrg,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTtimesin != null">
+        l1mwdcn_TTimesIn = #{l1mwdcnTtimesin,jdbcType=INTEGER},
+      </if>
+      <if test="l1mwdcnTtimesout != null">
+        l1mwdcn_TTimesOut = #{l1mwdcnTtimesout,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumscon != null">
+        l3mwdcn_TNumsCon = #{l3mwdcnTnumscon,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumsconBank != null">
+        l3mwdcn_TNumsCon_bank = #{l3mwdcnTnumsconBank,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumsconCf != null">
+        l3mwdcn_TNumsCon_cf = #{l3mwdcnTnumsconCf,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumsconF != null">
+        l3mwdcn_TNumsCon_f = #{l3mwdcnTnumsconF,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumsconIf != null">
+        l3mwdcn_TNumsCon_if = #{l3mwdcnTnumsconIf,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTnumsconOrg != null">
+        l3mwdcn_TNumsCon_org = #{l3mwdcnTnumsconOrg,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTtimesin != null">
+        l3mwdcn_TTimesIn = #{l3mwdcnTtimesin,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnTtimesout != null">
+        l3mwdcn_TTimesOut = #{l3mwdcnTtimesout,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumscon != null">
+        allwdcn_TNumsCon = #{allwdcnTnumscon,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumsconBank != null">
+        allwdcn_TNumsCon_bank = #{allwdcnTnumsconBank,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumsconCf != null">
+        allwdcn_TNumsCon_cf = #{allwdcnTnumsconCf,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumsconF != null">
+        allwdcn_TNumsCon_f = #{allwdcnTnumsconF,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumsconIf != null">
+        allwdcn_TNumsCon_if = #{allwdcnTnumsconIf,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTnumsconOrg != null">
+        allwdcn_TNumsCon_org = #{allwdcnTnumsconOrg,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTtimesin != null">
+        allwdcn_TTimesIn = #{allwdcnTtimesin,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTtimesout != null">
+        allwdcn_TTimesOut = #{allwdcnTtimesout,jdbcType=INTEGER},
+      </if>
+      <if test="l2wwdcnTnumsconOrgtype != null">
+        l2wwdcn_TNumsCon_orgtype = #{l2wwdcnTnumsconOrgtype,jdbcType=INTEGER},
+      </if>
+      <if test="l3wwdcnTnumsconIf != null">
+        l3wwdcn_TNumsCon_if = #{l3wwdcnTnumsconIf,jdbcType=INTEGER},
+      </if>
+      <if test="l2mwdcnTnumsin != null">
+        l2mwdcn_TNumsIn = #{l2mwdcnTnumsin,jdbcType=INTEGER},
+      </if>
+      <if test="l2mwdcnMaxtimescon != null">
+        l2mwdcn_MaxTimesCon = #{l2mwdcnMaxtimescon,jdbcType=INTEGER},
+      </if>
+      <if test="l2mencnTdayscon != null">
+        l2mencn_TDaysCon = #{l2mencnTdayscon,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnAddtnumsinOrg != null">
+        l3mwdcn_AddTNumsIn_org = #{l3mwdcnAddtnumsinOrg,jdbcType=INTEGER},
+      </if>
+      <if test="l3mwdcnMaxdaysin != null">
+        l3mwdcn_MaxDaysIn = #{l3mwdcnMaxdaysin,jdbcType=INTEGER},
+      </if>
+      <if test="l4mwdcnTnumsconOrgtype != null">
+        l4mwdcn_TNumsCon_orgtype = #{l4mwdcnTnumsconOrgtype,jdbcType=INTEGER},
+      </if>
+      <if test="l4mwdcnTtimesinNonbank != null">
+        l4mwdcn_TTimesIn_nonbank = #{l4mwdcnTtimesinNonbank,jdbcType=INTEGER},
+      </if>
+      <if test="l4mwdcnTdurcon != null">
+        l4mwdcn_TDurCon = #{l4mwdcnTdurcon,jdbcType=INTEGER},
+      </if>
+      <if test="l4mwdcnTtimescon != null">
+        l4mwdcn_TTimesCon = #{l4mwdcnTtimescon,jdbcType=INTEGER},
+      </if>
+      <if test="l4mwdcnTdurin != null">
+        l4mwdcn_TDurIn = #{l4mwdcnTdurin,jdbcType=INTEGER},
+      </if>
+      <if test="l5mwdcnTdayscon != null">
+        l5mwdcn_TDaysCon = #{l5mwdcnTdayscon,jdbcType=INTEGER},
+      </if>
+      <if test="l5mwdcmTdurcon != null">
+        l5mwdcm_TDurCon = #{l5mwdcmTdurcon,jdbcType=INTEGER},
+      </if>
+      <if test="allwdcnTdurinF != null">
+        allwdcn_TDurIn_f = #{allwdcnTdurinF,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.risk_pingan_grayscale_stat">
+    update risk_pingan_grayscale_stat
+    set cust_id = #{custId,jdbcType=BIGINT},
+      numsCon = #{numscon,jdbcType=INTEGER},
+      l1wwdcn_TNumsCon = #{l1wwdcnTnumscon,jdbcType=INTEGER},
+      l1wwdcn_TNumsCon_bank = #{l1wwdcnTnumsconBank,jdbcType=INTEGER},
+      l1wwdcn_TNumsCon_cf = #{l1wwdcnTnumsconCf,jdbcType=INTEGER},
+      l1wwdcn_TNumsCon_f = #{l1wwdcnTnumsconF,jdbcType=INTEGER},
+      l1wwdcn_TNumsCon_if = #{l1wwdcnTnumsconIf,jdbcType=INTEGER},
+      l1wwdcn_TNumsCon_org = #{l1wwdcnTnumsconOrg,jdbcType=INTEGER},
+      l1wwdcn_TTimesIn = #{l1wwdcnTtimesin,jdbcType=INTEGER},
+      l1wwdcn_TTimesOut = #{l1wwdcnTtimesout,jdbcType=INTEGER},
+      l1mwdcn_TNumsCon = #{l1mwdcnTnumscon,jdbcType=INTEGER},
+      l1mwdcn_TNumsCon_bank = #{l1mwdcnTnumsconBank,jdbcType=INTEGER},
+      l1mwdcn_TNumsCon_cf = #{l1mwdcnTnumsconCf,jdbcType=INTEGER},
+      l1mwdcn_TNumsCon_f = #{l1mwdcnTnumsconF,jdbcType=INTEGER},
+      l1mwdcn_TNumsCon_if = #{l1mwdcnTnumsconIf,jdbcType=INTEGER},
+      l1mwdcn_TNumsCon_org = #{l1mwdcnTnumsconOrg,jdbcType=INTEGER},
+      l1mwdcn_TTimesIn = #{l1mwdcnTtimesin,jdbcType=INTEGER},
+      l1mwdcn_TTimesOut = #{l1mwdcnTtimesout,jdbcType=INTEGER},
+      l3mwdcn_TNumsCon = #{l3mwdcnTnumscon,jdbcType=INTEGER},
+      l3mwdcn_TNumsCon_bank = #{l3mwdcnTnumsconBank,jdbcType=INTEGER},
+      l3mwdcn_TNumsCon_cf = #{l3mwdcnTnumsconCf,jdbcType=INTEGER},
+      l3mwdcn_TNumsCon_f = #{l3mwdcnTnumsconF,jdbcType=INTEGER},
+      l3mwdcn_TNumsCon_if = #{l3mwdcnTnumsconIf,jdbcType=INTEGER},
+      l3mwdcn_TNumsCon_org = #{l3mwdcnTnumsconOrg,jdbcType=INTEGER},
+      l3mwdcn_TTimesIn = #{l3mwdcnTtimesin,jdbcType=INTEGER},
+      l3mwdcn_TTimesOut = #{l3mwdcnTtimesout,jdbcType=INTEGER},
+      allwdcn_TNumsCon = #{allwdcnTnumscon,jdbcType=INTEGER},
+      allwdcn_TNumsCon_bank = #{allwdcnTnumsconBank,jdbcType=INTEGER},
+      allwdcn_TNumsCon_cf = #{allwdcnTnumsconCf,jdbcType=INTEGER},
+      allwdcn_TNumsCon_f = #{allwdcnTnumsconF,jdbcType=INTEGER},
+      allwdcn_TNumsCon_if = #{allwdcnTnumsconIf,jdbcType=INTEGER},
+      allwdcn_TNumsCon_org = #{allwdcnTnumsconOrg,jdbcType=INTEGER},
+      allwdcn_TTimesIn = #{allwdcnTtimesin,jdbcType=INTEGER},
+      allwdcn_TTimesOut = #{allwdcnTtimesout,jdbcType=INTEGER},
+      l2wwdcn_TNumsCon_orgtype = #{l2wwdcnTnumsconOrgtype,jdbcType=INTEGER},
+      l3wwdcn_TNumsCon_if = #{l3wwdcnTnumsconIf,jdbcType=INTEGER},
+      l2mwdcn_TNumsIn = #{l2mwdcnTnumsin,jdbcType=INTEGER},
+      l2mwdcn_MaxTimesCon = #{l2mwdcnMaxtimescon,jdbcType=INTEGER},
+      l2mencn_TDaysCon = #{l2mencnTdayscon,jdbcType=INTEGER},
+      l3mwdcn_AddTNumsIn_org = #{l3mwdcnAddtnumsinOrg,jdbcType=INTEGER},
+      l3mwdcn_MaxDaysIn = #{l3mwdcnMaxdaysin,jdbcType=INTEGER},
+      l4mwdcn_TNumsCon_orgtype = #{l4mwdcnTnumsconOrgtype,jdbcType=INTEGER},
+      l4mwdcn_TTimesIn_nonbank = #{l4mwdcnTtimesinNonbank,jdbcType=INTEGER},
+      l4mwdcn_TDurCon = #{l4mwdcnTdurcon,jdbcType=INTEGER},
+      l4mwdcn_TTimesCon = #{l4mwdcnTtimescon,jdbcType=INTEGER},
+      l4mwdcn_TDurIn = #{l4mwdcnTdurin,jdbcType=INTEGER},
+      l5mwdcn_TDaysCon = #{l5mwdcnTdayscon,jdbcType=INTEGER},
+      l5mwdcm_TDurCon = #{l5mwdcmTdurcon,jdbcType=INTEGER},
+      allwdcn_TDurIn_f = #{allwdcnTdurinF,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

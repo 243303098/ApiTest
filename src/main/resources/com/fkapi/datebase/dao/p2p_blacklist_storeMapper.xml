@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_blacklist_storeMapper">
+	<resultMap id="p2p_blacklist_storeMapper" type="com.fkapi.datebase.domain.p2p_blacklist_store">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="CERT_NO" jdbcType="VARCHAR" property="certNo" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="SOURCE" jdbcType="VARCHAR" property="source" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="QQ" jdbcType="VARCHAR" property="qq" />
+		<result column="OVERDUE_DATE" jdbcType="DATE" property="overdueDate" />
+		<result column="REASON" jdbcType="VARCHAR" property="reason" />
+	</resultMap>
+	<sql id="p2p_blacklist_store">
+		ID, NAME, CERT_NO, MOBILE, EMAIL, SOURCE, UPDATE_TIME, QQ,
+		OVERDUE_DATE,
+		REASON
+	</sql>
+	<select id="selectByCustNameAndIdNo" parameterType="com.fkapi.datebase.domain.p2p_blacklist_store"
+		resultMap="p2p_blacklist_storeMapper">
+		<foreach collection="list" item="item" index="index"
+			separator="or">
+			select
+			<include refid="p2p_blacklist_store" />
+			from p2p_blacklist_store
+			where NAME = #{name,jdbcType=VARCHAR}
+			and
+			CERT_NO = #{certNo,jdbcType=VARCHAR}
+		</foreach>
+	</select>
+	<delete id="deleteByCustNameOrIdNo" parameterType="com.fkapi.datebase.domain.p2p_blacklist_store">
+		<foreach collection="list" item="item" index="index"
+			separator="or">
+			delete from p2p_blacklist_store
+			where NAME = #{item.name}
+			or CERT_NO like #{item.certNo}
+		</foreach>
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_blacklist_store">
+		insert into
+		p2p_blacklist_store (NAME, CERT_NO,
+		MOBILE, EMAIL, SOURCE,
+		UPDATE_TIME, QQ, OVERDUE_DATE,
+		REASON)
+		values 
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.name}, #{item.certNo}, '', NULL, '测试内部黑名单', #{item.updateTime}, '', #{item.overdueDate}, '逾期')
+			</foreach>
+	</insert>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_mobile_addrMapper">
+  <resultMap id="p2p_mobile_addrMapper" type="com.fkapi.datebase.domain.p2p_mobile_addr">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="PROVINCE_CODE" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+  </resultMap>
+  <sql id="p2p_mobile_addr">
+    ID, MOBILE, ADDRESS, PROVINCE, CITY, PROVINCE_CODE, CITY_CODE
+  </sql>
+  <select id="selectByMobile" parameterType="java.lang.String" resultMap="p2p_mobile_addrMapper">
+    select 
+    <include refid="p2p_mobile_addr" />
+    from p2p_mobile_addr
+    where MOBILE = #{mobile,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByCityCode" parameterType="java.lang.String" resultMap="p2p_mobile_addrMapper">
+    select
+    <include refid="p2p_mobile_addr" />
+    from p2p_mobile_addr
+    where CITY_CODE = #{cityCode,jdbcType=VARCHAR} limit 1
+  </select>
+
+  <select id="selectByProvinceCode" parameterType="java.lang.String" resultMap="p2p_mobile_addrMapper">
+    select
+    <include refid="p2p_mobile_addr" />
+    from p2p_mobile_addr
+    where PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR} limit 1
+  </select>
+
+  <select id="selectByOtherProvinceCode" parameterType="java.lang.String" resultMap="p2p_mobile_addrMapper">
+    select
+    <include refid="p2p_mobile_addr" />
+    from p2p_mobile_addr
+    where PROVINCE_CODE != #{provinceCode,jdbcType=VARCHAR} limit 1
+  </select>
+
+  <select id="selectByOtherCityCode" parameterType="java.lang.String" resultMap="p2p_mobile_addrMapper">
+    select
+    <include refid="p2p_mobile_addr" />
+    from p2p_mobile_addr
+    where CITY_CODE != #{cityCode,jdbcType=VARCHAR} limit 1
+  </select>
+</mapper>

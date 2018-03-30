@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_cust_accountMapper">
+	<resultMap id="p2p_cust_accountMapper" type="com.fkapi.datebase.domain.p2p_cust_account">
+		<id column="ACCOUNT_NO" jdbcType="VARCHAR" property="accountNo" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="COLLECTING_PRINCIPAL" jdbcType="DECIMAL"
+			property="collectingPrincipal" />
+		<result column="COLLECTING_REVENUE" jdbcType="DECIMAL"
+			property="collectingRevenue" />
+		<result column="FORZEN_AMOUNT" jdbcType="DECIMAL" property="forzenAmount" />
+		<result column="ACCOUNT_STATUS" jdbcType="VARCHAR" property="accountStatus" />
+		<result column="COLLECTED_PRINCIPAL" jdbcType="DECIMAL"
+			property="collectedPrincipal" />
+		<result column="COLLECTED_REVENUE" jdbcType="DECIMAL" property="collectedRevenue" />
+		<result column="USABLE_BALANCE" jdbcType="DECIMAL" property="usableBalance" />
+		<result column="INVEST_FLG" jdbcType="CHAR" property="investFlg" />
+		<result column="LOAN_FLG" jdbcType="CHAR" property="loanFlg" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="LOCK_TIME" jdbcType="TIMESTAMP" property="lockTime" />
+		<result column="IS_DEFAULT" jdbcType="VARCHAR" property="isDefault" />
+		<result column="CUST_RULE_ID" jdbcType="BIGINT" property="custRuleId" />
+		<result column="WITHDREW_AMOUNT" jdbcType="DECIMAL" property="withdrewAmount" />
+		<result column="ALL_INVEST_AMOUNT" jdbcType="DECIMAL" property="allInvestAmount" />
+		<result column="ALL_RECHARGE_AMOUNT" jdbcType="DECIMAL"
+			property="allRechargeAmount" />
+		<result column="VERSION" jdbcType="BIGINT" property="version" />
+		<result column="LOCK_AMOUNT" jdbcType="DECIMAL" property="lockAmount" />
+		<result column="WITHDRAW_FORZEN" jdbcType="DECIMAL" property="withdrawForzen" />
+		<result column="DIRECT_FORZEN" jdbcType="DECIMAL" property="directForzen" />
+		<result column="PLAN_FORZEN" jdbcType="DECIMAL" property="planForzen" />
+		<result column="DIRECT_REVENUE" jdbcType="DECIMAL" property="directRevenue" />
+		<result column="PLAN_REVENUE" jdbcType="DECIMAL" property="planRevenue" />
+		<result column="HAD_DIRECT_REVENUE" jdbcType="DECIMAL"
+			property="hadDirectRevenue" />
+		<result column="HAD_PLAN_REVENUE" jdbcType="DECIMAL" property="hadPlanRevenue" />
+		<result column="INCOME_LOCK" jdbcType="DECIMAL" property="incomeLock" />
+		<result column="PLAN_LOCK" jdbcType="DECIMAL" property="planLock" />
+		<result column="DIRECT_PRINCIPAL" jdbcType="DECIMAL" property="directPrincipal" />
+		<result column="PLAN_PRINCIPAL" jdbcType="DECIMAL" property="planPrincipal" />
+	</resultMap>
+	<sql id="p2p_cust_account">
+		ACCOUNT_NO, CUST_ID, COLLECTING_PRINCIPAL, COLLECTING_REVENUE, FORZEN_AMOUNT,
+		ACCOUNT_STATUS,
+		COLLECTED_PRINCIPAL, COLLECTED_REVENUE, USABLE_BALANCE, INVEST_FLG, LOAN_FLG, UPDATE_TIME,
+		LOCK_TIME, IS_DEFAULT, CUST_RULE_ID, WITHDREW_AMOUNT,
+		ALL_INVEST_AMOUNT, ALL_RECHARGE_AMOUNT,
+		VERSION, LOCK_AMOUNT, WITHDRAW_FORZEN, DIRECT_FORZEN, PLAN_FORZEN,
+		DIRECT_REVENUE,
+		PLAN_REVENUE, HAD_DIRECT_REVENUE, HAD_PLAN_REVENUE, INCOME_LOCK, PLAN_LOCK,
+		DIRECT_PRINCIPAL,
+		PLAN_PRINCIPAL
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="p2p_cust_accountMapper">
+		select
+		<include refid="p2p_cust_account" />
+		from p2p_cust_account
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByAcctNo" parameterType="java.lang.String">
+		delete from p2p_cust_account
+		where ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_cust_account">
+		insert into p2p_cust_account (ACCOUNT_NO, CUST_ID, COLLECTING_PRINCIPAL,
+		COLLECTING_REVENUE, FORZEN_AMOUNT, ACCOUNT_STATUS,
+		COLLECTED_PRINCIPAL, COLLECTED_REVENUE, USABLE_BALANCE,
+		INVEST_FLG, LOAN_FLG, UPDATE_TIME,
+		LOCK_TIME, IS_DEFAULT, CUST_RULE_ID,
+		WITHDREW_AMOUNT, ALL_INVEST_AMOUNT, ALL_RECHARGE_AMOUNT,
+		VERSION, LOCK_AMOUNT, WITHDRAW_FORZEN,
+		DIRECT_FORZEN, PLAN_FORZEN, DIRECT_REVENUE,
+		PLAN_REVENUE, HAD_DIRECT_REVENUE, HAD_PLAN_REVENUE,
+		INCOME_LOCK, PLAN_LOCK, DIRECT_PRINCIPAL,
+		PLAN_PRINCIPAL)
+		values 
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.accountNo}, #{item.custId}, '0.00', '0.00',
+		'0.00', '10', '0.00', '0.00', '0.00', 'N', 'N', NULL, NULL, 'Y', NULL,
+		'0.00', '0.00', '0.00', '0', '0.00', '0.00', '0.00', '0.00', '0.00',
+		'0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00')
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_cust_account">
+		insert into p2p_cust_account
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="accountNo != null">
+				ACCOUNT_NO,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="collectingPrincipal != null">
+				COLLECTING_PRINCIPAL,
+			</if>
+			<if test="collectingRevenue != null">
+				COLLECTING_REVENUE,
+			</if>
+			<if test="forzenAmount != null">
+				FORZEN_AMOUNT,
+			</if>
+			<if test="accountStatus != null">
+				ACCOUNT_STATUS,
+			</if>
+			<if test="collectedPrincipal != null">
+				COLLECTED_PRINCIPAL,
+			</if>
+			<if test="collectedRevenue != null">
+				COLLECTED_REVENUE,
+			</if>
+			<if test="usableBalance != null">
+				USABLE_BALANCE,
+			</if>
+			<if test="investFlg != null">
+				INVEST_FLG,
+			</if>
+			<if test="loanFlg != null">
+				LOAN_FLG,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="lockTime != null">
+				LOCK_TIME,
+			</if>
+			<if test="isDefault != null">
+				IS_DEFAULT,
+			</if>
+			<if test="custRuleId != null">
+				CUST_RULE_ID,
+			</if>
+			<if test="withdrewAmount != null">
+				WITHDREW_AMOUNT,
+			</if>
+			<if test="allInvestAmount != null">
+				ALL_INVEST_AMOUNT,
+			</if>
+			<if test="allRechargeAmount != null">
+				ALL_RECHARGE_AMOUNT,
+			</if>
+			<if test="version != null">
+				VERSION,
+			</if>
+			<if test="lockAmount != null">
+				LOCK_AMOUNT,
+			</if>
+			<if test="withdrawForzen != null">
+				WITHDRAW_FORZEN,
+			</if>
+			<if test="directForzen != null">
+				DIRECT_FORZEN,
+			</if>
+			<if test="planForzen != null">
+				PLAN_FORZEN,
+			</if>
+			<if test="directRevenue != null">
+				DIRECT_REVENUE,
+			</if>
+			<if test="planRevenue != null">
+				PLAN_REVENUE,
+			</if>
+			<if test="hadDirectRevenue != null">
+				HAD_DIRECT_REVENUE,
+			</if>
+			<if test="hadPlanRevenue != null">
+				HAD_PLAN_REVENUE,
+			</if>
+			<if test="incomeLock != null">
+				INCOME_LOCK,
+			</if>
+			<if test="planLock != null">
+				PLAN_LOCK,
+			</if>
+			<if test="directPrincipal != null">
+				DIRECT_PRINCIPAL,
+			</if>
+			<if test="planPrincipal != null">
+				PLAN_PRINCIPAL,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="accountNo != null">
+				#{accountNo,jdbcType=VARCHAR},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="collectingPrincipal != null">
+				#{collectingPrincipal,jdbcType=DECIMAL},
+			</if>
+			<if test="collectingRevenue != null">
+				#{collectingRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="forzenAmount != null">
+				#{forzenAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="accountStatus != null">
+				#{accountStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="collectedPrincipal != null">
+				#{collectedPrincipal,jdbcType=DECIMAL},
+			</if>
+			<if test="collectedRevenue != null">
+				#{collectedRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="usableBalance != null">
+				#{usableBalance,jdbcType=DECIMAL},
+			</if>
+			<if test="investFlg != null">
+				#{investFlg,jdbcType=CHAR},
+			</if>
+			<if test="loanFlg != null">
+				#{loanFlg,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lockTime != null">
+				#{lockTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isDefault != null">
+				#{isDefault,jdbcType=VARCHAR},
+			</if>
+			<if test="custRuleId != null">
+				#{custRuleId,jdbcType=BIGINT},
+			</if>
+			<if test="withdrewAmount != null">
+				#{withdrewAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="allInvestAmount != null">
+				#{allInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="allRechargeAmount != null">
+				#{allRechargeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=BIGINT},
+			</if>
+			<if test="lockAmount != null">
+				#{lockAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="withdrawForzen != null">
+				#{withdrawForzen,jdbcType=DECIMAL},
+			</if>
+			<if test="directForzen != null">
+				#{directForzen,jdbcType=DECIMAL},
+			</if>
+			<if test="planForzen != null">
+				#{planForzen,jdbcType=DECIMAL},
+			</if>
+			<if test="directRevenue != null">
+				#{directRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="planRevenue != null">
+				#{planRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="hadDirectRevenue != null">
+				#{hadDirectRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="hadPlanRevenue != null">
+				#{hadPlanRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="incomeLock != null">
+				#{incomeLock,jdbcType=DECIMAL},
+			</if>
+			<if test="planLock != null">
+				#{planLock,jdbcType=DECIMAL},
+			</if>
+			<if test="directPrincipal != null">
+				#{directPrincipal,jdbcType=DECIMAL},
+			</if>
+			<if test="planPrincipal != null">
+				#{planPrincipal,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_cust_account">
+		update p2p_cust_account
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="collectingPrincipal != null">
+				COLLECTING_PRINCIPAL = #{collectingPrincipal,jdbcType=DECIMAL},
+			</if>
+			<if test="collectingRevenue != null">
+				COLLECTING_REVENUE = #{collectingRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="forzenAmount != null">
+				FORZEN_AMOUNT = #{forzenAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="accountStatus != null">
+				ACCOUNT_STATUS = #{accountStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="collectedPrincipal != null">
+				COLLECTED_PRINCIPAL = #{collectedPrincipal,jdbcType=DECIMAL},
+			</if>
+			<if test="collectedRevenue != null">
+				COLLECTED_REVENUE = #{collectedRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="usableBalance != null">
+				USABLE_BALANCE = #{usableBalance,jdbcType=DECIMAL},
+			</if>
+			<if test="investFlg != null">
+				INVEST_FLG = #{investFlg,jdbcType=CHAR},
+			</if>
+			<if test="loanFlg != null">
+				LOAN_FLG = #{loanFlg,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lockTime != null">
+				LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isDefault != null">
+				IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+			</if>
+			<if test="custRuleId != null">
+				CUST_RULE_ID = #{custRuleId,jdbcType=BIGINT},
+			</if>
+			<if test="withdrewAmount != null">
+				WITHDREW_AMOUNT = #{withdrewAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="allInvestAmount != null">
+				ALL_INVEST_AMOUNT = #{allInvestAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="allRechargeAmount != null">
+				ALL_RECHARGE_AMOUNT = #{allRechargeAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="version != null">
+				VERSION = #{version,jdbcType=BIGINT},
+			</if>
+			<if test="lockAmount != null">
+				LOCK_AMOUNT = #{lockAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="withdrawForzen != null">
+				WITHDRAW_FORZEN = #{withdrawForzen,jdbcType=DECIMAL},
+			</if>
+			<if test="directForzen != null">
+				DIRECT_FORZEN = #{directForzen,jdbcType=DECIMAL},
+			</if>
+			<if test="planForzen != null">
+				PLAN_FORZEN = #{planForzen,jdbcType=DECIMAL},
+			</if>
+			<if test="directRevenue != null">
+				DIRECT_REVENUE = #{directRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="planRevenue != null">
+				PLAN_REVENUE = #{planRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="hadDirectRevenue != null">
+				HAD_DIRECT_REVENUE = #{hadDirectRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="hadPlanRevenue != null">
+				HAD_PLAN_REVENUE = #{hadPlanRevenue,jdbcType=DECIMAL},
+			</if>
+			<if test="incomeLock != null">
+				INCOME_LOCK = #{incomeLock,jdbcType=DECIMAL},
+			</if>
+			<if test="planLock != null">
+				PLAN_LOCK = #{planLock,jdbcType=DECIMAL},
+			</if>
+			<if test="directPrincipal != null">
+				DIRECT_PRINCIPAL = #{directPrincipal,jdbcType=DECIMAL},
+			</if>
+			<if test="planPrincipal != null">
+				PLAN_PRINCIPAL = #{planPrincipal,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_cust_account">
+		update p2p_cust_account
+		set CUST_ID = #{custId,jdbcType=BIGINT},
+		COLLECTING_PRINCIPAL = #{collectingPrincipal,jdbcType=DECIMAL},
+		COLLECTING_REVENUE = #{collectingRevenue,jdbcType=DECIMAL},
+		FORZEN_AMOUNT = #{forzenAmount,jdbcType=DECIMAL},
+		ACCOUNT_STATUS = #{accountStatus,jdbcType=VARCHAR},
+		COLLECTED_PRINCIPAL = #{collectedPrincipal,jdbcType=DECIMAL},
+		COLLECTED_REVENUE = #{collectedRevenue,jdbcType=DECIMAL},
+		USABLE_BALANCE = #{usableBalance,jdbcType=DECIMAL},
+		INVEST_FLG = #{investFlg,jdbcType=CHAR},
+		LOAN_FLG = #{loanFlg,jdbcType=CHAR},
+		UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+		LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP},
+		IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+		CUST_RULE_ID = #{custRuleId,jdbcType=BIGINT},
+		WITHDREW_AMOUNT = #{withdrewAmount,jdbcType=DECIMAL},
+		ALL_INVEST_AMOUNT = #{allInvestAmount,jdbcType=DECIMAL},
+		ALL_RECHARGE_AMOUNT = #{allRechargeAmount,jdbcType=DECIMAL},
+		VERSION = #{version,jdbcType=BIGINT},
+		LOCK_AMOUNT = #{lockAmount,jdbcType=DECIMAL},
+		WITHDRAW_FORZEN = #{withdrawForzen,jdbcType=DECIMAL},
+		DIRECT_FORZEN = #{directForzen,jdbcType=DECIMAL},
+		PLAN_FORZEN = #{planForzen,jdbcType=DECIMAL},
+		DIRECT_REVENUE = #{directRevenue,jdbcType=DECIMAL},
+		PLAN_REVENUE = #{planRevenue,jdbcType=DECIMAL},
+		HAD_DIRECT_REVENUE = #{hadDirectRevenue,jdbcType=DECIMAL},
+		HAD_PLAN_REVENUE = #{hadPlanRevenue,jdbcType=DECIMAL},
+		INCOME_LOCK = #{incomeLock,jdbcType=DECIMAL},
+		PLAN_LOCK = #{planLock,jdbcType=DECIMAL},
+		DIRECT_PRINCIPAL = #{directPrincipal,jdbcType=DECIMAL},
+		PLAN_PRINCIPAL = #{planPrincipal,jdbcType=DECIMAL}
+		where ACCOUNT_NO = #{accountNo,jdbcType=VARCHAR}
+	</update>
+</mapper>

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.database.dao.p2p_base_customerMapper">
+	<resultMap id="p2p_base_customerMapper" type="com.fkapi.database.domain.p2p_base_customer">
+		<id column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+		<result column="CERT_TYPE" jdbcType="CHAR" property="certType" />
+		<result column="CERT_NO" jdbcType="VARCHAR" property="certNo" />
+		<result column="SEX" jdbcType="CHAR" property="sex" />
+		<result column="AGE" jdbcType="SMALLINT" property="age" />
+		<result column="BIRTHDAY" jdbcType="DATE" property="birthday" />
+		<result column="ZODIAC" jdbcType="VARCHAR" property="zodiac" />
+		<result column="CONSTELLATION" jdbcType="VARCHAR" property="constellation" />
+		<result column="MARRIAGE" jdbcType="CHAR" property="marriage" />
+		<result column="TEL" jdbcType="VARCHAR" property="tel" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="QQ" jdbcType="VARCHAR" property="qq" />
+		<result column="WECHAT" jdbcType="VARCHAR" property="wechat" />
+		<result column="EDUCATION_ID" jdbcType="BIGINT" property="educationId" />
+		<result column="SCHOOL_ROLL_ID" jdbcType="VARCHAR" property="schoolRollId" />
+		<result column="PRO_CERT" jdbcType="VARCHAR" property="proCert" />
+		<result column="EMPLOYED_TIME" jdbcType="SMALLINT" property="employedTime" />
+		<result column="JOB" jdbcType="VARCHAR" property="job" />
+		<result column="JOB_CERT" jdbcType="VARCHAR" property="jobCert" />
+		<result column="PRESTIGE" jdbcType="VARCHAR" property="prestige" />
+		<result column="MICRO_BLOG" jdbcType="VARCHAR" property="microBlog" />
+		<result column="NOW_ADDR" jdbcType="VARCHAR" property="nowAddr" />
+		<result column="NOW_FULL_ADDR" jdbcType="VARCHAR" property="nowFullAddr" />
+		<result column="HOME_ADDR" jdbcType="VARCHAR" property="homeAddr" />
+		<result column="HOME_FULL_ADDR" jdbcType="VARCHAR" property="homeFullAddr" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="EDUCATION_AUTH" jdbcType="VARCHAR" property="educationAuth" />
+		<result column="EMAIL_AUTH" jdbcType="VARCHAR" property="emailAuth" />
+		<result column="PHONE_AUTH" jdbcType="VARCHAR" property="phoneAuth" />
+		<result column="CERT_AUTH" jdbcType="VARCHAR" property="certAuth" />
+		<result column="PHOTO_AUTH" jdbcType="VARCHAR" property="photoAuth" />
+		<result column="SCHOOL_ROLL_AUTH" jdbcType="VARCHAR" property="schoolRollAuth" />
+		<result column="VIDEO_AUTH" jdbcType="VARCHAR" property="videoAuth" />
+		<result column="REFEREE_AUTH" jdbcType="VARCHAR" property="refereeAuth" />
+		<result column="PLACE_AUTH" jdbcType="VARCHAR" property="placeAuth" />
+		<result column="BLACK_LIST_STATUS" jdbcType="VARCHAR" property="blackListStatus" />
+		<result column="CITY" jdbcType="VARCHAR" property="city" />
+		<result column="CHANNEL_COUNT" jdbcType="INTEGER" property="channelCount" />
+		<result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+		<result column="SCHOOL_ROLL" jdbcType="VARCHAR" property="schoolRoll" />
+		<result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+		<result column="HEAD_PIC" jdbcType="VARCHAR" property="headPic" />
+		<result column="CREDIT_AMOUNT" jdbcType="DECIMAL" property="creditAmount" />
+		<result column="USED_CREDIT_AMOUNT" jdbcType="DECIMAL"
+			property="usedCreditAmount" />
+		<result column="IS_ACTIVITY" jdbcType="CHAR" property="isActivity" />
+		<result column="CREDIT_LEVEL" jdbcType="VARCHAR" property="creditLevel" />
+		<result column="MOBILE_PROVINCE" jdbcType="VARCHAR" property="mobileProvince" />
+		<result column="MOBILE_CITY" jdbcType="VARCHAR" property="mobileCity" />
+		<result column="CREDIT_SCORE" jdbcType="INTEGER" property="creditScore" />
+		<result column="APP_MASK" jdbcType="INTEGER" property="appMask" />
+		<result column="EXP_VAL" jdbcType="INTEGER" property="expVal" />
+		<result column="EXP_LEVEL" jdbcType="VARCHAR" property="expLevel" />
+		<result column="EXP_FLAG" jdbcType="CHAR" property="expFlag" />
+		<result column="SEGMENT_ID" jdbcType="VARCHAR" property="segmentId" />
+		<result column="NOW_ADDR_PROVINCE" jdbcType="VARCHAR" property="nowAddrProvince" />
+		<result column="NOW_ADDR_CITY" jdbcType="VARCHAR" property="nowAddrCity" />
+	</resultMap>
+	<sql id="p2p_base_customer">
+		CUST_ID, CUST_NAME, CERT_TYPE, CERT_NO, SEX, AGE, BIRTHDAY,
+		ZODIAC,
+		CONSTELLATION,
+		MARRIAGE, TEL, EMAIL, QQ, WECHAT, EDUCATION_ID,
+		SCHOOL_ROLL_ID, PRO_CERT,
+		EMPLOYED_TIME,
+		JOB, JOB_CERT, PRESTIGE,
+		MICRO_BLOG, NOW_ADDR, NOW_FULL_ADDR, HOME_ADDR,
+		HOME_FULL_ADDR,
+		CREATE_TIME, UPDATE_TIME, EDUCATION_AUTH, EMAIL_AUTH, PHONE_AUTH,
+		CERT_AUTH,
+		PHOTO_AUTH,
+		SCHOOL_ROLL_AUTH, VIDEO_AUTH, REFEREE_AUTH,
+		PLACE_AUTH, BLACK_LIST_STATUS, CITY,
+		CHANNEL_COUNT, EDUCATION,
+		SCHOOL_ROLL, NICK_NAME, HEAD_PIC,
+		CREDIT_AMOUNT, USED_CREDIT_AMOUNT,
+		IS_ACTIVITY, CREDIT_LEVEL, MOBILE_PROVINCE, MOBILE_CITY, CREDIT_SCORE,
+		APP_MASK,
+		EXP_VAL, EXP_LEVEL, EXP_FLAG, SEGMENT_ID, NOW_ADDR_PROVINCE,
+		NOW_ADDR_CITY
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="p2p_base_customerMapper">
+		select
+		<include refid="p2p_base_customer" />
+		from p2p_base_customer
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from
+		p2p_base_customer
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="java.util.List">
+		insert into p2p_base_customer (CUST_ID, CUST_NAME, CERT_TYPE,
+		CERT_NO,
+		SEX, AGE, BIRTHDAY,
+		ZODIAC, CONSTELLATION, MARRIAGE,
+		TEL, EMAIL, QQ,
+		WECHAT,
+		EDUCATION_ID, SCHOOL_ROLL_ID, PRO_CERT,
+		EMPLOYED_TIME, JOB,
+		JOB_CERT,
+		PRESTIGE, MICRO_BLOG, NOW_ADDR,
+		NOW_FULL_ADDR, HOME_ADDR,
+		HOME_FULL_ADDR,
+		CREATE_TIME, UPDATE_TIME, EDUCATION_AUTH,
+		EMAIL_AUTH,
+		PHONE_AUTH, CERT_AUTH,
+		PHOTO_AUTH, SCHOOL_ROLL_AUTH, VIDEO_AUTH,
+		REFEREE_AUTH, PLACE_AUTH, BLACK_LIST_STATUS,
+		CITY, CHANNEL_COUNT,
+		EDUCATION,
+		SCHOOL_ROLL, NICK_NAME, HEAD_PIC,
+		CREDIT_AMOUNT,
+		USED_CREDIT_AMOUNT, IS_ACTIVITY,
+		CREDIT_LEVEL, MOBILE_PROVINCE,
+		MOBILE_CITY,
+		CREDIT_SCORE, APP_MASK, EXP_VAL,
+		EXP_LEVEL, EXP_FLAG,
+		SEGMENT_ID,
+		NOW_ADDR_PROVINCE, NOW_ADDR_CITY)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+			NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+			NULL, NULL, NULL, #{item.createTime}, NULL, 'NA', 'NA', 'NA',
+			'NA', 'NA', 'NA', 'NA', 'NA', 'NA', NULL, NULL, '0', NULL, NULL,
+			#{item.schoolRoll}, NULL, '0', '0', 'N', NULL, NULL, NULL, '0', '0', NULL, NULL,
+			NULL, NULL, NULL, NULL)
+		</foreach>
+	</insert>
+	
+	<update id="updateByCustId" parameterType="com.fkapi.database.domain.p2p_base_customer">
+		update p2p_base_customer
+		<set>
+			<if test="custName != null">
+				CUST_NAME = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="certType != null">
+				CERT_TYPE = #{certType,jdbcType=CHAR},
+			</if>
+			<if test="certNo != null">
+				CERT_NO = #{certNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=CHAR},
+			</if>
+			<if test="age != null">
+				AGE = #{age,jdbcType=SMALLINT},
+			</if>
+			<if test="birthday != null">
+				BIRTHDAY = #{birthday,jdbcType=DATE},
+			</if>
+			<if test="zodiac != null">
+				ZODIAC = #{zodiac,jdbcType=VARCHAR},
+			</if>
+			<if test="constellation != null">
+				CONSTELLATION = #{constellation,jdbcType=VARCHAR},
+			</if>
+			<if test="marriage != null">
+				MARRIAGE = #{marriage,jdbcType=CHAR},
+			</if>
+			<if test="tel != null">
+				TEL = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				QQ = #{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="wechat != null">
+				WECHAT = #{wechat,jdbcType=VARCHAR},
+			</if>
+			<if test="educationId != null">
+				EDUCATION_ID = #{educationId,jdbcType=BIGINT},
+			</if>
+			<if test="schoolRollId != null">
+				SCHOOL_ROLL_ID = #{schoolRollId,jdbcType=VARCHAR},
+			</if>
+			<if test="proCert != null">
+				PRO_CERT = #{proCert,jdbcType=VARCHAR},
+			</if>
+			<if test="employedTime != null">
+				EMPLOYED_TIME = #{employedTime,jdbcType=SMALLINT},
+			</if>
+			<if test="job != null">
+				JOB = #{job,jdbcType=VARCHAR},
+			</if>
+			<if test="jobCert != null">
+				JOB_CERT = #{jobCert,jdbcType=VARCHAR},
+			</if>
+			<if test="prestige != null">
+				PRESTIGE = #{prestige,jdbcType=VARCHAR},
+			</if>
+			<if test="microBlog != null">
+				MICRO_BLOG = #{microBlog,jdbcType=VARCHAR},
+			</if>
+			<if test="nowAddr != null">
+				NOW_ADDR = #{nowAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="nowFullAddr != null">
+				NOW_FULL_ADDR = #{nowFullAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="homeAddr != null">
+				HOME_ADDR = #{homeAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="homeFullAddr != null">
+				HOME_FULL_ADDR = #{homeFullAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="educationAuth != null">
+				EDUCATION_AUTH = #{educationAuth,jdbcType=VARCHAR},
+			</if>
+			<if test="emailAuth != null">
+				EMAIL_AUTH = #{emailAuth,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneAuth != null">
+				PHONE_AUTH = #{phoneAuth,jdbcType=VARCHAR},
+			</if>
+			<if test="certAuth != null">
+				CERT_AUTH = #{certAuth,jdbcType=VARCHAR},
+			</if>
+			<if test="photoAuth != null">
+				PHOTO_AUTH = #{photoAuth,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolRollAuth != null">
+				SCHOOL_ROLL_AUTH = #{schoolRollAuth,jdbcType=VARCHAR},
+			</if>
+			<if test="videoAuth != null">
+				VIDEO_AUTH = #{videoAuth,jdbcType=VARCHAR},
+			</if>
+			<if test="refereeAuth != null">
+				REFEREE_AUTH = #{refereeAuth,jdbcType=VARCHAR},
+			</if>
+			<if test="placeAuth != null">
+				PLACE_AUTH = #{placeAuth,jdbcType=VARCHAR},
+			</if>
+			<if test="blackListStatus != null">
+				BLACK_LIST_STATUS = #{blackListStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				CITY = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="channelCount != null">
+				CHANNEL_COUNT = #{channelCount,jdbcType=INTEGER},
+			</if>
+			<if test="education != null">
+				EDUCATION = #{education,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolRoll != null">
+				SCHOOL_ROLL = #{schoolRoll,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				NICK_NAME = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="headPic != null">
+				HEAD_PIC = #{headPic,jdbcType=VARCHAR},
+			</if>
+			<if test="creditAmount != null">
+				CREDIT_AMOUNT = #{creditAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="usedCreditAmount != null">
+				USED_CREDIT_AMOUNT =
+				#{usedCreditAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="isActivity != null">
+				IS_ACTIVITY = #{isActivity,jdbcType=CHAR},
+			</if>
+			<if test="creditLevel != null">
+				CREDIT_LEVEL = #{creditLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="mobileProvince != null">
+				MOBILE_PROVINCE = #{mobileProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="mobileCity != null">
+				MOBILE_CITY = #{mobileCity,jdbcType=VARCHAR},
+			</if>
+			<if test="creditScore != null">
+				CREDIT_SCORE = #{creditScore,jdbcType=INTEGER},
+			</if>
+			<if test="appMask != null">
+				APP_MASK = #{appMask,jdbcType=INTEGER},
+			</if>
+			<if test="expVal != null">
+				EXP_VAL = #{expVal,jdbcType=INTEGER},
+			</if>
+			<if test="expLevel != null">
+				EXP_LEVEL = #{expLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="expFlag != null">
+				EXP_FLAG = #{expFlag,jdbcType=CHAR},
+			</if>
+			<if test="segmentId != null">
+				SEGMENT_ID = #{segmentId,jdbcType=VARCHAR},
+			</if>
+			<if test="nowAddrProvince != null">
+				NOW_ADDR_PROVINCE = #{nowAddrProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="nowAddrCity != null">
+				NOW_ADDR_CITY = #{nowAddrCity,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.database.domain.p2p_base_customer">
+		update
+		p2p_base_customer
+		set CUST_NAME = #{custName,jdbcType=VARCHAR},
+		CERT_TYPE = #{certType,jdbcType=CHAR},
+		CERT_NO =
+		#{certNo,jdbcType=VARCHAR},
+		SEX = #{sex,jdbcType=CHAR},
+		AGE =
+		#{age,jdbcType=SMALLINT},
+		BIRTHDAY = #{birthday,jdbcType=DATE},
+		ZODIAC =
+		#{zodiac,jdbcType=VARCHAR},
+		CONSTELLATION =
+		#{constellation,jdbcType=VARCHAR},
+		MARRIAGE =
+		#{marriage,jdbcType=CHAR},
+		TEL = #{tel,jdbcType=VARCHAR},
+		EMAIL =
+		#{email,jdbcType=VARCHAR},
+		QQ = #{qq,jdbcType=VARCHAR},
+		WECHAT =
+		#{wechat,jdbcType=VARCHAR},
+		EDUCATION_ID =
+		#{educationId,jdbcType=BIGINT},
+		SCHOOL_ROLL_ID =
+		#{schoolRollId,jdbcType=VARCHAR},
+		PRO_CERT =
+		#{proCert,jdbcType=VARCHAR},
+		EMPLOYED_TIME =
+		#{employedTime,jdbcType=SMALLINT},
+		JOB = #{job,jdbcType=VARCHAR},
+		JOB_CERT = #{jobCert,jdbcType=VARCHAR},
+		PRESTIGE =
+		#{prestige,jdbcType=VARCHAR},
+		MICRO_BLOG =
+		#{microBlog,jdbcType=VARCHAR},
+		NOW_ADDR = #{nowAddr,jdbcType=VARCHAR},
+		NOW_FULL_ADDR = #{nowFullAddr,jdbcType=VARCHAR},
+		HOME_ADDR =
+		#{homeAddr,jdbcType=VARCHAR},
+		HOME_FULL_ADDR =
+		#{homeFullAddr,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=TIMESTAMP},
+		EDUCATION_AUTH =
+		#{educationAuth,jdbcType=VARCHAR},
+		EMAIL_AUTH =
+		#{emailAuth,jdbcType=VARCHAR},
+		PHONE_AUTH =
+		#{phoneAuth,jdbcType=VARCHAR},
+		CERT_AUTH =
+		#{certAuth,jdbcType=VARCHAR},
+		PHOTO_AUTH =
+		#{photoAuth,jdbcType=VARCHAR},
+		SCHOOL_ROLL_AUTH =
+		#{schoolRollAuth,jdbcType=VARCHAR},
+		VIDEO_AUTH =
+		#{videoAuth,jdbcType=VARCHAR},
+		REFEREE_AUTH =
+		#{refereeAuth,jdbcType=VARCHAR},
+		PLACE_AUTH =
+		#{placeAuth,jdbcType=VARCHAR},
+		BLACK_LIST_STATUS =
+		#{blackListStatus,jdbcType=VARCHAR},
+		CITY = #{city,jdbcType=VARCHAR},
+		CHANNEL_COUNT = #{channelCount,jdbcType=INTEGER},
+		EDUCATION =
+		#{education,jdbcType=VARCHAR},
+		SCHOOL_ROLL =
+		#{schoolRoll,jdbcType=VARCHAR},
+		NICK_NAME =
+		#{nickName,jdbcType=VARCHAR},
+		HEAD_PIC = #{headPic,jdbcType=VARCHAR},
+		CREDIT_AMOUNT = #{creditAmount,jdbcType=DECIMAL},
+		USED_CREDIT_AMOUNT =
+		#{usedCreditAmount,jdbcType=DECIMAL},
+		IS_ACTIVITY =
+		#{isActivity,jdbcType=CHAR},
+		CREDIT_LEVEL =
+		#{creditLevel,jdbcType=VARCHAR},
+		MOBILE_PROVINCE =
+		#{mobileProvince,jdbcType=VARCHAR},
+		MOBILE_CITY =
+		#{mobileCity,jdbcType=VARCHAR},
+		CREDIT_SCORE =
+		#{creditScore,jdbcType=INTEGER},
+		APP_MASK =
+		#{appMask,jdbcType=INTEGER},
+		EXP_VAL = #{expVal,jdbcType=INTEGER},
+		EXP_LEVEL = #{expLevel,jdbcType=VARCHAR},
+		EXP_FLAG =
+		#{expFlag,jdbcType=CHAR},
+		SEGMENT_ID = #{segmentId,jdbcType=VARCHAR},
+		NOW_ADDR_PROVINCE = #{nowAddrProvince,jdbcType=VARCHAR},
+		NOW_ADDR_CITY
+		= #{nowAddrCity,jdbcType=VARCHAR}
+		where CUST_ID =
+		#{custId,jdbcType=BIGINT}
+	</update>
+</mapper>

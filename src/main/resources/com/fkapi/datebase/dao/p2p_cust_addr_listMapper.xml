@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_cust_addr_listMapper">
+	<resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.p2p_cust_addr_list">
+		<id column="ID" jdbcType="CHAR" property="id" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="MOBILE_NAME" jdbcType="VARCHAR" property="mobileName" />
+		<result column="MOBILE_NO" jdbcType="VARCHAR" property="mobileNo" />
+		<result column="CITY_NAME" jdbcType="VARCHAR" property="cityName" />
+		<result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, CUST_ID, MOBILE, CREATE_TIME, MOBILE_NAME, MOBILE_NO, CITY_NAME,
+		CITY_CODE, UPDATE_TIME
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from p2p_cust_addr_list
+		where CUST_ID = #{custId,jdbcType=BIGINT} ORDER BY id DESC
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from p2p_cust_addr_list
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_cust_addr_list">
+		insert into p2p_cust_addr_list (ID, CUST_ID, MOBILE,
+		CREATE_TIME, MOBILE_NAME, MOBILE_NO,
+		CITY_NAME, CITY_CODE, UPDATE_TIME)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id}, #{item.custId}, #{item.mobile}, #{item.createTime}, #{item.mobileName},
+			#{item.mobileNo}, NULL, NULL, #{item.updateTime})
+		</foreach>
+	</insert>
+	<update id="updateByCustId" parameterType="com.fkapi.datebase.domain.p2p_cust_addr_list">
+		update p2p_cust_addr_list
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mobileName != null">
+				MOBILE_NAME = #{mobileName,jdbcType=VARCHAR},
+			</if>
+			<if test="mobileNo != null">
+				MOBILE_NO = #{mobileNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cityName != null">
+				CITY_NAME = #{cityName,jdbcType=VARCHAR},
+			</if>
+			<if test="cityCode != null">
+				CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where CUST_ID = #{custId,jdbcType=BIGINT} ORDER BY id DESC LIMIT 1
+	</update>
+</mapper>

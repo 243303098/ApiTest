@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.jxl_phone_call_recordsMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.jxl_phone_call_records">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="primary_id" jdbcType="BIGINT" property="primaryId" />
+    <result column="cell_phone" jdbcType="VARCHAR" property="cellPhone" />
+    <result column="other_cell_phone" jdbcType="VARCHAR" property="otherCellPhone" />
+    <result column="call_place" jdbcType="VARCHAR" property="callPlace" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="use_time" jdbcType="BIGINT" property="useTime" />
+    <result column="call_type" jdbcType="VARCHAR" property="callType" />
+    <result column="init_type" jdbcType="VARCHAR" property="initType" />
+    <result column="subtotal" jdbcType="DECIMAL" property="subtotal" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, primary_id, cell_phone, other_cell_phone, call_place, start_time, use_time, call_type, 
+    init_type, subtotal, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jxl_phone_call_records
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryId" parameterType="java.lang.Long">
+    delete from jxl_phone_call_records
+    where primary_id = #{primaryId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertVA_F008" parameterType="com.fkapi.datebase.domain.jxl_phone_call_records">
+    insert into jxl_phone_call_records (id, primary_id, cell_phone, 
+      other_cell_phone, call_place, start_time, 
+      use_time, call_type, init_type, 
+      subtotal, update_time)
+    values
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+      (#{item.id}, #{item.primaryId}, #{item.cellPhone}, #{item.otherCellPhone}, #{item.callPlace}, #{item.startTime},
+      #{item.useTime}, '国内漫游', #{item.initType}, '0.00', #{item.updateTime})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.jxl_phone_call_records">
+    insert into jxl_phone_call_records
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="primaryId != null">
+        primary_id,
+      </if>
+      <if test="cellPhone != null">
+        cell_phone,
+      </if>
+      <if test="otherCellPhone != null">
+        other_cell_phone,
+      </if>
+      <if test="callPlace != null">
+        call_place,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="useTime != null">
+        use_time,
+      </if>
+      <if test="callType != null">
+        call_type,
+      </if>
+      <if test="initType != null">
+        init_type,
+      </if>
+      <if test="subtotal != null">
+        subtotal,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="primaryId != null">
+        #{primaryId,jdbcType=BIGINT},
+      </if>
+      <if test="cellPhone != null">
+        #{cellPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="otherCellPhone != null">
+        #{otherCellPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="callPlace != null">
+        #{callPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useTime != null">
+        #{useTime,jdbcType=BIGINT},
+      </if>
+      <if test="callType != null">
+        #{callType,jdbcType=VARCHAR},
+      </if>
+      <if test="initType != null">
+        #{initType,jdbcType=VARCHAR},
+      </if>
+      <if test="subtotal != null">
+        #{subtotal,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.jxl_phone_call_records">
+    update jxl_phone_call_records
+    <set>
+      <if test="primaryId != null">
+        primary_id = #{primaryId,jdbcType=BIGINT},
+      </if>
+      <if test="cellPhone != null">
+        cell_phone = #{cellPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="otherCellPhone != null">
+        other_cell_phone = #{otherCellPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="callPlace != null">
+        call_place = #{callPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useTime != null">
+        use_time = #{useTime,jdbcType=BIGINT},
+      </if>
+      <if test="callType != null">
+        call_type = #{callType,jdbcType=VARCHAR},
+      </if>
+      <if test="initType != null">
+        init_type = #{initType,jdbcType=VARCHAR},
+      </if>
+      <if test="subtotal != null">
+        subtotal = #{subtotal,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.jxl_phone_call_records">
+    update jxl_phone_call_records
+    set primary_id = #{primaryId,jdbcType=BIGINT},
+      cell_phone = #{cellPhone,jdbcType=VARCHAR},
+      other_cell_phone = #{otherCellPhone,jdbcType=VARCHAR},
+      call_place = #{callPlace,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      use_time = #{useTime,jdbcType=BIGINT},
+      call_type = #{callType,jdbcType=VARCHAR},
+      init_type = #{initType,jdbcType=VARCHAR},
+      subtotal = #{subtotal,jdbcType=DECIMAL},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

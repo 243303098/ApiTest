@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_linkface_authMapper">
+	<resultMap id="p2p_linkface_auth" type="com.fkapi.datebase.domain.p2p_linkface_auth">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="WEIGHT" jdbcType="VARCHAR" property="weight" />
+		<result column="STATUS" jdbcType="VARCHAR" property="status" />
+		<result column="IDENTITY" jdbcType="VARCHAR" property="identity" />
+		<result column="RES_MSG" jdbcType="VARCHAR" property="resMsg" />
+		<result column="REQ_MSG" jdbcType="VARCHAR" property="reqMsg" />
+		<result column="MEMO" jdbcType="VARCHAR" property="memo" />
+		<result column="EXT1" jdbcType="VARCHAR" property="ext1" />
+		<result column="EXT2" jdbcType="VARCHAR" property="ext2" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	<sql id="p2p_linkface_auth">
+		ID, CUST_ID, WEIGHT, STATUS, IDENTITY, RES_MSG, REQ_MSG,
+		MEMO, EXT1,
+		EXT2, CREATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="p2p_linkface_auth">
+		select
+		<include refid="p2p_linkface_auth" />
+		from p2p_linkface_auth
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from
+		p2p_linkface_auth
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="java.util.List">
+		insert into p2p_linkface_auth (CUST_ID, WEIGHT,
+		STATUS, IDENTITY,
+		RES_MSG,
+		REQ_MSG, MEMO, EXT1,
+		EXT2, CREATE_TIME)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, '0.82', #{item.status}, 'Y', NULL,
+			'{\"filepath\":\"/share/public/20160810/pl_68bf730532734a239926337c2e08f4fe-20160810.jpg\",\"idCard\":\"123456789012345678\",\"username\":\"陈坤\"}',
+			NULL, 'LINK', NULL, #{item.createTime})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_linkface_auth">
+		insert into p2p_linkface_auth
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="weight != null">
+				WEIGHT,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="identity != null">
+				IDENTITY,
+			</if>
+			<if test="resMsg != null">
+				RES_MSG,
+			</if>
+			<if test="reqMsg != null">
+				REQ_MSG,
+			</if>
+			<if test="memo != null">
+				MEMO,
+			</if>
+			<if test="ext1 != null">
+				EXT1,
+			</if>
+			<if test="ext2 != null">
+				EXT2,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="weight != null">
+				#{weight,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="identity != null">
+				#{identity,jdbcType=VARCHAR},
+			</if>
+			<if test="resMsg != null">
+				#{resMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="reqMsg != null">
+				#{reqMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="ext1 != null">
+				#{ext1,jdbcType=VARCHAR},
+			</if>
+			<if test="ext2 != null">
+				#{ext2,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_linkface_auth">
+		update p2p_linkface_auth
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="weight != null">
+				WEIGHT = #{weight,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="identity != null">
+				IDENTITY = #{identity,jdbcType=VARCHAR},
+			</if>
+			<if test="resMsg != null">
+				RES_MSG = #{resMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="reqMsg != null">
+				REQ_MSG = #{reqMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="memo != null">
+				MEMO = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="ext1 != null">
+				EXT1 = #{ext1,jdbcType=VARCHAR},
+			</if>
+			<if test="ext2 != null">
+				EXT2 = #{ext2,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_linkface_auth">
+		update
+		p2p_linkface_auth
+		set CUST_ID = #{custId,jdbcType=BIGINT},
+		WEIGHT =
+		#{weight,jdbcType=VARCHAR},
+		STATUS = #{status,jdbcType=VARCHAR},
+		IDENTITY = #{identity,jdbcType=VARCHAR},
+		RES_MSG =
+		#{resMsg,jdbcType=VARCHAR},
+		REQ_MSG = #{reqMsg,jdbcType=VARCHAR},
+		MEMO =
+		#{memo,jdbcType=VARCHAR},
+		EXT1 = #{ext1,jdbcType=VARCHAR},
+		EXT2 =
+		#{ext2,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

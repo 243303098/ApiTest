@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.risk_data_yicai_user_infoMapper">
+  <resultMap id="risk_data_yicai_user_infoMapper" type="com.fkapi.datebase.domain.risk_data_yicai_user_info">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cust_id" jdbcType="BIGINT" property="custId" />
+    <result column="cert_id" jdbcType="VARCHAR" property="certId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="current_status" jdbcType="INTEGER" property="currentStatus" />
+    <result column="entry_date" jdbcType="TIMESTAMP" property="entryDate" />
+    <result column="contract_company" jdbcType="VARCHAR" property="contractCompany" />
+    <result column="contrace_type" jdbcType="INTEGER" property="contraceType" />
+    <result column="contract_sub_type" jdbcType="INTEGER" property="contractSubType" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="risk_data_yicai_user_info">
+    id, cust_id, cert_id, name, current_status, entry_date, contract_company, contrace_type, 
+    contract_sub_type, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="risk_data_yicai_user_infoMapper">
+    select 
+    <include refid="risk_data_yicai_user_info" />
+    from risk_data_yicai_user_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByCustId" parameterType="java.lang.Long">
+    delete from risk_data_yicai_user_info
+    where cust_id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.risk_data_yicai_user_info">
+  <foreach collection="list" item="item" index="index"
+			separator=",">
+    insert into risk_data_yicai_user_info (cust_id, cert_id, 
+      name, current_status, entry_date, 
+      contract_company, contrace_type, contract_sub_type, 
+      gmt_create, gmt_modified)
+    values 
+    (#{item.custId}, #{item.certId}, #{item.name}, #{item.currentStatus}, #{item.entryDate}, #{item.contractCompany}, '0', '0', #{item.gmtCreate}, #{item.gmtModified})
+      </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.risk_data_yicai_user_info">
+    insert into risk_data_yicai_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="custId != null">
+        cust_id,
+      </if>
+      <if test="certId != null">
+        cert_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="currentStatus != null">
+        current_status,
+      </if>
+      <if test="entryDate != null">
+        entry_date,
+      </if>
+      <if test="contractCompany != null">
+        contract_company,
+      </if>
+      <if test="contraceType != null">
+        contrace_type,
+      </if>
+      <if test="contractSubType != null">
+        contract_sub_type,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="certId != null">
+        #{certId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="currentStatus != null">
+        #{currentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="entryDate != null">
+        #{entryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractCompany != null">
+        #{contractCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="contraceType != null">
+        #{contraceType,jdbcType=INTEGER},
+      </if>
+      <if test="contractSubType != null">
+        #{contractSubType,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.risk_data_yicai_user_info">
+    update risk_data_yicai_user_info
+    <set>
+      <if test="custId != null">
+        cust_id = #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="certId != null">
+        cert_id = #{certId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="currentStatus != null">
+        current_status = #{currentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="entryDate != null">
+        entry_date = #{entryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractCompany != null">
+        contract_company = #{contractCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="contraceType != null">
+        contrace_type = #{contraceType,jdbcType=INTEGER},
+      </if>
+      <if test="contractSubType != null">
+        contract_sub_type = #{contractSubType,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.risk_data_yicai_user_info">
+    update risk_data_yicai_user_info
+    set cust_id = #{custId,jdbcType=BIGINT},
+      cert_id = #{certId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      current_status = #{currentStatus,jdbcType=INTEGER},
+      entry_date = #{entryDate,jdbcType=TIMESTAMP},
+      contract_company = #{contractCompany,jdbcType=VARCHAR},
+      contrace_type = #{contraceType,jdbcType=INTEGER},
+      contract_sub_type = #{contractSubType,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

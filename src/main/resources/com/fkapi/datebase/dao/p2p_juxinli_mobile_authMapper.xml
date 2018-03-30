@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_juxinli_mobile_authMapper">
+	<resultMap id="p2p_juxinli_mobile_auth"
+		type="com.fkapi.datebase.domain.p2p_juxinli_mobile_auth">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="STATUS" jdbcType="VARCHAR" property="status" />
+		<result column="LAST_STATUS" jdbcType="VARCHAR" property="lastStatus" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="EXPIRE_TIME" jdbcType="TIMESTAMP" property="expireTime" />
+		<result column="LAST_UPDATE_TIME" jdbcType="TIMESTAMP"
+			property="lastUpdateTime" />
+		<result column="TYPE" jdbcType="CHAR" property="type" />
+		<result column="FAIL_AFFIRM_FLAG" jdbcType="CHAR" property="failAffirmFlag" />
+		<result column="AUTH_SERVICE_PROVIDER" jdbcType="VARCHAR"
+			property="authServiceProvider" />
+	</resultMap>
+	<sql id="p2p_juxinli_mobile_auth">
+		ID, CUST_ID, STATUS, LAST_STATUS, CREATE_TIME, UPDATE_TIME, EXPIRE_TIME,
+		LAST_UPDATE_TIME,
+		TYPE, FAIL_AFFIRM_FLAG, AUTH_SERVICE_PROVIDER
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="p2p_juxinli_mobile_auth">
+		select
+		<include refid="p2p_juxinli_mobile_auth" />
+		from p2p_juxinli_mobile_auth
+		where CUST_ID = #{custId,jdbcType=BIGINT} and TYPE = '2'
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from p2p_juxinli_mobile_auth
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_juxinli_mobile_auth">
+		insert into p2p_juxinli_mobile_auth (CUST_ID, STATUS,
+		LAST_STATUS, CREATE_TIME, UPDATE_TIME,
+		EXPIRE_TIME, LAST_UPDATE_TIME, TYPE,
+		FAIL_AFFIRM_FLAG, AUTH_SERVICE_PROVIDER)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, #{item.status}, NULL, #{item.createTime},
+			#{item.updateTime}, NULL, NULL, #{item.type}, 'N', 'JUXINLI')
+		</foreach>
+	</insert>
+	<update id="updateByCustId" parameterType="com.fkapi.datebase.domain.p2p_juxinli_mobile_auth">
+		update p2p_juxinli_mobile_auth
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="lastStatus != null">
+				LAST_STATUS = #{lastStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireTime != null">
+				EXPIRE_TIME = #{expireTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastUpdateTime != null">
+				LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=CHAR},
+			</if>
+			<if test="failAffirmFlag != null">
+				FAIL_AFFIRM_FLAG = #{failAffirmFlag,jdbcType=CHAR},
+			</if>
+			<if test="authServiceProvider != null">
+				AUTH_SERVICE_PROVIDER = #{authServiceProvider,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_juxinli_mobile_auth">
+		update p2p_juxinli_mobile_auth
+		set CUST_ID = #{custId,jdbcType=BIGINT},
+		STATUS = #{status,jdbcType=VARCHAR},
+		LAST_STATUS = #{lastStatus,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+		EXPIRE_TIME = #{expireTime,jdbcType=TIMESTAMP},
+		LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+		TYPE = #{type,jdbcType=CHAR},
+		FAIL_AFFIRM_FLAG = #{failAffirmFlag,jdbcType=CHAR},
+		AUTH_SERVICE_PROVIDER = #{authServiceProvider,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

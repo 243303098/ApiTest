@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.risk_credit_yicai_tiqianhua_logMapper">
+  <resultMap id="risk_credit_yicai_tiqianhua_logMapper" type="com.fkapi.datebase.domain.risk_credit_yicai_tiqianhua_log">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cust_id" jdbcType="BIGINT" property="custId" />
+    <result column="city_level" jdbcType="VARCHAR" property="cityLevel" />
+    <result column="overdule_number" jdbcType="INTEGER" property="overduleNumber" />
+    <result column="overdue_floor" jdbcType="DECIMAL" property="overdueFloor" />
+    <result column="repay_number" jdbcType="INTEGER" property="repayNumber" />
+    <result column="repay_floor" jdbcType="DECIMAL" property="repayFloor" />
+    <result column="credit_limit" jdbcType="DECIMAL" property="creditLimit" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="risk_credit_yicai_tiqianhua_log">
+    id, cust_id, city_level, overdule_number, overdue_floor, repay_number, repay_floor, 
+    credit_limit, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByCustId" parameterType="java.lang.Long" resultMap="risk_credit_yicai_tiqianhua_logMapper">
+    select 
+    <include refid="risk_credit_yicai_tiqianhua_log" />
+    from risk_credit_yicai_tiqianhua_log
+    where cust_id = #{cust_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByCustId" parameterType="java.lang.Long">
+    delete from risk_credit_yicai_tiqianhua_log
+    where cust_id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="risk_credit_yicai_tiqianhua_log">
+    insert into risk_credit_yicai_tiqianhua_log (id, cust_id, city_level, 
+      overdule_number, overdue_floor, repay_number, 
+      repay_floor, credit_limit, gmt_create, 
+      gmt_modified)
+    values (#{id,jdbcType=BIGINT}, #{custId,jdbcType=BIGINT}, #{cityLevel,jdbcType=VARCHAR}, 
+      #{overduleNumber,jdbcType=INTEGER}, #{overdueFloor,jdbcType=DECIMAL}, #{repayNumber,jdbcType=INTEGER}, 
+      #{repayFloor,jdbcType=DECIMAL}, #{creditLimit,jdbcType=DECIMAL}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="risk_credit_yicai_tiqianhua_log">
+    insert into risk_credit_yicai_tiqianhua_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="custId != null">
+        cust_id,
+      </if>
+      <if test="cityLevel != null">
+        city_level,
+      </if>
+      <if test="overduleNumber != null">
+        overdule_number,
+      </if>
+      <if test="overdueFloor != null">
+        overdue_floor,
+      </if>
+      <if test="repayNumber != null">
+        repay_number,
+      </if>
+      <if test="repayFloor != null">
+        repay_floor,
+      </if>
+      <if test="creditLimit != null">
+        credit_limit,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="cityLevel != null">
+        #{cityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="overduleNumber != null">
+        #{overduleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="overdueFloor != null">
+        #{overdueFloor,jdbcType=DECIMAL},
+      </if>
+      <if test="repayNumber != null">
+        #{repayNumber,jdbcType=INTEGER},
+      </if>
+      <if test="repayFloor != null">
+        #{repayFloor,jdbcType=DECIMAL},
+      </if>
+      <if test="creditLimit != null">
+        #{creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="risk_credit_yicai_tiqianhua_log">
+    update risk_credit_yicai_tiqianhua_log
+    <set>
+      <if test="custId != null">
+        cust_id = #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="cityLevel != null">
+        city_level = #{cityLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="overduleNumber != null">
+        overdule_number = #{overduleNumber,jdbcType=INTEGER},
+      </if>
+      <if test="overdueFloor != null">
+        overdue_floor = #{overdueFloor,jdbcType=DECIMAL},
+      </if>
+      <if test="repayNumber != null">
+        repay_number = #{repayNumber,jdbcType=INTEGER},
+      </if>
+      <if test="repayFloor != null">
+        repay_floor = #{repayFloor,jdbcType=DECIMAL},
+      </if>
+      <if test="creditLimit != null">
+        credit_limit = #{creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="risk_credit_yicai_tiqianhua_log">
+    update risk_credit_yicai_tiqianhua_log
+    set cust_id = #{custId,jdbcType=BIGINT},
+      city_level = #{cityLevel,jdbcType=VARCHAR},
+      overdule_number = #{overduleNumber,jdbcType=INTEGER},
+      overdue_floor = #{overdueFloor,jdbcType=DECIMAL},
+      repay_number = #{repayNumber,jdbcType=INTEGER},
+      repay_floor = #{repayFloor,jdbcType=DECIMAL},
+      credit_limit = #{creditLimit,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

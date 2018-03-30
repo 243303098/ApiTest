@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_cust_top_contactorMapper">
+	<resultMap id="p2p_cust_top_contactor"
+		type="com.fkapi.datebase.domain.p2p_cust_top_contactor">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="CON_NAME" jdbcType="VARCHAR" property="conName" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="RELATION_TYPE" jdbcType="VARCHAR" property="relationType" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	<sql id="p2p_cust_top_contactor">
+		ID, CUST_ID, CON_NAME, MOBILE, RELATION_TYPE, CREATE_TIME, UPDATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="p2p_cust_top_contactor">
+		select
+		<include refid="p2p_cust_top_contactor" />
+		from p2p_cust_top_contactor
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from p2p_cust_top_contactor
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_cust_top_contactor">
+		insert into p2p_cust_top_contactor (CUST_ID, CON_NAME,
+		MOBILE, RELATION_TYPE, CREATE_TIME,
+		UPDATE_TIME)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, #{item.conName}, #{item.mobile}, #{item.relationType},
+			#{item.createTime}, #{item.updateTime})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_cust_top_contactor">
+		insert into p2p_cust_top_contactor
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="conName != null">
+				CON_NAME,
+			</if>
+			<if test="mobile != null">
+				MOBILE,
+			</if>
+			<if test="relationType != null">
+				RELATION_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="conName != null">
+				#{conName,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="relationType != null">
+				#{relationType,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_cust_top_contactor">
+		update p2p_cust_top_contactor
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="conName != null">
+				CON_NAME = #{conName,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="relationType != null">
+				RELATION_TYPE = #{relationType,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_cust_top_contactor">
+		update p2p_cust_top_contactor
+		set CUST_ID = #{custId,jdbcType=BIGINT},
+		CON_NAME = #{conName,jdbcType=VARCHAR},
+		MOBILE = #{mobile,jdbcType=VARCHAR},
+		RELATION_TYPE = #{relationType,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

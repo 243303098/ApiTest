@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_repay_planMapper">
+	<resultMap id="p2p_repay_planMapper" type="com.fkapi.datebase.domain.p2p_repay_plan">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="PROJECT_NO" jdbcType="VARCHAR" property="projectNo" />
+		<result column="REPAYMENT_ID" jdbcType="BIGINT" property="repaymentId" />
+		<result column="TERM_NO" jdbcType="INTEGER" property="termNo" />
+		<result column="REPAY_CAPITAL" jdbcType="DECIMAL" property="repayCapital" />
+		<result column="REPAY_INTEREST" jdbcType="DECIMAL" property="repayInterest" />
+		<result column="REPAY_DATE" jdbcType="DATE" property="repayDate" />
+		<result column="ACTUAL_PAY_TIME" jdbcType="TIMESTAMP" property="actualPayTime" />
+		<result column="REPAY_STATUS" jdbcType="VARCHAR" property="repayStatus" />
+		<result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+		<result column="IS_ADVANCE" jdbcType="CHAR" property="isAdvance" />
+		<result column="ADVANCE_PEOPLE" jdbcType="VARCHAR" property="advancePeople" />
+		<result column="REPAY_AMOUNT" jdbcType="DECIMAL" property="repayAmount" />
+		<result column="OVERDUE_FEE" jdbcType="DECIMAL" property="overdueFee" />
+		<result column="PLATFORM_FEE" jdbcType="DECIMAL" property="platformFee" />
+		<result column="ACT_REPAY_AMOUNT" jdbcType="DECIMAL" property="actRepayAmount" />
+		<result column="ACT_REPAY_INTEREST" jdbcType="DECIMAL"
+			property="actRepayInterest" />
+		<result column="ACT_OVERDUE_FEE" jdbcType="DECIMAL" property="actOverdueFee" />
+		<result column="ACT_PLATFORM_FEE" jdbcType="DECIMAL" property="actPlatformFee" />
+		<result column="CORP_NO" jdbcType="VARCHAR" property="corpNo" />
+		<result column="BORROWER_TYPE" jdbcType="VARCHAR" property="borrowerType" />
+		<result column="ADVANCE_TIME" jdbcType="TIMESTAMP" property="advanceTime" />
+		<result column="OVERDUE_MGMT_FEE" jdbcType="DECIMAL" property="overdueMgmtFee" />
+		<result column="OVERDUE_INTEREST" jdbcType="DECIMAL" property="overdueInterest" />
+		<result column="ACT_OVERDUE_MGMT_FEE" jdbcType="DECIMAL"
+			property="actOverdueMgmtFee" />
+		<result column="ACT_OVERDUE_INTEREST" jdbcType="DECIMAL"
+			property="actOverdueInterest" />
+		<result column="ADVANCE_TYPE" jdbcType="VARCHAR" property="advanceType" />
+		<result column="ACT_CAPITAL" jdbcType="DECIMAL" property="actCapital" />
+		<result column="OFFLINE_PAYOFF_FLAG" jdbcType="CHAR"
+			property="offlinePayoffFlag" />
+		<result column="CALC_OVERDUE_TIME" jdbcType="TIMESTAMP"
+			property="calcOverdueTime" />
+		<result column="POUNDAGE" jdbcType="DECIMAL" property="poundage" />
+		<result column="ACT_POUNDAGE" jdbcType="DECIMAL" property="actPoundage" />
+	</resultMap>
+	<sql id="p2p_repay_plan">
+		ID, PROJECT_NO, REPAYMENT_ID, TERM_NO, REPAY_CAPITAL,
+		REPAY_INTEREST,
+		REPAY_DATE,
+		ACTUAL_PAY_TIME, REPAY_STATUS, DEL_FLAG,
+		IS_ADVANCE, ADVANCE_PEOPLE, REPAY_AMOUNT,
+		OVERDUE_FEE, PLATFORM_FEE,
+		ACT_REPAY_AMOUNT, ACT_REPAY_INTEREST,
+		ACT_OVERDUE_FEE,
+		ACT_PLATFORM_FEE, CORP_NO, BORROWER_TYPE, ADVANCE_TIME,
+		OVERDUE_MGMT_FEE,
+		OVERDUE_INTEREST,
+		ACT_OVERDUE_MGMT_FEE,
+		ACT_OVERDUE_INTEREST, ADVANCE_TYPE, ACT_CAPITAL, OFFLINE_PAYOFF_FLAG,
+		CALC_OVERDUE_TIME, POUNDAGE, ACT_POUNDAGE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="p2p_repay_planMapper">
+		select
+		<include refid="p2p_repay_plan" />
+		from p2p_repay_plan
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustID" parameterType="java.lang.Long">
+		delete from
+		p2p_repay_plan
+		where REPAYMENT_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="java.util.List">
+		insert into p2p_repay_plan
+		(PROJECT_NO, REPAYMENT_ID,
+		TERM_NO, REPAY_CAPITAL, REPAY_INTEREST,
+		REPAY_DATE, ACTUAL_PAY_TIME, REPAY_STATUS,
+		DEL_FLAG, IS_ADVANCE,
+		ADVANCE_PEOPLE,
+		REPAY_AMOUNT, OVERDUE_FEE, PLATFORM_FEE,
+		ACT_REPAY_AMOUNT, ACT_REPAY_INTEREST, ACT_OVERDUE_FEE,
+		ACT_PLATFORM_FEE, CORP_NO, BORROWER_TYPE,
+		ADVANCE_TIME,
+		OVERDUE_MGMT_FEE, OVERDUE_INTEREST,
+		ACT_OVERDUE_MGMT_FEE,
+		ACT_OVERDUE_INTEREST,
+		ADVANCE_TYPE, ACT_CAPITAL, OFFLINE_PAYOFF_FLAG,
+		CALC_OVERDUE_TIME, POUNDAGE, ACT_POUNDAGE
+		)
+		values 
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.projectNo},
+		#{item.repaymentId}, #{item.termNo}, '100', '9.43',
+		#{item.repayDate}, #{item.actualPayTime}, #{item.repayStatus}, 'N', 'N', NULL,
+		'109.43', '0.00', '0.00',
+		'109.43', '9.43', '0.00', '0.00', NULL,
+		'PERSONAL', NULL, '0.00',
+		'0.00', '0.00', '0.00', NULL, '109.43',
+		'N', NULL, '2.62', '0.00')
+		</foreach>
+	</insert>
+	<insert id="insert_10" parameterType="java.util.List">
+		insert into p2p_repay_plan (PROJECT_NO, REPAYMENT_ID,
+		TERM_NO,
+		REPAY_CAPITAL, REPAY_INTEREST,
+		REPAY_DATE, ACTUAL_PAY_TIME,
+		REPAY_STATUS,
+		DEL_FLAG, IS_ADVANCE, ADVANCE_PEOPLE,
+		REPAY_AMOUNT,
+		OVERDUE_FEE, PLATFORM_FEE,
+		ACT_REPAY_AMOUNT, ACT_REPAY_INTEREST,
+		ACT_OVERDUE_FEE,
+		ACT_PLATFORM_FEE, CORP_NO, BORROWER_TYPE,
+		ADVANCE_TIME, OVERDUE_MGMT_FEE, OVERDUE_INTEREST,
+		ACT_OVERDUE_MGMT_FEE, ACT_OVERDUE_INTEREST,
+		ADVANCE_TYPE, ACT_CAPITAL,
+		OFFLINE_PAYOFF_FLAG,
+		CALC_OVERDUE_TIME, POUNDAGE, ACT_POUNDAGE
+		)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.projectNo}, #{item.repaymentId}, #{item.termNo}, '261.79', '14.14',
+			#{item.repayDate}, #{item.actualPayTime}, #{item.repayStatus}, 'N', 'N', NULL,
+			'279.86', '0.00', '0.00', '1588.76', '14.14', '0.00', '0.00', NULL,
+			'PERSONAL', NULL, '0.00', '0.00', '0.00', '0.00', NULL, '1570.69',
+			'N', NULL, '3.93', '0.00')
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="p2p_repay_plan">
+		insert into p2p_repay_plan
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="projectNo != null">
+				PROJECT_NO,
+			</if>
+			<if test="repaymentId != null">
+				REPAYMENT_ID,
+			</if>
+			<if test="termNo != null">
+				TERM_NO,
+			</if>
+			<if test="repayCapital != null">
+				REPAY_CAPITAL,
+			</if>
+			<if test="repayInterest != null">
+				REPAY_INTEREST,
+			</if>
+			<if test="repayDate != null">
+				REPAY_DATE,
+			</if>
+			<if test="actualPayTime != null">
+				ACTUAL_PAY_TIME,
+			</if>
+			<if test="repayStatus != null">
+				REPAY_STATUS,
+			</if>
+			<if test="delFlag != null">
+				DEL_FLAG,
+			</if>
+			<if test="isAdvance != null">
+				IS_ADVANCE,
+			</if>
+			<if test="advancePeople != null">
+				ADVANCE_PEOPLE,
+			</if>
+			<if test="repayAmount != null">
+				REPAY_AMOUNT,
+			</if>
+			<if test="overdueFee != null">
+				OVERDUE_FEE,
+			</if>
+			<if test="platformFee != null">
+				PLATFORM_FEE,
+			</if>
+			<if test="actRepayAmount != null">
+				ACT_REPAY_AMOUNT,
+			</if>
+			<if test="actRepayInterest != null">
+				ACT_REPAY_INTEREST,
+			</if>
+			<if test="actOverdueFee != null">
+				ACT_OVERDUE_FEE,
+			</if>
+			<if test="actPlatformFee != null">
+				ACT_PLATFORM_FEE,
+			</if>
+			<if test="corpNo != null">
+				CORP_NO,
+			</if>
+			<if test="borrowerType != null">
+				BORROWER_TYPE,
+			</if>
+			<if test="advanceTime != null">
+				ADVANCE_TIME,
+			</if>
+			<if test="overdueMgmtFee != null">
+				OVERDUE_MGMT_FEE,
+			</if>
+			<if test="overdueInterest != null">
+				OVERDUE_INTEREST,
+			</if>
+			<if test="actOverdueMgmtFee != null">
+				ACT_OVERDUE_MGMT_FEE,
+			</if>
+			<if test="actOverdueInterest != null">
+				ACT_OVERDUE_INTEREST,
+			</if>
+			<if test="advanceType != null">
+				ADVANCE_TYPE,
+			</if>
+			<if test="actCapital != null">
+				ACT_CAPITAL,
+			</if>
+			<if test="offlinePayoffFlag != null">
+				OFFLINE_PAYOFF_FLAG,
+			</if>
+			<if test="calcOverdueTime != null">
+				CALC_OVERDUE_TIME,
+			</if>
+			<if test="poundage != null">
+				POUNDAGE,
+			</if>
+			<if test="actPoundage != null">
+				ACT_POUNDAGE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="projectNo != null">
+				#{projectNo,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentId != null">
+				#{repaymentId,jdbcType=BIGINT},
+			</if>
+			<if test="termNo != null">
+				#{termNo,jdbcType=INTEGER},
+			</if>
+			<if test="repayCapital != null">
+				#{repayCapital,jdbcType=DECIMAL},
+			</if>
+			<if test="repayInterest != null">
+				#{repayInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="repayDate != null">
+				#{repayDate,jdbcType=DATE},
+			</if>
+			<if test="actualPayTime != null">
+				#{actualPayTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="repayStatus != null">
+				#{repayStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				#{delFlag,jdbcType=CHAR},
+			</if>
+			<if test="isAdvance != null">
+				#{isAdvance,jdbcType=CHAR},
+			</if>
+			<if test="advancePeople != null">
+				#{advancePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="repayAmount != null">
+				#{repayAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueFee != null">
+				#{overdueFee,jdbcType=DECIMAL},
+			</if>
+			<if test="platformFee != null">
+				#{platformFee,jdbcType=DECIMAL},
+			</if>
+			<if test="actRepayAmount != null">
+				#{actRepayAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="actRepayInterest != null">
+				#{actRepayInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="actOverdueFee != null">
+				#{actOverdueFee,jdbcType=DECIMAL},
+			</if>
+			<if test="actPlatformFee != null">
+				#{actPlatformFee,jdbcType=DECIMAL},
+			</if>
+			<if test="corpNo != null">
+				#{corpNo,jdbcType=VARCHAR},
+			</if>
+			<if test="borrowerType != null">
+				#{borrowerType,jdbcType=VARCHAR},
+			</if>
+			<if test="advanceTime != null">
+				#{advanceTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="overdueMgmtFee != null">
+				#{overdueMgmtFee,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueInterest != null">
+				#{overdueInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="actOverdueMgmtFee != null">
+				#{actOverdueMgmtFee,jdbcType=DECIMAL},
+			</if>
+			<if test="actOverdueInterest != null">
+				#{actOverdueInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="advanceType != null">
+				#{advanceType,jdbcType=VARCHAR},
+			</if>
+			<if test="actCapital != null">
+				#{actCapital,jdbcType=DECIMAL},
+			</if>
+			<if test="offlinePayoffFlag != null">
+				#{offlinePayoffFlag,jdbcType=CHAR},
+			</if>
+			<if test="calcOverdueTime != null">
+				#{calcOverdueTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="poundage != null">
+				#{poundage,jdbcType=DECIMAL},
+			</if>
+			<if test="actPoundage != null">
+				#{actPoundage,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="p2p_repay_plan">
+		update p2p_repay_plan
+		<set>
+			<if test="projectNo != null">
+				PROJECT_NO = #{projectNo,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentId != null">
+				REPAYMENT_ID = #{repaymentId,jdbcType=BIGINT},
+			</if>
+			<if test="termNo != null">
+				TERM_NO = #{termNo,jdbcType=INTEGER},
+			</if>
+			<if test="repayCapital != null">
+				REPAY_CAPITAL = #{repayCapital,jdbcType=DECIMAL},
+			</if>
+			<if test="repayInterest != null">
+				REPAY_INTEREST = #{repayInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="repayDate != null">
+				REPAY_DATE = #{repayDate,jdbcType=DATE},
+			</if>
+			<if test="actualPayTime != null">
+				ACTUAL_PAY_TIME = #{actualPayTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="repayStatus != null">
+				REPAY_STATUS = #{repayStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				DEL_FLAG = #{delFlag,jdbcType=CHAR},
+			</if>
+			<if test="isAdvance != null">
+				IS_ADVANCE = #{isAdvance,jdbcType=CHAR},
+			</if>
+			<if test="advancePeople != null">
+				ADVANCE_PEOPLE = #{advancePeople,jdbcType=VARCHAR},
+			</if>
+			<if test="repayAmount != null">
+				REPAY_AMOUNT = #{repayAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueFee != null">
+				OVERDUE_FEE = #{overdueFee,jdbcType=DECIMAL},
+			</if>
+			<if test="platformFee != null">
+				PLATFORM_FEE = #{platformFee,jdbcType=DECIMAL},
+			</if>
+			<if test="actRepayAmount != null">
+				ACT_REPAY_AMOUNT = #{actRepayAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="actRepayInterest != null">
+				ACT_REPAY_INTEREST =
+				#{actRepayInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="actOverdueFee != null">
+				ACT_OVERDUE_FEE = #{actOverdueFee,jdbcType=DECIMAL},
+			</if>
+			<if test="actPlatformFee != null">
+				ACT_PLATFORM_FEE = #{actPlatformFee,jdbcType=DECIMAL},
+			</if>
+			<if test="corpNo != null">
+				CORP_NO = #{corpNo,jdbcType=VARCHAR},
+			</if>
+			<if test="borrowerType != null">
+				BORROWER_TYPE = #{borrowerType,jdbcType=VARCHAR},
+			</if>
+			<if test="advanceTime != null">
+				ADVANCE_TIME = #{advanceTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="overdueMgmtFee != null">
+				OVERDUE_MGMT_FEE = #{overdueMgmtFee,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueInterest != null">
+				OVERDUE_INTEREST = #{overdueInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="actOverdueMgmtFee != null">
+				ACT_OVERDUE_MGMT_FEE =
+				#{actOverdueMgmtFee,jdbcType=DECIMAL},
+			</if>
+			<if test="actOverdueInterest != null">
+				ACT_OVERDUE_INTEREST =
+				#{actOverdueInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="advanceType != null">
+				ADVANCE_TYPE = #{advanceType,jdbcType=VARCHAR},
+			</if>
+			<if test="actCapital != null">
+				ACT_CAPITAL = #{actCapital,jdbcType=DECIMAL},
+			</if>
+			<if test="offlinePayoffFlag != null">
+				OFFLINE_PAYOFF_FLAG = #{offlinePayoffFlag,jdbcType=CHAR},
+			</if>
+			<if test="calcOverdueTime != null">
+				CALC_OVERDUE_TIME =
+				#{calcOverdueTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="poundage != null">
+				POUNDAGE = #{poundage,jdbcType=DECIMAL},
+			</if>
+			<if test="actPoundage != null">
+				ACT_POUNDAGE = #{actPoundage,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="p2p_repay_plan">
+		update
+		p2p_repay_plan
+		set PROJECT_NO = #{projectNo,jdbcType=VARCHAR},
+		REPAYMENT_ID = #{repaymentId,jdbcType=BIGINT},
+		TERM_NO =
+		#{termNo,jdbcType=INTEGER},
+		REPAY_CAPITAL =
+		#{repayCapital,jdbcType=DECIMAL},
+		REPAY_INTEREST =
+		#{repayInterest,jdbcType=DECIMAL},
+		REPAY_DATE =
+		#{repayDate,jdbcType=DATE},
+		ACTUAL_PAY_TIME =
+		#{actualPayTime,jdbcType=TIMESTAMP},
+		REPAY_STATUS =
+		#{repayStatus,jdbcType=VARCHAR},
+		DEL_FLAG = #{delFlag,jdbcType=CHAR},
+		IS_ADVANCE = #{isAdvance,jdbcType=CHAR},
+		ADVANCE_PEOPLE =
+		#{advancePeople,jdbcType=VARCHAR},
+		REPAY_AMOUNT =
+		#{repayAmount,jdbcType=DECIMAL},
+		OVERDUE_FEE =
+		#{overdueFee,jdbcType=DECIMAL},
+		PLATFORM_FEE =
+		#{platformFee,jdbcType=DECIMAL},
+		ACT_REPAY_AMOUNT =
+		#{actRepayAmount,jdbcType=DECIMAL},
+		ACT_REPAY_INTEREST =
+		#{actRepayInterest,jdbcType=DECIMAL},
+		ACT_OVERDUE_FEE =
+		#{actOverdueFee,jdbcType=DECIMAL},
+		ACT_PLATFORM_FEE =
+		#{actPlatformFee,jdbcType=DECIMAL},
+		CORP_NO =
+		#{corpNo,jdbcType=VARCHAR},
+		BORROWER_TYPE =
+		#{borrowerType,jdbcType=VARCHAR},
+		ADVANCE_TIME =
+		#{advanceTime,jdbcType=TIMESTAMP},
+		OVERDUE_MGMT_FEE =
+		#{overdueMgmtFee,jdbcType=DECIMAL},
+		OVERDUE_INTEREST =
+		#{overdueInterest,jdbcType=DECIMAL},
+		ACT_OVERDUE_MGMT_FEE =
+		#{actOverdueMgmtFee,jdbcType=DECIMAL},
+		ACT_OVERDUE_INTEREST =
+		#{actOverdueInterest,jdbcType=DECIMAL},
+		ADVANCE_TYPE =
+		#{advanceType,jdbcType=VARCHAR},
+		ACT_CAPITAL =
+		#{actCapital,jdbcType=DECIMAL},
+		OFFLINE_PAYOFF_FLAG =
+		#{offlinePayoffFlag,jdbcType=CHAR},
+		CALC_OVERDUE_TIME =
+		#{calcOverdueTime,jdbcType=TIMESTAMP},
+		POUNDAGE =
+		#{poundage,jdbcType=DECIMAL},
+		ACT_POUNDAGE =
+		#{actPoundage,jdbcType=DECIMAL}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

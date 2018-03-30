@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_loan_claim_relative_appMapper">
+	<resultMap id="BaseResultMap"
+		type="com.fkapi.datebase.domain.p2p_loan_claim_relative_app">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="PROJECT_NO" jdbcType="VARCHAR" property="projectNo" />
+		<result column="MOBILE_SIGN" jdbcType="VARCHAR" property="mobileSign" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, PROJECT_NO, MOBILE_SIGN, CREATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from p2p_loan_claim_relative_app
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByMobileSign" parameterType="java.lang.String">
+		delete from p2p_loan_claim_relative_app
+		where MOBILE_SIGN = #{mobileSign,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.fkapi.datebase.domain.p2p_loan_claim_relative_app">
+		insert into p2p_loan_claim_relative_app (PROJECT_NO, MOBILE_SIGN,
+		CREATE_TIME)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.projectNo}, #{item.mobileSign}, #{item.createTime})
+		</foreach>
+	</insert>
+</mapper>

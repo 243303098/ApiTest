@@ -1,0 +1,150 @@
+<html>
+<head>
+<title>TestNG:  Default test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Default test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Thu Jul 06 12:38:01 CST 2017</td>
+</tr>
+<tr><td>Total time:</td><td>4 seconds (4797 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.fkapi.vcc.ExcuteVccApplyCase.excute()'><b>excute</b><br>Test class: com.fkapi.vcc.ExcuteVccApplyCase<br>Parameters: P012_通讯录无联系人, 1, allpass, 通讯录无数据, P012, AUDIT_RETURN, AUDIT_RETURN, Passed<br/>
+<a href="#Output-680556951" onClick='toggleBox("Output-680556951", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-680556951" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-680556951">
+              <br/>
+----------------------------------当前执行的caseNo为： P012_通讯录无联系人--------------------------------------------<br/>
+               <br/>
+新增loginName为：ceshi01的p2p_customer表的数据成功<br/>
+添加loginName为：ceshi01的p2p_base_customer表的数据成功<br/>
+添加p2p_cert_auth表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}<br/>
+添加custId为：715005293的p2p_cert_auth表的数据成功<br/>
+添加p2p_cust_account表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}<br/>
+添加certAuth为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}的p2p_cust_account表数据成功<br/>
+添加p2p_account_bankcard表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}<br/>
+添加卡号为：6217001000000000201的p2p_account_bankcard表信息成功<br/>
+添加p2p_base_account表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}<br/>
+添加acctNo为：6217001000000000201的p2p_base_account表信息成功<br/>
+添加p2p_account_bankcard_log表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}<br/>
+添加卡号为：6217001000000000201的p2p_account_bankcard_log表的信息成功<br/>
+添加p2p_third_account表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}<br/>
+添加custId为： 715005293的p2p_third_account表的数据成功<br/>
+添加acctNo为：6217001000000000201的p2p_account_check表信息成功<br/>
+添加custId为： 715005293的p2p_cust_credit_info表数据成功<br/>
+更新certAuth为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}的数据成功<br/>
+更新phoneAuth为： {"phoneAuthStatus":"AS","mobile":"18000000010"}的数据成功<br/>
+添加p2p_student_cust表的参数为：{"clogLevel":"本科","schoolRollAuthStatus":"AS","entranceTime":"2014-09-01","province":"江苏省","collegeName":"苏州大学","city":"苏州市"}<br/>
+添加custId为：715005293的p2p_student_cust表的数据成功<br/>
+添加p2p_student_info表的参数为： {"clogLevel":"本科","schoolRollAuthStatus":"AS","entranceTime":"2014-09-01","province":"江苏省","collegeName":"苏州大学","city":"苏州市"}<br/>
+添加custId为：715005293的p2p_student_info表的数据成功<br/>
+添加ex_StudentCreditInfo表的参数为： {"clogLevel":"本科","schoolRollAuthStatus":"AS","entranceTime":"2014-09-01","province":"江苏省","collegeName":"苏州大学","city":"苏州市"}<br/>
+添加学籍认证信息为：{"clogLevel":"本科","schoolRollAuthStatus":"AS","entranceTime":"2014-09-01","province":"江苏省","collegeName":"苏州大学","city":"苏州市"}的ex_StudentCreditInfo表信息成功<br/>
+更新schoolRollAuth为： {"clogLevel":"本科","schoolRollAuthStatus":"AS","entranceTime":"2014-09-01","province":"江苏省","collegeName":"苏州大学","city":"苏州市"}的数据成功<br/>
+添加p2p_customer_education_log表的参数为： {"clogLevel":"本科","entranceTime":"2011-07-01","educationAuthStatus":"AF","collegeName":"苏州大学"}<br/>
+添加custId为：715005293的p2p_customer_education_log表的数据成功<br/>
+更新educationAuth为： {"clogLevel":"本科","entranceTime":"2011-07-01","educationAuthStatus":"AF","collegeName":"苏州大学"}的数据成功<br/>
+添加p2p_linkface_auth表的参数为： {"photoAuthStatus":"AS"}<br/>
+添加custId为：715005293的p2p_linkface_auth表的数据成功<br/>
+添加custId为：715005293的p2p_linkface_msg表的数据成功<br/>
+更新photoAuth为： {"photoAuthStatus":"AS"}的数据成功<br/>
+添加p2p_customer_contactor表的参数为： { "province":"江苏省", "city":"苏州市", "contractor":[ {"name":"父母","relation":"父母","mobile":"15221526888"}, {"name":"配偶","relation":"配偶","mobile":"15221525888"} ] }<br/>
+添加的联系人信息为： { "province":"江苏省", "city":"苏州市", "contractor":[ {"name":"父母","relation":"父母","mobile":"15221526888"}, {"name":"配偶","relation":"配偶","mobile":"15221525888"} ] }<br/>
+添加custId为：715005293的p2p_customer_contactor表的数据成功<br/>
+添加p2p_cust_top_contactor表的参数为： { "province":"江苏省", "city":"苏州市", "contractor":[ {"name":"父母","relation":"父母","mobile":"15221526888"}, {"name":"配偶","relation":"配偶","mobile":"15221525888"} ] }<br/>
+添加custId为：715005293的p2p_cust_top_contactor表的数据成功<br/>
+添加p2p_cust_top_contactor表的参数为： { "province":"江苏省", "city":"苏州市", "contractor":[ {"name":"父母","relation":"父母","mobile":"15221526888"}, {"name":"配偶","relation":"配偶","mobile":"15221525888"} ] }<br/>
+添加custId为：715005293的p2p_cust_top_contactor表的数据成功<br/>
+添加的通讯认证参数为 ： {"jxlMobileAuthStatus":"AS","authTime":"2017-06-15"}<br/>
+添加custId为：715005293的p2p_juxinli_mobile_auth表的数据成功<br/>
+添加的通讯认证参数为 ： {"jxlMobileAuthStatus":"AS","authTime":"2017-06-15"}<br/>
+添加custId为：715005293的p2p_juxinli_mobile_auth表的数据成功<br/>
+添加custId为：715005293的p2p_juxinli_mobile_log表的数据成功<br/>
+添加jxl_primary_info表的参数为： {"jxlMobileAuthStatus":"AS","authTime":"2017-06-15"}<br/>
+添加通讯认证的信息为：{"jxlMobileAuthStatus":"AS","authTime":"2017-06-15"}的jxl_primary_info表信息成功<br/>
+更新addrAuth为： {"fullAddr":"苏州市高新区","addrAuthStatus":"AS","nowCity":"苏州市","nowProvince":"江苏省"}的数据成功<br/>
+请求额度计算接口的custId为： 715005293mobileSign为 ：<br/>
+请求地址为：http://192.168.101.201:26500/VCC/auditCustAdmittance<br/>
+请求成功接口返回:HTTP/1.1 200 OK<br/>
+根据projectNo： custId: 715005293remark: P012获取的风控审批记录为 AUDIT_RETURN<br/>
+期望结果为：AUDIT_RETURN<br/>
+实际结果为：AUDIT_RETURN<br/>
+用例执行结果为：Passed<br/>
+               <br/>
+-----------------------------------caseNo： P012_通讯录无联系人执行完毕---------------------------------------------<br/>
+               <br/>
+</div>
+</td>
+<td></td>
+<td>3</td>
+<td>com.fkapi.vcc.ExcuteVccCase@3fae84c3</td></tr>
+</table><p>
+</body>
+</html>

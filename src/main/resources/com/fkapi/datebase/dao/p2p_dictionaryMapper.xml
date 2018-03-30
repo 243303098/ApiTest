@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_dictionaryMapper">
+  <resultMap id="p2p_dictionary" type="com.fkapi.datebase.domain.p2p_dictionary">
+    <id column="DICT_ID" jdbcType="INTEGER" property="dictId" />
+    <result column="DICT_TYPE" jdbcType="VARCHAR" property="dictType" />
+    <result column="DICT_CODE" jdbcType="VARCHAR" property="dictCode" />
+    <result column="DICT_NAME" jdbcType="VARCHAR" property="dictName" />
+    <result column="DICT_ORDER" jdbcType="INTEGER" property="dictOrder" />
+    <result column="PARENT_DICT_ID" jdbcType="INTEGER" property="parentDictId" />
+    <result column="DICT_DESC" jdbcType="VARCHAR" property="dictDesc" />
+  </resultMap>
+  <sql id="p2p_dictionary">
+    DICT_ID, DICT_TYPE, DICT_CODE, DICT_NAME, DICT_ORDER, PARENT_DICT_ID, DICT_DESC
+  </sql>
+  <select id="selectByDictName" parameterType="java.lang.String" resultMap="p2p_dictionary">
+    select 
+    <include refid="p2p_dictionary" />
+    from p2p_dictionary
+    where DICT_NAME like CONCAT('%',#{dictName,jdbcType=VARCHAR},'%') limit 1
+  </select>
+  <select id="selectOtherDictCode" parameterType="java.util.List" resultMap="p2p_dictionary">
+    select
+    <include refid="p2p_dictionary" />
+    from p2p_dictionary
+    where DICT_TYPE = "CITY_CODE" AND DICT_CODE NOT IN
+      <foreach item="item" index="index" collection="list"
+             open="(" separator="," close=")">
+        ${item}
+      </foreach>
+    limit 1
+  </select>
+  <delete id="deleteByDictName" parameterType="java.lang.String">
+    delete from p2p_dictionary
+    where DICT_NAME = #{dictName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_dictionary">
+    insert into p2p_dictionary (DICT_ID, DICT_TYPE, DICT_CODE, 
+      DICT_NAME, DICT_ORDER, PARENT_DICT_ID, 
+      DICT_DESC)
+    values (#{dictId,jdbcType=INTEGER}, #{dictType,jdbcType=VARCHAR}, #{dictCode,jdbcType=VARCHAR}, 
+      #{dictName,jdbcType=VARCHAR}, #{dictOrder,jdbcType=INTEGER}, #{parentDictId,jdbcType=INTEGER}, 
+      #{dictDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_dictionary">
+    insert into p2p_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictId != null">
+        DICT_ID,
+      </if>
+      <if test="dictType != null">
+        DICT_TYPE,
+      </if>
+      <if test="dictCode != null">
+        DICT_CODE,
+      </if>
+      <if test="dictName != null">
+        DICT_NAME,
+      </if>
+      <if test="dictOrder != null">
+        DICT_ORDER,
+      </if>
+      <if test="parentDictId != null">
+        PARENT_DICT_ID,
+      </if>
+      <if test="dictDesc != null">
+        DICT_DESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictId != null">
+        #{dictId,jdbcType=INTEGER},
+      </if>
+      <if test="dictType != null">
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null">
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictOrder != null">
+        #{dictOrder,jdbcType=INTEGER},
+      </if>
+      <if test="parentDictId != null">
+        #{parentDictId,jdbcType=INTEGER},
+      </if>
+      <if test="dictDesc != null">
+        #{dictDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_dictionary">
+    update p2p_dictionary
+    <set>
+      <if test="dictType != null">
+        DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null">
+        DICT_CODE = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictOrder != null">
+        DICT_ORDER = #{dictOrder,jdbcType=INTEGER},
+      </if>
+      <if test="parentDictId != null">
+        PARENT_DICT_ID = #{parentDictId,jdbcType=INTEGER},
+      </if>
+      <if test="dictDesc != null">
+        DICT_DESC = #{dictDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DICT_ID = #{dictId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_dictionary">
+    update p2p_dictionary
+    set DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      DICT_CODE = #{dictCode,jdbcType=VARCHAR},
+      DICT_NAME = #{dictName,jdbcType=VARCHAR},
+      DICT_ORDER = #{dictOrder,jdbcType=INTEGER},
+      PARENT_DICT_ID = #{parentDictId,jdbcType=INTEGER},
+      DICT_DESC = #{dictDesc,jdbcType=VARCHAR}
+    where DICT_ID = #{dictId,jdbcType=INTEGER}
+  </update>
+</mapper>

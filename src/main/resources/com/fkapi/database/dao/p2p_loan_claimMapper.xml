@@ -1,0 +1,1264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.database.dao.p2p_loan_claimMapper">
+	<resultMap id="p2p_loan_claimMapper" type="com.fkapi.database.domain.p2p_loan_claim">
+		<id column="PROJECT_NO" jdbcType="VARCHAR" property="projectNo" />
+		<result column="PROJECT_NAME" jdbcType="VARCHAR" property="projectName" />
+		<result column="PROJECT_CHANNEL" jdbcType="VARCHAR" property="projectChannel" />
+		<result column="LOAN_TEMP_ID" jdbcType="BIGINT" property="loanTempId" />
+		<result column="LOAN_TEMP_NAME" jdbcType="VARCHAR" property="loanTempName" />
+		<result column="ORIGIN_CLAIM_NO" jdbcType="VARCHAR" property="originClaimNo" />
+		<result column="LOAN_AMOUNT" jdbcType="DECIMAL" property="loanAmount" />
+		<result column="REMAIN_CLAIM_AMOUNT" jdbcType="DECIMAL"
+			property="remainClaimAmount" />
+		<result column="LOAN_TERM" jdbcType="INTEGER" property="loanTerm" />
+		<result column="REMAIN_TERM" jdbcType="INTEGER" property="remainTerm" />
+		<result column="TIME_TYPE" jdbcType="CHAR" property="timeType" />
+		<result column="INTEREST_RATE" jdbcType="DECIMAL" property="interestRate" />
+		<result column="LOAN_DATE" jdbcType="TIMESTAMP" property="loanDate" />
+		<result column="EXPIRE_DATE" jdbcType="DATE" property="expireDate" />
+		<result column="EXPECT_DATE" jdbcType="DATE" property="expectDate" />
+		<result column="NEXT_REPAY_DATE" jdbcType="DATE" property="nextRepayDate" />
+		<result column="PROJECT_TO" jdbcType="VARCHAR" property="projectTo" />
+		<result column="RELEASE_STATUS" jdbcType="VARCHAR" property="releaseStatus" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="PRJ_CHL_CORP" jdbcType="VARCHAR" property="prjChlCorp" />
+		<result column="PRJ_CHL_TYPE" jdbcType="VARCHAR" property="prjChlType" />
+		<result column="GUARANTEE_CORP" jdbcType="VARCHAR" property="guaranteeCorp" />
+		<result column="GUARANTEE_METHOD" jdbcType="VARCHAR" property="guaranteeMethod" />
+		<result column="GUARANTEE_NAME" jdbcType="VARCHAR" property="guaranteeName" />
+		<result column="PLATFORM_RATE" jdbcType="DECIMAL" property="platformRate" />
+		<result column="GUARANTEE_RATE" jdbcType="DECIMAL" property="guaranteeRate" />
+		<result column="IS_OVERDUE" jdbcType="VARCHAR" property="isOverdue" />
+		<result column="REPAY_TYPE" jdbcType="VARCHAR" property="repayType" />
+		<result column="LOAN_PRODUCT_TYPE" jdbcType="VARCHAR" property="loanProductType" />
+		<result column="OPERATOR" jdbcType="BIGINT" property="operator" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="REPAY_METHOD" jdbcType="VARCHAR" property="repayMethod" />
+		<result column="PROJECT_TYPE" jdbcType="VARCHAR" property="projectType" />
+		<result column="VERSION" jdbcType="BIGINT" property="version" />
+		<result column="LOAN_PURPOSE" jdbcType="VARCHAR" property="loanPurpose" />
+		<result column="REPAY_SOURCE" jdbcType="VARCHAR" property="repaySource" />
+		<result column="LOAN_METHOD" jdbcType="VARCHAR" property="loanMethod" />
+		<result column="APPLY_AMOUNT" jdbcType="DECIMAL" property="applyAmount" />
+		<result column="APPLY_TERM" jdbcType="INTEGER" property="applyTerm" />
+		<result column="ALLOW_EARLY_REPAY" jdbcType="CHAR" property="allowEarlyRepay" />
+		<result column="MIN_LOAN_AMOUNT" jdbcType="DECIMAL" property="minLoanAmount" />
+		<result column="MAX_LOAN_AMOUNT" jdbcType="DECIMAL" property="maxLoanAmount" />
+		<result column="GATHER_FEE_POINT" jdbcType="VARCHAR" property="gatherFeePoint" />
+		<result column="EARLY_PAY_RATE" jdbcType="DECIMAL" property="earlyPayRate" />
+		<result column="OVERDUE_ADVANCE" jdbcType="VARCHAR" property="overdueAdvance" />
+		<result column="ADVANCE_ORDER" jdbcType="CHAR" property="advanceOrder" />
+		<result column="PART_REPAY" jdbcType="CHAR" property="partRepay" />
+		<result column="REPURCHASE_TYPE" jdbcType="CHAR" property="repurchaseType" />
+		<result column="REPURCHASE_DAYS" jdbcType="INTEGER" property="repurchaseDays" />
+		<result column="APPROVE_AMOUNT" jdbcType="DECIMAL" property="approveAmount" />
+		<result column="TERM_NO" jdbcType="INTEGER" property="termNo" />
+		<result column="REPAY_CAPITAL" jdbcType="DECIMAL" property="repayCapital" />
+		<result column="OVERDUE_FEE" jdbcType="DECIMAL" property="overdueFee" />
+		<result column="OVERDUE_DAYS" jdbcType="INTEGER" property="overdueDays" />
+		<result column="REPAY_STATUS" jdbcType="VARCHAR" property="repayStatus" />
+		<result column="REPAY_INTEREST" jdbcType="DECIMAL" property="repayInterest" />
+		<result column="AUDIT_STATUS" jdbcType="VARCHAR" property="auditStatus" />
+		<result column="BORROWER_NAME" jdbcType="VARCHAR" property="borrowerName" />
+		<result column="BORROWER_TYPE" jdbcType="VARCHAR" property="borrowerType" />
+		<result column="CORP_NO" jdbcType="VARCHAR" property="corpNo" />
+		<result column="LOAN_NAME" jdbcType="VARCHAR" property="loanName" />
+		<result column="FORCE_LOSE_DATE" jdbcType="DATE" property="forceLoseDate" />
+		<result column="OVERDUE_RATE" jdbcType="DECIMAL" property="overdueRate" />
+		<result column="OVERDUE_FEE_TYPE" jdbcType="VARCHAR" property="overdueFeeType" />
+		<result column="LOW_PLATFORM_FEE" jdbcType="DECIMAL" property="lowPlatformFee" />
+		<result column="LOAN_SRC" jdbcType="VARCHAR" property="loanSrc" />
+		<result column="PLATFORM_SERVICE_FEE" jdbcType="DECIMAL"
+			property="platformServiceFee" />
+		<result column="FUND_MATCH_TIME" jdbcType="TIMESTAMP" property="fundMatchTime" />
+		<result column="REMIT_COUNTER" jdbcType="INTEGER" property="remitCounter" />
+		<result column="ASSET_CORP_NO" jdbcType="VARCHAR" property="assetCorpNo" />
+		<result column="ASSET_CORP_NAME" jdbcType="VARCHAR" property="assetCorpName" />
+		<result column="INTERVIEW_DATE" jdbcType="DATE" property="interviewDate" />
+		<result column="PREPAYMENT_RATE" jdbcType="DECIMAL" property="prepaymentRate" />
+		<result column="SIGN_FLAG" jdbcType="CHAR" property="signFlag" />
+		<result column="AUTO_ADVANCE_FLAG" jdbcType="CHAR" property="autoAdvanceFlag" />
+		<result column="REDEEM_DATE" jdbcType="TIMESTAMP" property="redeemDate" />
+		<result column="REDEMPTION" jdbcType="VARCHAR" property="redemption" />
+		<result column="LOCK_SIGN" jdbcType="CHAR" property="lockSign" />
+		<result column="LOCKED_TIME" jdbcType="TIMESTAMP" property="lockedTime" />
+		<result column="LOCK_METHOD" jdbcType="VARCHAR" property="lockMethod" />
+		<result column="TRUST_FLAG" jdbcType="CHAR" property="trustFlag" />
+		<result column="TRUST_CORP_TYPE" jdbcType="VARCHAR" property="trustCorpType" />
+		<result column="PAYOFF_DATE" jdbcType="TIMESTAMP" property="payoffDate" />
+		<result column="PAYOFF_CORP" jdbcType="VARCHAR" property="payoffCorp" />
+		<result column="FILTER_SIGN" jdbcType="CHAR" property="filterSign" />
+		<result column="LOCK_TERM" jdbcType="VARCHAR" property="lockTerm" />
+		<result column="LOAN_SUB_SRC" jdbcType="VARCHAR" property="loanSubSrc" />
+		<result column="CURR_AUDIT_TIME" jdbcType="TIMESTAMP" property="currAuditTime" />
+		<result column="REPAY_CAPITAL_RATIO" jdbcType="DECIMAL"
+			property="repayCapitalRatio" />
+		<result column="PRJ_CFG_TYPE" jdbcType="VARCHAR" property="prjCfgType" />
+		<result column="LOAN_PAYEE" jdbcType="VARCHAR" property="loanPayee" />
+		<result column="POUNDAGE_RATE" jdbcType="DECIMAL" property="poundageRate" />
+		<result column="OVERDUE_FEE_RATE" jdbcType="DECIMAL" property="overdueFeeRate" />
+	</resultMap>
+	<sql id="p2p_loan_claim">
+		PROJECT_NO, PROJECT_NAME, PROJECT_CHANNEL, LOAN_TEMP_ID,
+		LOAN_TEMP_NAME,
+		ORIGIN_CLAIM_NO,
+		LOAN_AMOUNT, REMAIN_CLAIM_AMOUNT,
+		LOAN_TERM, REMAIN_TERM, TIME_TYPE,
+		INTEREST_RATE,
+		LOAN_DATE,
+		EXPIRE_DATE, EXPECT_DATE, NEXT_REPAY_DATE, PROJECT_TO,
+		RELEASE_STATUS,
+		CREATE_TIME, PRJ_CHL_CORP, PRJ_CHL_TYPE, GUARANTEE_CORP,
+		GUARANTEE_METHOD,
+		GUARANTEE_NAME,
+		PLATFORM_RATE, GUARANTEE_RATE,
+		IS_OVERDUE, REPAY_TYPE, LOAN_PRODUCT_TYPE, OPERATOR,
+		CUST_ID,
+		REPAY_METHOD, PROJECT_TYPE, VERSION, LOAN_PURPOSE,
+		REPAY_SOURCE,
+		LOAN_METHOD,
+		APPLY_AMOUNT, APPLY_TERM, ALLOW_EARLY_REPAY,
+		MIN_LOAN_AMOUNT, MAX_LOAN_AMOUNT,
+		GATHER_FEE_POINT,
+		EARLY_PAY_RATE,
+		OVERDUE_ADVANCE, ADVANCE_ORDER, PART_REPAY, REPURCHASE_TYPE,
+		REPURCHASE_DAYS,
+		APPROVE_AMOUNT, TERM_NO, REPAY_CAPITAL, OVERDUE_FEE,
+		OVERDUE_DAYS, REPAY_STATUS,
+		REPAY_INTEREST, AUDIT_STATUS,
+		BORROWER_NAME, BORROWER_TYPE, CORP_NO,
+		LOAN_NAME, FORCE_LOSE_DATE,
+		OVERDUE_RATE, OVERDUE_FEE_TYPE, LOW_PLATFORM_FEE, LOAN_SRC,
+		PLATFORM_SERVICE_FEE,
+		FUND_MATCH_TIME, REMIT_COUNTER, ASSET_CORP_NO,
+		ASSET_CORP_NAME,
+		INTERVIEW_DATE, PREPAYMENT_RATE,
+		SIGN_FLAG,
+		AUTO_ADVANCE_FLAG, REDEEM_DATE, REDEMPTION, LOCK_SIGN, LOCKED_TIME,
+		LOCK_METHOD,
+		TRUST_FLAG, TRUST_CORP_TYPE, PAYOFF_DATE, PAYOFF_CORP,
+		FILTER_SIGN, LOCK_TERM,
+		LOAN_SUB_SRC,
+		CURR_AUDIT_TIME,
+		REPAY_CAPITAL_RATIO, PRJ_CFG_TYPE, LOAN_PAYEE, POUNDAGE_RATE,
+		OVERDUE_FEE_RATE
+	</sql>
+	<select id="selectByCustID" parameterType="java.lang.String"
+		resultMap="p2p_loan_claimMapper">
+		select
+		<include refid="p2p_loan_claim" />
+		from p2p_loan_claim
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustID" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" separator="or">
+		delete from
+		p2p_loan_claim
+		where CUST_ID = #{item.custId,jdbcType=BIGINT}
+		</foreach>
+	</delete>
+
+	<!-- 添加一期借款订单表及还款计划表，借款一天内还款 -->
+	<insert id="insert" parameterType="java.util.List">
+		insert into p2p_loan_claim
+		(PROJECT_NO, PROJECT_NAME, PROJECT_CHANNEL,
+		LOAN_TEMP_ID,
+		LOAN_TEMP_NAME, ORIGIN_CLAIM_NO,
+		LOAN_AMOUNT, REMAIN_CLAIM_AMOUNT,
+		LOAN_TERM,
+		REMAIN_TERM, TIME_TYPE, INTEREST_RATE,
+		LOAN_DATE,
+		EXPIRE_DATE, EXPECT_DATE,
+		NEXT_REPAY_DATE, PROJECT_TO, RELEASE_STATUS,
+		CREATE_TIME, PRJ_CHL_CORP, PRJ_CHL_TYPE,
+		GUARANTEE_CORP,
+		GUARANTEE_METHOD, GUARANTEE_NAME,
+		PLATFORM_RATE, GUARANTEE_RATE,
+		IS_OVERDUE,
+		REPAY_TYPE, LOAN_PRODUCT_TYPE, OPERATOR,
+		CUST_ID,
+		REPAY_METHOD, PROJECT_TYPE,
+		VERSION, LOAN_PURPOSE, REPAY_SOURCE,
+		LOAN_METHOD, APPLY_AMOUNT, APPLY_TERM,
+		ALLOW_EARLY_REPAY,
+		MIN_LOAN_AMOUNT, MAX_LOAN_AMOUNT,
+		GATHER_FEE_POINT, EARLY_PAY_RATE,
+		OVERDUE_ADVANCE,
+		ADVANCE_ORDER, PART_REPAY, REPURCHASE_TYPE,
+		REPURCHASE_DAYS, APPROVE_AMOUNT, TERM_NO,
+		REPAY_CAPITAL, OVERDUE_FEE,
+		OVERDUE_DAYS,
+		REPAY_STATUS, REPAY_INTEREST, AUDIT_STATUS,
+		BORROWER_NAME, BORROWER_TYPE, CORP_NO,
+		LOAN_NAME, FORCE_LOSE_DATE,
+		OVERDUE_RATE,
+		OVERDUE_FEE_TYPE, LOW_PLATFORM_FEE, LOAN_SRC,
+		PLATFORM_SERVICE_FEE, FUND_MATCH_TIME, REMIT_COUNTER,
+		ASSET_CORP_NO,
+		ASSET_CORP_NAME, INTERVIEW_DATE,
+		PREPAYMENT_RATE, SIGN_FLAG,
+		AUTO_ADVANCE_FLAG,
+		REDEEM_DATE, REDEMPTION, LOCK_SIGN,
+		LOCKED_TIME,
+		LOCK_METHOD, TRUST_FLAG,
+		TRUST_CORP_TYPE, PAYOFF_DATE, PAYOFF_CORP,
+		FILTER_SIGN, LOCK_TERM, LOAN_SUB_SRC,
+		CURR_AUDIT_TIME,
+		REPAY_CAPITAL_RATIO, PRJ_CFG_TYPE,
+		LOAN_PAYEE, POUNDAGE_RATE,
+		OVERDUE_FEE_RATE)
+		values
+		<foreach collection="list" item="item" index="index" separator=",">
+		 (#{item.projectNo}, #{item.projectName}, #{item.projectChannel}, NULL, NULL, NULL,
+		'1000', NULL,
+		#{item.loanTerm},
+		'0', #{item.timeType}, '10.8000', #{item.loanDate},
+		NULL, NULL,
+		#{item.nextRepayDate}, 'BACK', #{item.releaseStatus}, #{item.createTime}, 'QD3047',
+		NULL, NULL, NULL, NULL, '4.5000', '0.0000', #{item.isOverdue},
+		'OWNER_REPAY', NULL,
+		NULL, #{item.custId}, 'ECEI', 'LOAN', '8', NULL, NULL,
+		NULL, '1000.00',
+		NULL, 'Y', '0.00', NULL, 'LOAN', '0.0000', NULL, 'Y',
+		'N', NULL, NULL,
+		'1000.00', '1', '0.00', '0.00', #{item.overdueDays}, #{item.repayStatus},
+		'0.00', #{item.auditStatus},
+		#{item.borrowerName}, 'PERSONAL', NULL, NULL, NULL,
+		'36.0000', NULL,
+		'0.00', #{item.loanSrc},
+		'47.13', '2018-04-18 13:13:54', '0',
+		'QD50411',
+		'上海昶才资产管理有限公司', NULL,
+		'0.0000', 'N', 'N', NULL, NULL, 'N',
+		'2018-04-18
+		13:14:21', 'NO_LOCK',
+		'N', NULL, NULL, NULL, '0', '1',
+		#{item.loanSubSrc}, NULL,
+		NULL, #{item.prjCfgType}, 'OWER',
+		'3.0000', '18.0000')
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="p2p_loan_claim">
+		insert into p2p_loan_claim
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="projectNo != null">
+				PROJECT_NO,
+			</if>
+			<if test="projectName != null">
+				PROJECT_NAME,
+			</if>
+			<if test="projectChannel != null">
+				PROJECT_CHANNEL,
+			</if>
+			<if test="loanTempId != null">
+				LOAN_TEMP_ID,
+			</if>
+			<if test="loanTempName != null">
+				LOAN_TEMP_NAME,
+			</if>
+			<if test="originClaimNo != null">
+				ORIGIN_CLAIM_NO,
+			</if>
+			<if test="loanAmount != null">
+				LOAN_AMOUNT,
+			</if>
+			<if test="remainClaimAmount != null">
+				REMAIN_CLAIM_AMOUNT,
+			</if>
+			<if test="loanTerm != null">
+				LOAN_TERM,
+			</if>
+			<if test="remainTerm != null">
+				REMAIN_TERM,
+			</if>
+			<if test="timeType != null">
+				TIME_TYPE,
+			</if>
+			<if test="interestRate != null">
+				INTEREST_RATE,
+			</if>
+			<if test="loanDate != null">
+				LOAN_DATE,
+			</if>
+			<if test="expireDate != null">
+				EXPIRE_DATE,
+			</if>
+			<if test="expectDate != null">
+				EXPECT_DATE,
+			</if>
+			<if test="nextRepayDate != null">
+				NEXT_REPAY_DATE,
+			</if>
+			<if test="projectTo != null">
+				PROJECT_TO,
+			</if>
+			<if test="releaseStatus != null">
+				RELEASE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="prjChlCorp != null">
+				PRJ_CHL_CORP,
+			</if>
+			<if test="prjChlType != null">
+				PRJ_CHL_TYPE,
+			</if>
+			<if test="guaranteeCorp != null">
+				GUARANTEE_CORP,
+			</if>
+			<if test="guaranteeMethod != null">
+				GUARANTEE_METHOD,
+			</if>
+			<if test="guaranteeName != null">
+				GUARANTEE_NAME,
+			</if>
+			<if test="platformRate != null">
+				PLATFORM_RATE,
+			</if>
+			<if test="guaranteeRate != null">
+				GUARANTEE_RATE,
+			</if>
+			<if test="isOverdue != null">
+				IS_OVERDUE,
+			</if>
+			<if test="repayType != null">
+				REPAY_TYPE,
+			</if>
+			<if test="loanProductType != null">
+				LOAN_PRODUCT_TYPE,
+			</if>
+			<if test="operator != null">
+				OPERATOR,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="repayMethod != null">
+				REPAY_METHOD,
+			</if>
+			<if test="projectType != null">
+				PROJECT_TYPE,
+			</if>
+			<if test="version != null">
+				VERSION,
+			</if>
+			<if test="loanPurpose != null">
+				LOAN_PURPOSE,
+			</if>
+			<if test="repaySource != null">
+				REPAY_SOURCE,
+			</if>
+			<if test="loanMethod != null">
+				LOAN_METHOD,
+			</if>
+			<if test="applyAmount != null">
+				APPLY_AMOUNT,
+			</if>
+			<if test="applyTerm != null">
+				APPLY_TERM,
+			</if>
+			<if test="allowEarlyRepay != null">
+				ALLOW_EARLY_REPAY,
+			</if>
+			<if test="minLoanAmount != null">
+				MIN_LOAN_AMOUNT,
+			</if>
+			<if test="maxLoanAmount != null">
+				MAX_LOAN_AMOUNT,
+			</if>
+			<if test="gatherFeePoint != null">
+				GATHER_FEE_POINT,
+			</if>
+			<if test="earlyPayRate != null">
+				EARLY_PAY_RATE,
+			</if>
+			<if test="overdueAdvance != null">
+				OVERDUE_ADVANCE,
+			</if>
+			<if test="advanceOrder != null">
+				ADVANCE_ORDER,
+			</if>
+			<if test="partRepay != null">
+				PART_REPAY,
+			</if>
+			<if test="repurchaseType != null">
+				REPURCHASE_TYPE,
+			</if>
+			<if test="repurchaseDays != null">
+				REPURCHASE_DAYS,
+			</if>
+			<if test="approveAmount != null">
+				APPROVE_AMOUNT,
+			</if>
+			<if test="termNo != null">
+				TERM_NO,
+			</if>
+			<if test="repayCapital != null">
+				REPAY_CAPITAL,
+			</if>
+			<if test="overdueFee != null">
+				OVERDUE_FEE,
+			</if>
+			<if test="overdueDays != null">
+				OVERDUE_DAYS,
+			</if>
+			<if test="repayStatus != null">
+				REPAY_STATUS,
+			</if>
+			<if test="repayInterest != null">
+				REPAY_INTEREST,
+			</if>
+			<if test="auditStatus != null">
+				AUDIT_STATUS,
+			</if>
+			<if test="borrowerName != null">
+				BORROWER_NAME,
+			</if>
+			<if test="borrowerType != null">
+				BORROWER_TYPE,
+			</if>
+			<if test="corpNo != null">
+				CORP_NO,
+			</if>
+			<if test="loanName != null">
+				LOAN_NAME,
+			</if>
+			<if test="forceLoseDate != null">
+				FORCE_LOSE_DATE,
+			</if>
+			<if test="overdueRate != null">
+				OVERDUE_RATE,
+			</if>
+			<if test="overdueFeeType != null">
+				OVERDUE_FEE_TYPE,
+			</if>
+			<if test="lowPlatformFee != null">
+				LOW_PLATFORM_FEE,
+			</if>
+			<if test="loanSrc != null">
+				LOAN_SRC,
+			</if>
+			<if test="platformServiceFee != null">
+				PLATFORM_SERVICE_FEE,
+			</if>
+			<if test="fundMatchTime != null">
+				FUND_MATCH_TIME,
+			</if>
+			<if test="remitCounter != null">
+				REMIT_COUNTER,
+			</if>
+			<if test="assetCorpNo != null">
+				ASSET_CORP_NO,
+			</if>
+			<if test="assetCorpName != null">
+				ASSET_CORP_NAME,
+			</if>
+			<if test="interviewDate != null">
+				INTERVIEW_DATE,
+			</if>
+			<if test="prepaymentRate != null">
+				PREPAYMENT_RATE,
+			</if>
+			<if test="signFlag != null">
+				SIGN_FLAG,
+			</if>
+			<if test="autoAdvanceFlag != null">
+				AUTO_ADVANCE_FLAG,
+			</if>
+			<if test="redeemDate != null">
+				REDEEM_DATE,
+			</if>
+			<if test="redemption != null">
+				REDEMPTION,
+			</if>
+			<if test="lockSign != null">
+				LOCK_SIGN,
+			</if>
+			<if test="lockedTime != null">
+				LOCKED_TIME,
+			</if>
+			<if test="lockMethod != null">
+				LOCK_METHOD,
+			</if>
+			<if test="trustFlag != null">
+				TRUST_FLAG,
+			</if>
+			<if test="trustCorpType != null">
+				TRUST_CORP_TYPE,
+			</if>
+			<if test="payoffDate != null">
+				PAYOFF_DATE,
+			</if>
+			<if test="payoffCorp != null">
+				PAYOFF_CORP,
+			</if>
+			<if test="filterSign != null">
+				FILTER_SIGN,
+			</if>
+			<if test="lockTerm != null">
+				LOCK_TERM,
+			</if>
+			<if test="loanSubSrc != null">
+				LOAN_SUB_SRC,
+			</if>
+			<if test="currAuditTime != null">
+				CURR_AUDIT_TIME,
+			</if>
+			<if test="repayCapitalRatio != null">
+				REPAY_CAPITAL_RATIO,
+			</if>
+			<if test="prjCfgType != null">
+				PRJ_CFG_TYPE,
+			</if>
+			<if test="loanPayee != null">
+				LOAN_PAYEE,
+			</if>
+			<if test="poundageRate != null">
+				POUNDAGE_RATE,
+			</if>
+			<if test="overdueFeeRate != null">
+				OVERDUE_FEE_RATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="projectNo != null">
+				#{projectNo,jdbcType=VARCHAR},
+			</if>
+			<if test="projectName != null">
+				#{projectName,jdbcType=VARCHAR},
+			</if>
+			<if test="projectChannel != null">
+				#{projectChannel,jdbcType=VARCHAR},
+			</if>
+			<if test="loanTempId != null">
+				#{loanTempId,jdbcType=BIGINT},
+			</if>
+			<if test="loanTempName != null">
+				#{loanTempName,jdbcType=VARCHAR},
+			</if>
+			<if test="originClaimNo != null">
+				#{originClaimNo,jdbcType=VARCHAR},
+			</if>
+			<if test="loanAmount != null">
+				#{loanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="remainClaimAmount != null">
+				#{remainClaimAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="loanTerm != null">
+				#{loanTerm,jdbcType=INTEGER},
+			</if>
+			<if test="remainTerm != null">
+				#{remainTerm,jdbcType=INTEGER},
+			</if>
+			<if test="timeType != null">
+				#{timeType,jdbcType=CHAR},
+			</if>
+			<if test="interestRate != null">
+				#{interestRate,jdbcType=DECIMAL},
+			</if>
+			<if test="loanDate != null">
+				#{loanDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireDate != null">
+				#{expireDate,jdbcType=DATE},
+			</if>
+			<if test="expectDate != null">
+				#{expectDate,jdbcType=DATE},
+			</if>
+			<if test="nextRepayDate != null">
+				#{nextRepayDate,jdbcType=DATE},
+			</if>
+			<if test="projectTo != null">
+				#{projectTo,jdbcType=VARCHAR},
+			</if>
+			<if test="releaseStatus != null">
+				#{releaseStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="prjChlCorp != null">
+				#{prjChlCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="prjChlType != null">
+				#{prjChlType,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeCorp != null">
+				#{guaranteeCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeMethod != null">
+				#{guaranteeMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeName != null">
+				#{guaranteeName,jdbcType=VARCHAR},
+			</if>
+			<if test="platformRate != null">
+				#{platformRate,jdbcType=DECIMAL},
+			</if>
+			<if test="guaranteeRate != null">
+				#{guaranteeRate,jdbcType=DECIMAL},
+			</if>
+			<if test="isOverdue != null">
+				#{isOverdue,jdbcType=VARCHAR},
+			</if>
+			<if test="repayType != null">
+				#{repayType,jdbcType=VARCHAR},
+			</if>
+			<if test="loanProductType != null">
+				#{loanProductType,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				#{operator,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="repayMethod != null">
+				#{repayMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="projectType != null">
+				#{projectType,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=BIGINT},
+			</if>
+			<if test="loanPurpose != null">
+				#{loanPurpose,jdbcType=VARCHAR},
+			</if>
+			<if test="repaySource != null">
+				#{repaySource,jdbcType=VARCHAR},
+			</if>
+			<if test="loanMethod != null">
+				#{loanMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="applyAmount != null">
+				#{applyAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="applyTerm != null">
+				#{applyTerm,jdbcType=INTEGER},
+			</if>
+			<if test="allowEarlyRepay != null">
+				#{allowEarlyRepay,jdbcType=CHAR},
+			</if>
+			<if test="minLoanAmount != null">
+				#{minLoanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="maxLoanAmount != null">
+				#{maxLoanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="gatherFeePoint != null">
+				#{gatherFeePoint,jdbcType=VARCHAR},
+			</if>
+			<if test="earlyPayRate != null">
+				#{earlyPayRate,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueAdvance != null">
+				#{overdueAdvance,jdbcType=VARCHAR},
+			</if>
+			<if test="advanceOrder != null">
+				#{advanceOrder,jdbcType=CHAR},
+			</if>
+			<if test="partRepay != null">
+				#{partRepay,jdbcType=CHAR},
+			</if>
+			<if test="repurchaseType != null">
+				#{repurchaseType,jdbcType=CHAR},
+			</if>
+			<if test="repurchaseDays != null">
+				#{repurchaseDays,jdbcType=INTEGER},
+			</if>
+			<if test="approveAmount != null">
+				#{approveAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="termNo != null">
+				#{termNo,jdbcType=INTEGER},
+			</if>
+			<if test="repayCapital != null">
+				#{repayCapital,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueFee != null">
+				#{overdueFee,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueDays != null">
+				#{overdueDays,jdbcType=INTEGER},
+			</if>
+			<if test="repayStatus != null">
+				#{repayStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="repayInterest != null">
+				#{repayInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="auditStatus != null">
+				#{auditStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="borrowerName != null">
+				#{borrowerName,jdbcType=VARCHAR},
+			</if>
+			<if test="borrowerType != null">
+				#{borrowerType,jdbcType=VARCHAR},
+			</if>
+			<if test="corpNo != null">
+				#{corpNo,jdbcType=VARCHAR},
+			</if>
+			<if test="loanName != null">
+				#{loanName,jdbcType=VARCHAR},
+			</if>
+			<if test="forceLoseDate != null">
+				#{forceLoseDate,jdbcType=DATE},
+			</if>
+			<if test="overdueRate != null">
+				#{overdueRate,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueFeeType != null">
+				#{overdueFeeType,jdbcType=VARCHAR},
+			</if>
+			<if test="lowPlatformFee != null">
+				#{lowPlatformFee,jdbcType=DECIMAL},
+			</if>
+			<if test="loanSrc != null">
+				#{loanSrc,jdbcType=VARCHAR},
+			</if>
+			<if test="platformServiceFee != null">
+				#{platformServiceFee,jdbcType=DECIMAL},
+			</if>
+			<if test="fundMatchTime != null">
+				#{fundMatchTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remitCounter != null">
+				#{remitCounter,jdbcType=INTEGER},
+			</if>
+			<if test="assetCorpNo != null">
+				#{assetCorpNo,jdbcType=VARCHAR},
+			</if>
+			<if test="assetCorpName != null">
+				#{assetCorpName,jdbcType=VARCHAR},
+			</if>
+			<if test="interviewDate != null">
+				#{interviewDate,jdbcType=DATE},
+			</if>
+			<if test="prepaymentRate != null">
+				#{prepaymentRate,jdbcType=DECIMAL},
+			</if>
+			<if test="signFlag != null">
+				#{signFlag,jdbcType=CHAR},
+			</if>
+			<if test="autoAdvanceFlag != null">
+				#{autoAdvanceFlag,jdbcType=CHAR},
+			</if>
+			<if test="redeemDate != null">
+				#{redeemDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="redemption != null">
+				#{redemption,jdbcType=VARCHAR},
+			</if>
+			<if test="lockSign != null">
+				#{lockSign,jdbcType=CHAR},
+			</if>
+			<if test="lockedTime != null">
+				#{lockedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lockMethod != null">
+				#{lockMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="trustFlag != null">
+				#{trustFlag,jdbcType=CHAR},
+			</if>
+			<if test="trustCorpType != null">
+				#{trustCorpType,jdbcType=VARCHAR},
+			</if>
+			<if test="payoffDate != null">
+				#{payoffDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="payoffCorp != null">
+				#{payoffCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="filterSign != null">
+				#{filterSign,jdbcType=CHAR},
+			</if>
+			<if test="lockTerm != null">
+				#{lockTerm,jdbcType=VARCHAR},
+			</if>
+			<if test="loanSubSrc != null">
+				#{loanSubSrc,jdbcType=VARCHAR},
+			</if>
+			<if test="currAuditTime != null">
+				#{currAuditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="repayCapitalRatio != null">
+				#{repayCapitalRatio,jdbcType=DECIMAL},
+			</if>
+			<if test="prjCfgType != null">
+				#{prjCfgType,jdbcType=VARCHAR},
+			</if>
+			<if test="loanPayee != null">
+				#{loanPayee,jdbcType=VARCHAR},
+			</if>
+			<if test="poundageRate != null">
+				#{poundageRate,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueFeeRate != null">
+				#{overdueFeeRate,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="p2p_loan_claim">
+		update p2p_loan_claim
+		<set>
+			<if test="projectName != null">
+				PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+			</if>
+			<if test="projectChannel != null">
+				PROJECT_CHANNEL = #{projectChannel,jdbcType=VARCHAR},
+			</if>
+			<if test="loanTempId != null">
+				LOAN_TEMP_ID = #{loanTempId,jdbcType=BIGINT},
+			</if>
+			<if test="loanTempName != null">
+				LOAN_TEMP_NAME = #{loanTempName,jdbcType=VARCHAR},
+			</if>
+			<if test="originClaimNo != null">
+				ORIGIN_CLAIM_NO = #{originClaimNo,jdbcType=VARCHAR},
+			</if>
+			<if test="loanAmount != null">
+				LOAN_AMOUNT = #{loanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="remainClaimAmount != null">
+				REMAIN_CLAIM_AMOUNT =
+				#{remainClaimAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="loanTerm != null">
+				LOAN_TERM = #{loanTerm,jdbcType=INTEGER},
+			</if>
+			<if test="remainTerm != null">
+				REMAIN_TERM = #{remainTerm,jdbcType=INTEGER},
+			</if>
+			<if test="timeType != null">
+				TIME_TYPE = #{timeType,jdbcType=CHAR},
+			</if>
+			<if test="interestRate != null">
+				INTEREST_RATE = #{interestRate,jdbcType=DECIMAL},
+			</if>
+			<if test="loanDate != null">
+				LOAN_DATE = #{loanDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="expireDate != null">
+				EXPIRE_DATE = #{expireDate,jdbcType=DATE},
+			</if>
+			<if test="expectDate != null">
+				EXPECT_DATE = #{expectDate,jdbcType=DATE},
+			</if>
+			<if test="nextRepayDate != null">
+				NEXT_REPAY_DATE = #{nextRepayDate,jdbcType=DATE},
+			</if>
+			<if test="projectTo != null">
+				PROJECT_TO = #{projectTo,jdbcType=VARCHAR},
+			</if>
+			<if test="releaseStatus != null">
+				RELEASE_STATUS = #{releaseStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="prjChlCorp != null">
+				PRJ_CHL_CORP = #{prjChlCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="prjChlType != null">
+				PRJ_CHL_TYPE = #{prjChlType,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeCorp != null">
+				GUARANTEE_CORP = #{guaranteeCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeMethod != null">
+				GUARANTEE_METHOD = #{guaranteeMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="guaranteeName != null">
+				GUARANTEE_NAME = #{guaranteeName,jdbcType=VARCHAR},
+			</if>
+			<if test="platformRate != null">
+				PLATFORM_RATE = #{platformRate,jdbcType=DECIMAL},
+			</if>
+			<if test="guaranteeRate != null">
+				GUARANTEE_RATE = #{guaranteeRate,jdbcType=DECIMAL},
+			</if>
+			<if test="isOverdue != null">
+				IS_OVERDUE = #{isOverdue,jdbcType=VARCHAR},
+			</if>
+			<if test="repayType != null">
+				REPAY_TYPE = #{repayType,jdbcType=VARCHAR},
+			</if>
+			<if test="loanProductType != null">
+				LOAN_PRODUCT_TYPE = #{loanProductType,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				OPERATOR = #{operator,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="repayMethod != null">
+				REPAY_METHOD = #{repayMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="projectType != null">
+				PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				VERSION = #{version,jdbcType=BIGINT},
+			</if>
+			<if test="loanPurpose != null">
+				LOAN_PURPOSE = #{loanPurpose,jdbcType=VARCHAR},
+			</if>
+			<if test="repaySource != null">
+				REPAY_SOURCE = #{repaySource,jdbcType=VARCHAR},
+			</if>
+			<if test="loanMethod != null">
+				LOAN_METHOD = #{loanMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="applyAmount != null">
+				APPLY_AMOUNT = #{applyAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="applyTerm != null">
+				APPLY_TERM = #{applyTerm,jdbcType=INTEGER},
+			</if>
+			<if test="allowEarlyRepay != null">
+				ALLOW_EARLY_REPAY = #{allowEarlyRepay,jdbcType=CHAR},
+			</if>
+			<if test="minLoanAmount != null">
+				MIN_LOAN_AMOUNT = #{minLoanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="maxLoanAmount != null">
+				MAX_LOAN_AMOUNT = #{maxLoanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="gatherFeePoint != null">
+				GATHER_FEE_POINT = #{gatherFeePoint,jdbcType=VARCHAR},
+			</if>
+			<if test="earlyPayRate != null">
+				EARLY_PAY_RATE = #{earlyPayRate,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueAdvance != null">
+				OVERDUE_ADVANCE = #{overdueAdvance,jdbcType=VARCHAR},
+			</if>
+			<if test="advanceOrder != null">
+				ADVANCE_ORDER = #{advanceOrder,jdbcType=CHAR},
+			</if>
+			<if test="partRepay != null">
+				PART_REPAY = #{partRepay,jdbcType=CHAR},
+			</if>
+			<if test="repurchaseType != null">
+				REPURCHASE_TYPE = #{repurchaseType,jdbcType=CHAR},
+			</if>
+			<if test="repurchaseDays != null">
+				REPURCHASE_DAYS = #{repurchaseDays,jdbcType=INTEGER},
+			</if>
+			<if test="approveAmount != null">
+				APPROVE_AMOUNT = #{approveAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="termNo != null">
+				TERM_NO = #{termNo,jdbcType=INTEGER},
+			</if>
+			<if test="repayCapital != null">
+				REPAY_CAPITAL = #{repayCapital,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueFee != null">
+				OVERDUE_FEE = #{overdueFee,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueDays != null">
+				OVERDUE_DAYS = #{overdueDays,jdbcType=INTEGER},
+			</if>
+			<if test="repayStatus != null">
+				REPAY_STATUS = #{repayStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="repayInterest != null">
+				REPAY_INTEREST = #{repayInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="auditStatus != null">
+				AUDIT_STATUS = #{auditStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="borrowerName != null">
+				BORROWER_NAME = #{borrowerName,jdbcType=VARCHAR},
+			</if>
+			<if test="borrowerType != null">
+				BORROWER_TYPE = #{borrowerType,jdbcType=VARCHAR},
+			</if>
+			<if test="corpNo != null">
+				CORP_NO = #{corpNo,jdbcType=VARCHAR},
+			</if>
+			<if test="loanName != null">
+				LOAN_NAME = #{loanName,jdbcType=VARCHAR},
+			</if>
+			<if test="forceLoseDate != null">
+				FORCE_LOSE_DATE = #{forceLoseDate,jdbcType=DATE},
+			</if>
+			<if test="overdueRate != null">
+				OVERDUE_RATE = #{overdueRate,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueFeeType != null">
+				OVERDUE_FEE_TYPE = #{overdueFeeType,jdbcType=VARCHAR},
+			</if>
+			<if test="lowPlatformFee != null">
+				LOW_PLATFORM_FEE = #{lowPlatformFee,jdbcType=DECIMAL},
+			</if>
+			<if test="loanSrc != null">
+				LOAN_SRC = #{loanSrc,jdbcType=VARCHAR},
+			</if>
+			<if test="platformServiceFee != null">
+				PLATFORM_SERVICE_FEE =
+				#{platformServiceFee,jdbcType=DECIMAL},
+			</if>
+			<if test="fundMatchTime != null">
+				FUND_MATCH_TIME = #{fundMatchTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remitCounter != null">
+				REMIT_COUNTER = #{remitCounter,jdbcType=INTEGER},
+			</if>
+			<if test="assetCorpNo != null">
+				ASSET_CORP_NO = #{assetCorpNo,jdbcType=VARCHAR},
+			</if>
+			<if test="assetCorpName != null">
+				ASSET_CORP_NAME = #{assetCorpName,jdbcType=VARCHAR},
+			</if>
+			<if test="interviewDate != null">
+				INTERVIEW_DATE = #{interviewDate,jdbcType=DATE},
+			</if>
+			<if test="prepaymentRate != null">
+				PREPAYMENT_RATE = #{prepaymentRate,jdbcType=DECIMAL},
+			</if>
+			<if test="signFlag != null">
+				SIGN_FLAG = #{signFlag,jdbcType=CHAR},
+			</if>
+			<if test="autoAdvanceFlag != null">
+				AUTO_ADVANCE_FLAG = #{autoAdvanceFlag,jdbcType=CHAR},
+			</if>
+			<if test="redeemDate != null">
+				REDEEM_DATE = #{redeemDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="redemption != null">
+				REDEMPTION = #{redemption,jdbcType=VARCHAR},
+			</if>
+			<if test="lockSign != null">
+				LOCK_SIGN = #{lockSign,jdbcType=CHAR},
+			</if>
+			<if test="lockedTime != null">
+				LOCKED_TIME = #{lockedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lockMethod != null">
+				LOCK_METHOD = #{lockMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="trustFlag != null">
+				TRUST_FLAG = #{trustFlag,jdbcType=CHAR},
+			</if>
+			<if test="trustCorpType != null">
+				TRUST_CORP_TYPE = #{trustCorpType,jdbcType=VARCHAR},
+			</if>
+			<if test="payoffDate != null">
+				PAYOFF_DATE = #{payoffDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="payoffCorp != null">
+				PAYOFF_CORP = #{payoffCorp,jdbcType=VARCHAR},
+			</if>
+			<if test="filterSign != null">
+				FILTER_SIGN = #{filterSign,jdbcType=CHAR},
+			</if>
+			<if test="lockTerm != null">
+				LOCK_TERM = #{lockTerm,jdbcType=VARCHAR},
+			</if>
+			<if test="loanSubSrc != null">
+				LOAN_SUB_SRC = #{loanSubSrc,jdbcType=VARCHAR},
+			</if>
+			<if test="currAuditTime != null">
+				CURR_AUDIT_TIME = #{currAuditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="repayCapitalRatio != null">
+				REPAY_CAPITAL_RATIO =
+				#{repayCapitalRatio,jdbcType=DECIMAL},
+			</if>
+			<if test="prjCfgType != null">
+				PRJ_CFG_TYPE = #{prjCfgType,jdbcType=VARCHAR},
+			</if>
+			<if test="loanPayee != null">
+				LOAN_PAYEE = #{loanPayee,jdbcType=VARCHAR},
+			</if>
+			<if test="poundageRate != null">
+				POUNDAGE_RATE = #{poundageRate,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueFeeRate != null">
+				OVERDUE_FEE_RATE = #{overdueFeeRate,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where PROJECT_NO = #{projectNo,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="p2p_loan_claim">
+		update
+		p2p_loan_claim
+		set PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+		PROJECT_CHANNEL = #{projectChannel,jdbcType=VARCHAR},
+		LOAN_TEMP_ID =
+		#{loanTempId,jdbcType=BIGINT},
+		LOAN_TEMP_NAME =
+		#{loanTempName,jdbcType=VARCHAR},
+		ORIGIN_CLAIM_NO =
+		#{originClaimNo,jdbcType=VARCHAR},
+		LOAN_AMOUNT =
+		#{loanAmount,jdbcType=DECIMAL},
+		REMAIN_CLAIM_AMOUNT =
+		#{remainClaimAmount,jdbcType=DECIMAL},
+		LOAN_TERM =
+		#{loanTerm,jdbcType=INTEGER},
+		REMAIN_TERM =
+		#{remainTerm,jdbcType=INTEGER},
+		TIME_TYPE = #{timeType,jdbcType=CHAR},
+		INTEREST_RATE = #{interestRate,jdbcType=DECIMAL},
+		LOAN_DATE =
+		#{loanDate,jdbcType=TIMESTAMP},
+		EXPIRE_DATE =
+		#{expireDate,jdbcType=DATE},
+		EXPECT_DATE = #{expectDate,jdbcType=DATE},
+		NEXT_REPAY_DATE = #{nextRepayDate,jdbcType=DATE},
+		PROJECT_TO =
+		#{projectTo,jdbcType=VARCHAR},
+		RELEASE_STATUS =
+		#{releaseStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		PRJ_CHL_CORP =
+		#{prjChlCorp,jdbcType=VARCHAR},
+		PRJ_CHL_TYPE =
+		#{prjChlType,jdbcType=VARCHAR},
+		GUARANTEE_CORP =
+		#{guaranteeCorp,jdbcType=VARCHAR},
+		GUARANTEE_METHOD =
+		#{guaranteeMethod,jdbcType=VARCHAR},
+		GUARANTEE_NAME =
+		#{guaranteeName,jdbcType=VARCHAR},
+		PLATFORM_RATE =
+		#{platformRate,jdbcType=DECIMAL},
+		GUARANTEE_RATE =
+		#{guaranteeRate,jdbcType=DECIMAL},
+		IS_OVERDUE =
+		#{isOverdue,jdbcType=VARCHAR},
+		REPAY_TYPE =
+		#{repayType,jdbcType=VARCHAR},
+		LOAN_PRODUCT_TYPE =
+		#{loanProductType,jdbcType=VARCHAR},
+		OPERATOR =
+		#{operator,jdbcType=BIGINT},
+		CUST_ID = #{custId,jdbcType=BIGINT},
+		REPAY_METHOD = #{repayMethod,jdbcType=VARCHAR},
+		PROJECT_TYPE =
+		#{projectType,jdbcType=VARCHAR},
+		VERSION = #{version,jdbcType=BIGINT},
+		LOAN_PURPOSE = #{loanPurpose,jdbcType=VARCHAR},
+		REPAY_SOURCE =
+		#{repaySource,jdbcType=VARCHAR},
+		LOAN_METHOD =
+		#{loanMethod,jdbcType=VARCHAR},
+		APPLY_AMOUNT =
+		#{applyAmount,jdbcType=DECIMAL},
+		APPLY_TERM =
+		#{applyTerm,jdbcType=INTEGER},
+		ALLOW_EARLY_REPAY =
+		#{allowEarlyRepay,jdbcType=CHAR},
+		MIN_LOAN_AMOUNT =
+		#{minLoanAmount,jdbcType=DECIMAL},
+		MAX_LOAN_AMOUNT =
+		#{maxLoanAmount,jdbcType=DECIMAL},
+		GATHER_FEE_POINT =
+		#{gatherFeePoint,jdbcType=VARCHAR},
+		EARLY_PAY_RATE =
+		#{earlyPayRate,jdbcType=DECIMAL},
+		OVERDUE_ADVANCE =
+		#{overdueAdvance,jdbcType=VARCHAR},
+		ADVANCE_ORDER =
+		#{advanceOrder,jdbcType=CHAR},
+		PART_REPAY = #{partRepay,jdbcType=CHAR},
+		REPURCHASE_TYPE = #{repurchaseType,jdbcType=CHAR},
+		REPURCHASE_DAYS =
+		#{repurchaseDays,jdbcType=INTEGER},
+		APPROVE_AMOUNT =
+		#{approveAmount,jdbcType=DECIMAL},
+		TERM_NO =
+		#{termNo,jdbcType=INTEGER},
+		REPAY_CAPITAL =
+		#{repayCapital,jdbcType=DECIMAL},
+		OVERDUE_FEE =
+		#{overdueFee,jdbcType=DECIMAL},
+		OVERDUE_DAYS =
+		#{overdueDays,jdbcType=INTEGER},
+		REPAY_STATUS =
+		#{repayStatus,jdbcType=VARCHAR},
+		REPAY_INTEREST =
+		#{repayInterest,jdbcType=DECIMAL},
+		AUDIT_STATUS =
+		#{auditStatus,jdbcType=VARCHAR},
+		BORROWER_NAME =
+		#{borrowerName,jdbcType=VARCHAR},
+		BORROWER_TYPE =
+		#{borrowerType,jdbcType=VARCHAR},
+		CORP_NO = #{corpNo,jdbcType=VARCHAR},
+		LOAN_NAME = #{loanName,jdbcType=VARCHAR},
+		FORCE_LOSE_DATE =
+		#{forceLoseDate,jdbcType=DATE},
+		OVERDUE_RATE =
+		#{overdueRate,jdbcType=DECIMAL},
+		OVERDUE_FEE_TYPE =
+		#{overdueFeeType,jdbcType=VARCHAR},
+		LOW_PLATFORM_FEE =
+		#{lowPlatformFee,jdbcType=DECIMAL},
+		LOAN_SRC =
+		#{loanSrc,jdbcType=VARCHAR},
+		PLATFORM_SERVICE_FEE =
+		#{platformServiceFee,jdbcType=DECIMAL},
+		FUND_MATCH_TIME =
+		#{fundMatchTime,jdbcType=TIMESTAMP},
+		REMIT_COUNTER =
+		#{remitCounter,jdbcType=INTEGER},
+		ASSET_CORP_NO =
+		#{assetCorpNo,jdbcType=VARCHAR},
+		ASSET_CORP_NAME =
+		#{assetCorpName,jdbcType=VARCHAR},
+		INTERVIEW_DATE =
+		#{interviewDate,jdbcType=DATE},
+		PREPAYMENT_RATE =
+		#{prepaymentRate,jdbcType=DECIMAL},
+		SIGN_FLAG =
+		#{signFlag,jdbcType=CHAR},
+		AUTO_ADVANCE_FLAG =
+		#{autoAdvanceFlag,jdbcType=CHAR},
+		REDEEM_DATE =
+		#{redeemDate,jdbcType=TIMESTAMP},
+		REDEMPTION =
+		#{redemption,jdbcType=VARCHAR},
+		LOCK_SIGN = #{lockSign,jdbcType=CHAR},
+		LOCKED_TIME = #{lockedTime,jdbcType=TIMESTAMP},
+		LOCK_METHOD =
+		#{lockMethod,jdbcType=VARCHAR},
+		TRUST_FLAG =
+		#{trustFlag,jdbcType=CHAR},
+		TRUST_CORP_TYPE =
+		#{trustCorpType,jdbcType=VARCHAR},
+		PAYOFF_DATE =
+		#{payoffDate,jdbcType=TIMESTAMP},
+		PAYOFF_CORP =
+		#{payoffCorp,jdbcType=VARCHAR},
+		FILTER_SIGN =
+		#{filterSign,jdbcType=CHAR},
+		LOCK_TERM = #{lockTerm,jdbcType=VARCHAR},
+		LOAN_SUB_SRC = #{loanSubSrc,jdbcType=VARCHAR},
+		CURR_AUDIT_TIME =
+		#{currAuditTime,jdbcType=TIMESTAMP},
+		REPAY_CAPITAL_RATIO =
+		#{repayCapitalRatio,jdbcType=DECIMAL},
+		PRJ_CFG_TYPE =
+		#{prjCfgType,jdbcType=VARCHAR},
+		LOAN_PAYEE =
+		#{loanPayee,jdbcType=VARCHAR},
+		POUNDAGE_RATE =
+		#{poundageRate,jdbcType=DECIMAL},
+		OVERDUE_FEE_RATE =
+		#{overdueFeeRate,jdbcType=DECIMAL}
+		where PROJECT_NO =
+		#{projectNo,jdbcType=VARCHAR}
+	</update>
+</mapper>

@@ -1,0 +1,47 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="fkapi" verbose="1">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+	</listeners>
+	<test name="风控接口测试">
+		<classes>
+			<class name="com.fkapi.vcc.ExcuteVccApplyCase">
+				<methods>
+					<include name="excute" />
+				</methods>
+			</class>
+
+			<class name="com.fkapi.vcc.ExcuteVccConsumeCase">
+				<methods>
+					<include name="excute" />
+				</methods>
+			</class>
+			<!-- !-->
+			<class name="com.fkapi.nxb.ExcuteNXBCase">
+				<methods>
+					<include name="excute" />
+				</methods>
+			</class>
+			<!-- !-->
+			<class name="com.fkapi.ndk.ExcuteNDKCase">
+				<methods>
+					<include name="excute" />
+				</methods>
+			</class>
+			<!-- !-->
+			<class name="com.fkapi.chubao.ExcuteCHUBAOCase">
+				<methods>
+					<include name="excute" />
+				</methods>
+			</class>
+			<!-- !-->
+			<class name="com.fkapi.fdyl.ExcuteFDYLCase">
+				<methods>
+					<include name="excute" />
+				</methods>
+			</class>
+		</classes>
+
+	</test>
+</suite>

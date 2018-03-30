@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_customer_educationMapper">
+	<resultMap id="p2p_customer_education"
+		type="com.fkapi.datebase.domain.p2p_customer_education">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+		<result column="SCHOOL_ROLL" jdbcType="VARCHAR" property="schoolRoll" />
+		<result column="PRO_CERT" jdbcType="VARCHAR" property="proCert" />
+		<result column="SCHOOL_NAME" jdbcType="VARCHAR" property="schoolName" />
+		<result column="ENTRANCE_TIME" jdbcType="DATE" property="entranceTime" />
+		<result column="GRADUATION_TIME" jdbcType="DATE" property="graduationTime" />
+		<result column="MAJOR" jdbcType="VARCHAR" property="major" />
+		<result column="ACADEMY_ADDR" jdbcType="VARCHAR" property="academyAddr" />
+		<result column="DEPARTMENT" jdbcType="VARCHAR" property="department" />
+		<result column="SCHOOL_PART" jdbcType="VARCHAR" property="schoolPart" />
+		<result column="EXAM_KIND" jdbcType="VARCHAR" property="examKind" />
+		<result column="SCHOOL_JOB" jdbcType="VARCHAR" property="schoolJob" />
+		<result column="SCHOOL_HONOUR" jdbcType="VARCHAR" property="schoolHonour" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="AUTH_STATUS" jdbcType="VARCHAR" property="authStatus" />
+		<result column="AUTH_TIME" jdbcType="TIMESTAMP" property="authTime" />
+		<result column="APPLY_TIME" jdbcType="TIMESTAMP" property="applyTime" />
+		<result column="SCHOOL_ID" jdbcType="BIGINT" property="schoolId" />
+		<result column="school_name_secret" jdbcType="BIGINT" property="schoolNameSecret" />
+		<result column="province" jdbcType="BIGINT" property="province" />
+		<result column="city" jdbcType="BIGINT" property="city" />
+	</resultMap>
+	<sql id="p2p_customer_education">
+		ID, CUST_ID, EDUCATION, SCHOOL_ROLL, PRO_CERT, SCHOOL_NAME,
+		ENTRANCE_TIME, GRADUATION_TIME,
+		MAJOR, ACADEMY_ADDR, DEPARTMENT, SCHOOL_PART, EXAM_KIND, SCHOOL_JOB,
+		SCHOOL_HONOUR,
+		CREATE_TIME, AUTH_STATUS, AUTH_TIME, APPLY_TIME, SCHOOL_ID, school_name_secret,
+		province,
+		city
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="p2p_customer_education">
+		select
+		<include refid="p2p_customer_education" />
+		from p2p_customer_education
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from p2p_customer_education
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_customer_education">
+		insert into p2p_customer_education (CUST_ID, EDUCATION,
+		SCHOOL_ROLL, PRO_CERT, SCHOOL_NAME,
+		ENTRANCE_TIME, GRADUATION_TIME, MAJOR,
+		ACADEMY_ADDR, DEPARTMENT, SCHOOL_PART,
+		EXAM_KIND, SCHOOL_JOB, SCHOOL_HONOUR,
+		CREATE_TIME, AUTH_STATUS, AUTH_TIME,
+		APPLY_TIME, SCHOOL_ID, school_name_secret,
+		province, city)
+		values 
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+	(#{item.custId}, #{item.education}, NULL, NULL, #{item.schoolName},
+	#{item.entranceTime}, #{item.graduationTime}, '管理', NULL,
+	'管理', NULL, NULL, NULL, NULL, #{item.createTime}, NULL, NULL, NULL,
+	NULL, '0', #{item.province}, #{item.city})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_customer_education">
+		insert into p2p_customer_education
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="education != null">
+				EDUCATION,
+			</if>
+			<if test="schoolRoll != null">
+				SCHOOL_ROLL,
+			</if>
+			<if test="proCert != null">
+				PRO_CERT,
+			</if>
+			<if test="schoolName != null">
+				SCHOOL_NAME,
+			</if>
+			<if test="entranceTime != null">
+				ENTRANCE_TIME,
+			</if>
+			<if test="graduationTime != null">
+				GRADUATION_TIME,
+			</if>
+			<if test="major != null">
+				MAJOR,
+			</if>
+			<if test="academyAddr != null">
+				ACADEMY_ADDR,
+			</if>
+			<if test="department != null">
+				DEPARTMENT,
+			</if>
+			<if test="schoolPart != null">
+				SCHOOL_PART,
+			</if>
+			<if test="examKind != null">
+				EXAM_KIND,
+			</if>
+			<if test="schoolJob != null">
+				SCHOOL_JOB,
+			</if>
+			<if test="schoolHonour != null">
+				SCHOOL_HONOUR,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="authStatus != null">
+				AUTH_STATUS,
+			</if>
+			<if test="authTime != null">
+				AUTH_TIME,
+			</if>
+			<if test="applyTime != null">
+				APPLY_TIME,
+			</if>
+			<if test="schoolId != null">
+				SCHOOL_ID,
+			</if>
+			<if test="schoolNameSecret != null">
+				school_name_secret,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="education != null">
+				#{education,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolRoll != null">
+				#{schoolRoll,jdbcType=VARCHAR},
+			</if>
+			<if test="proCert != null">
+				#{proCert,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolName != null">
+				#{schoolName,jdbcType=VARCHAR},
+			</if>
+			<if test="entranceTime != null">
+				#{entranceTime,jdbcType=DATE},
+			</if>
+			<if test="graduationTime != null">
+				#{graduationTime,jdbcType=DATE},
+			</if>
+			<if test="major != null">
+				#{major,jdbcType=VARCHAR},
+			</if>
+			<if test="academyAddr != null">
+				#{academyAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				#{department,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolPart != null">
+				#{schoolPart,jdbcType=VARCHAR},
+			</if>
+			<if test="examKind != null">
+				#{examKind,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolJob != null">
+				#{schoolJob,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolHonour != null">
+				#{schoolHonour,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="authStatus != null">
+				#{authStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="authTime != null">
+				#{authTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="applyTime != null">
+				#{applyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="schoolId != null">
+				#{schoolId,jdbcType=BIGINT},
+			</if>
+			<if test="schoolNameSecret != null">
+				#{schoolNameSecret,jdbcType=BIGINT},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=BIGINT},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByCustId" parameterType="com.fkapi.datebase.domain.p2p_customer_education">
+		update p2p_customer_education
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="education != null">
+				EDUCATION = #{education,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolRoll != null">
+				SCHOOL_ROLL = #{schoolRoll,jdbcType=VARCHAR},
+			</if>
+			<if test="proCert != null">
+				PRO_CERT = #{proCert,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolName != null">
+				SCHOOL_NAME = #{schoolName,jdbcType=VARCHAR},
+			</if>
+			<if test="entranceTime != null">
+				ENTRANCE_TIME = #{entranceTime,jdbcType=DATE},
+			</if>
+			<if test="graduationTime != null">
+				GRADUATION_TIME = #{graduationTime,jdbcType=DATE},
+			</if>
+			<if test="major != null">
+				MAJOR = #{major,jdbcType=VARCHAR},
+			</if>
+			<if test="academyAddr != null">
+				ACADEMY_ADDR = #{academyAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				DEPARTMENT = #{department,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolPart != null">
+				SCHOOL_PART = #{schoolPart,jdbcType=VARCHAR},
+			</if>
+			<if test="examKind != null">
+				EXAM_KIND = #{examKind,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolJob != null">
+				SCHOOL_JOB = #{schoolJob,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolHonour != null">
+				SCHOOL_HONOUR = #{schoolHonour,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="authStatus != null">
+				AUTH_STATUS = #{authStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="authTime != null">
+				AUTH_TIME = #{authTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="applyTime != null">
+				APPLY_TIME = #{applyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="schoolId != null">
+				SCHOOL_ID = #{schoolId,jdbcType=BIGINT},
+			</if>
+			<if test="schoolNameSecret != null">
+				school_name_secret = #{schoolNameSecret,jdbcType=BIGINT},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=BIGINT},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=BIGINT},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_customer_education">
+		update p2p_customer_education
+		set CUST_ID = #{custId,jdbcType=BIGINT},
+		EDUCATION = #{education,jdbcType=VARCHAR},
+		SCHOOL_ROLL = #{schoolRoll,jdbcType=VARCHAR},
+		PRO_CERT = #{proCert,jdbcType=VARCHAR},
+		SCHOOL_NAME = #{schoolName,jdbcType=VARCHAR},
+		ENTRANCE_TIME = #{entranceTime,jdbcType=DATE},
+		GRADUATION_TIME = #{graduationTime,jdbcType=DATE},
+		MAJOR = #{major,jdbcType=VARCHAR},
+		ACADEMY_ADDR = #{academyAddr,jdbcType=VARCHAR},
+		DEPARTMENT = #{department,jdbcType=VARCHAR},
+		SCHOOL_PART = #{schoolPart,jdbcType=VARCHAR},
+		EXAM_KIND = #{examKind,jdbcType=VARCHAR},
+		SCHOOL_JOB = #{schoolJob,jdbcType=VARCHAR},
+		SCHOOL_HONOUR = #{schoolHonour,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		AUTH_STATUS = #{authStatus,jdbcType=VARCHAR},
+		AUTH_TIME = #{authTime,jdbcType=TIMESTAMP},
+		APPLY_TIME = #{applyTime,jdbcType=TIMESTAMP},
+		SCHOOL_ID = #{schoolId,jdbcType=BIGINT},
+		school_name_secret = #{schoolNameSecret,jdbcType=BIGINT},
+		province = #{province,jdbcType=BIGINT},
+		city = #{city,jdbcType=BIGINT}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

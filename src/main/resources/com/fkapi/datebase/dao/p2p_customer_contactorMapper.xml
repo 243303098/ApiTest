@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_customer_contactorMapper">
+	<resultMap id="p2p_customer_contactor"
+		type="com.fkapi.datebase.domain.p2p_customer_contactor">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="CONNECTOR" jdbcType="VARCHAR" property="connector" />
+		<result column="RELATIONSHIP" jdbcType="VARCHAR" property="relationship" />
+		<result column="CERT_NO" jdbcType="VARCHAR" property="certNo" />
+		<result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+		<result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
+		<result column="COMPANY_ADDR" jdbcType="VARCHAR" property="companyAddr" />
+		<result column="POSITION" jdbcType="VARCHAR" property="position" />
+		<result column="PLATFORM_TYPE" jdbcType="VARCHAR" property="platformType" />
+		<result column="CONNECT_METHOD" jdbcType="VARCHAR" property="connectMethod" />
+		<result column="CONNECT_TYPE" jdbcType="VARCHAR" property="connectType" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+		<result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+		<result column="CITY" jdbcType="VARCHAR" property="city" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="CONNECT_KIND" jdbcType="VARCHAR" property="connectKind" />
+	</resultMap>
+	<sql id="p2p_customer_contactor">
+		ID, CUST_ID, CONNECTOR, RELATIONSHIP, CERT_NO, CERT_TYPE, COMPANY_NAME,
+		COMPANY_ADDR,
+		POSITION, PLATFORM_TYPE, CONNECT_METHOD, CONNECT_TYPE, CREATE_TIME,
+		UPDATE_TIME,
+		DEL_FLAG, PROVINCE, CITY, MOBILE, CONNECT_KIND
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="p2p_customer_contactor">
+		select
+		<include refid="p2p_customer_contactor" />
+		from p2p_customer_contactor
+		where CUST_ID = #{custId,jdbcType=BIGINT} limit 1
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from p2p_customer_contactor
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_customer_contactor">
+		insert into p2p_customer_contactor (CUST_ID, CONNECTOR,
+		RELATIONSHIP, CERT_NO, CERT_TYPE,
+		COMPANY_NAME, COMPANY_ADDR, POSITION,
+		PLATFORM_TYPE, CONNECT_METHOD, CONNECT_TYPE,
+		CREATE_TIME, UPDATE_TIME, DEL_FLAG,
+		PROVINCE, CITY, MOBILE,
+		CONNECT_KIND)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PS',
+			#{item.createTime}, NULL, 'N', #{item.province}, #{item.city}, NULL, 'OTHER')
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_customer_contactor">
+		insert into p2p_customer_contactor
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="connector != null">
+				CONNECTOR,
+			</if>
+			<if test="relationship != null">
+				RELATIONSHIP,
+			</if>
+			<if test="certNo != null">
+				CERT_NO,
+			</if>
+			<if test="certType != null">
+				CERT_TYPE,
+			</if>
+			<if test="companyName != null">
+				COMPANY_NAME,
+			</if>
+			<if test="companyAddr != null">
+				COMPANY_ADDR,
+			</if>
+			<if test="position != null">
+				POSITION,
+			</if>
+			<if test="platformType != null">
+				PLATFORM_TYPE,
+			</if>
+			<if test="connectMethod != null">
+				CONNECT_METHOD,
+			</if>
+			<if test="connectType != null">
+				CONNECT_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="delFlag != null">
+				DEL_FLAG,
+			</if>
+			<if test="province != null">
+				PROVINCE,
+			</if>
+			<if test="city != null">
+				CITY,
+			</if>
+			<if test="mobile != null">
+				MOBILE,
+			</if>
+			<if test="connectKind != null">
+				CONNECT_KIND,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="connector != null">
+				#{connector,jdbcType=VARCHAR},
+			</if>
+			<if test="relationship != null">
+				#{relationship,jdbcType=VARCHAR},
+			</if>
+			<if test="certNo != null">
+				#{certNo,jdbcType=VARCHAR},
+			</if>
+			<if test="certType != null">
+				#{certType,jdbcType=VARCHAR},
+			</if>
+			<if test="companyName != null">
+				#{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="companyAddr != null">
+				#{companyAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				#{position,jdbcType=VARCHAR},
+			</if>
+			<if test="platformType != null">
+				#{platformType,jdbcType=VARCHAR},
+			</if>
+			<if test="connectMethod != null">
+				#{connectMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="connectType != null">
+				#{connectType,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				#{delFlag,jdbcType=CHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="connectKind != null">
+				#{connectKind,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_customer_contactor">
+		update p2p_customer_contactor
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="connector != null">
+				CONNECTOR = #{connector,jdbcType=VARCHAR},
+			</if>
+			<if test="relationship != null">
+				RELATIONSHIP = #{relationship,jdbcType=VARCHAR},
+			</if>
+			<if test="certNo != null">
+				CERT_NO = #{certNo,jdbcType=VARCHAR},
+			</if>
+			<if test="certType != null">
+				CERT_TYPE = #{certType,jdbcType=VARCHAR},
+			</if>
+			<if test="companyName != null">
+				COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="companyAddr != null">
+				COMPANY_ADDR = #{companyAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				POSITION = #{position,jdbcType=VARCHAR},
+			</if>
+			<if test="platformType != null">
+				PLATFORM_TYPE = #{platformType,jdbcType=VARCHAR},
+			</if>
+			<if test="connectMethod != null">
+				CONNECT_METHOD = #{connectMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="connectType != null">
+				CONNECT_TYPE = #{connectType,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				DEL_FLAG = #{delFlag,jdbcType=CHAR},
+			</if>
+			<if test="province != null">
+				PROVINCE = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				CITY = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="connectKind != null">
+				CONNECT_KIND = #{connectKind,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_customer_contactor">
+		update p2p_customer_contactor
+		set CUST_ID = #{custId,jdbcType=BIGINT},
+		CONNECTOR = #{connector,jdbcType=VARCHAR},
+		RELATIONSHIP = #{relationship,jdbcType=VARCHAR},
+		CERT_NO = #{certNo,jdbcType=VARCHAR},
+		CERT_TYPE = #{certType,jdbcType=VARCHAR},
+		COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+		COMPANY_ADDR = #{companyAddr,jdbcType=VARCHAR},
+		POSITION = #{position,jdbcType=VARCHAR},
+		PLATFORM_TYPE = #{platformType,jdbcType=VARCHAR},
+		CONNECT_METHOD = #{connectMethod,jdbcType=VARCHAR},
+		CONNECT_TYPE = #{connectType,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+		DEL_FLAG = #{delFlag,jdbcType=CHAR},
+		PROVINCE = #{province,jdbcType=VARCHAR},
+		CITY = #{city,jdbcType=VARCHAR},
+		MOBILE = #{mobile,jdbcType=VARCHAR},
+		CONNECT_KIND = #{connectKind,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

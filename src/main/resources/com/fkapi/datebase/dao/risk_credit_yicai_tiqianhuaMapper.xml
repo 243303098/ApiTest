@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.risk_credit_yicai_tiqianhuaMapper">
+	<resultMap id="risk_credit_yicai_tiqianhuaMapper"
+		type="com.fkapi.datebase.domain.risk_credit_yicai_tiqianhua">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="cust_id" jdbcType="BIGINT" property="custId" />
+		<result column="account_state" jdbcType="VARCHAR" property="accountState" />
+		<result column="available_limit" jdbcType="DECIMAL" property="availableLimit" />
+		<result column="max_limit" jdbcType="DECIMAL" property="maxLimit" />
+		<result column="frozen_limit" jdbcType="DECIMAL" property="frozenLimit" />
+		<result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+		<result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+	</resultMap>
+	<sql id="risk_credit_yicai_tiqianhua">
+		id, cust_id, account_state, available_limit, max_limit, frozen_limit,
+		gmt_create,
+		gmt_modified
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="risk_credit_yicai_tiqianhuaMapper">
+		select
+		<include refid="risk_credit_yicai_tiqianhua" />
+		from risk_credit_yicai_tiqianhua
+		where cust_id = #{cust_id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from risk_credit_yicai_tiqianhua
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="risk_credit_yicai_tiqianhua">
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			INSERT INTO risk_credit_yicai_tiqianhua (cust_id, account_state,
+			available_limit, max_limit, frozen_limit, gmt_create, gmt_modified)
+			VALUES (#{item.custId}, 'NORMAL', '5000.00', '5000.00', '0.00',
+			'2017-03-09 16:02:08', '2017-09-16 14:54:11');
+		</foreach>
+	</insert>
+	<update id="updateByCustId" parameterType="risk_credit_yicai_tiqianhua">
+		update risk_credit_yicai_tiqianhua
+		<set>
+			<if test="custId != null">
+				cust_id = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="accountState != null">
+				account_state = #{accountState,jdbcType=VARCHAR},
+			</if>
+			<if test="availableLimit != null">
+				available_limit = #{availableLimit,jdbcType=DECIMAL},
+			</if>
+			<if test="maxLimit != null">
+				max_limit = #{maxLimit,jdbcType=DECIMAL},
+			</if>
+			<if test="frozenLimit != null">
+				frozen_limit = #{frozenLimit,jdbcType=DECIMAL},
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where cust_id = #{custId,jdbcType=BIGINT}
+	</update>
+</mapper>

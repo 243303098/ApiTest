@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.vcc_repay_planMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.vcc_repay_plan">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="LOAN_NO" jdbcType="VARCHAR" property="loanNo" />
+    <result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+    <result column="TERM_NO" jdbcType="INTEGER" property="termNo" />
+    <result column="REPAY_CAPITAL" jdbcType="DECIMAL" property="repayCapital" />
+    <result column="REPAY_INTEREST" jdbcType="DECIMAL" property="repayInterest" />
+    <result column="SERVICE_FEE" jdbcType="DECIMAL" property="serviceFee" />
+    <result column="RETURN_FEE" jdbcType="DECIMAL" property="returnFee" />
+    <result column="REPAY_DATE" jdbcType="DATE" property="repayDate" />
+    <result column="ACTUAL_PAY_TIME" jdbcType="TIMESTAMP" property="actualPayTime" />
+    <result column="REPAY_STATUS" jdbcType="VARCHAR" property="repayStatus" />
+    <result column="REPAY_AMOUNT" jdbcType="DECIMAL" property="repayAmount" />
+    <result column="OVERDUE_INTEREST" jdbcType="DECIMAL" property="overdueInterest" />
+    <result column="ACT_REPAY_AMOUNT" jdbcType="DECIMAL" property="actRepayAmount" />
+    <result column="ACT_REPAY_INTEREST" jdbcType="DECIMAL" property="actRepayInterest" />
+    <result column="ACT_OVERDUE_INTEREST" jdbcType="DECIMAL" property="actOverdueInterest" />
+    <result column="ACT_RETURN_FEE" jdbcType="DECIMAL" property="actReturnFee" />
+    <result column="OVERDU_MGMT_FEE" jdbcType="DECIMAL" property="overduMgmtFee" />
+    <result column="ACT_OVERDU_MGMT_FEE" jdbcType="DECIMAL" property="actOverduMgmtFee" />
+    <result column="BILL_OUT_FLAG" jdbcType="CHAR" property="billOutFlag" />
+    <result column="DEL_FLAG" jdbcType="CHAR" property="delFlag" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, LOAN_NO, CUST_ID, TERM_NO, REPAY_CAPITAL, REPAY_INTEREST, SERVICE_FEE, RETURN_FEE, 
+    REPAY_DATE, ACTUAL_PAY_TIME, REPAY_STATUS, REPAY_AMOUNT, OVERDUE_INTEREST, ACT_REPAY_AMOUNT, 
+    ACT_REPAY_INTEREST, ACT_OVERDUE_INTEREST, ACT_RETURN_FEE, OVERDU_MGMT_FEE, ACT_OVERDU_MGMT_FEE, 
+    BILL_OUT_FLAG, DEL_FLAG, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vcc_repay_plan
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByCustId" parameterType="java.lang.Long">
+    delete from vcc_repay_plan
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.vcc_repay_plan">
+    insert into vcc_repay_plan (LOAN_NO, CUST_ID,
+      TERM_NO, REPAY_CAPITAL, REPAY_INTEREST, 
+      SERVICE_FEE, RETURN_FEE, REPAY_DATE, 
+      ACTUAL_PAY_TIME, REPAY_STATUS, REPAY_AMOUNT, 
+      OVERDUE_INTEREST, ACT_REPAY_AMOUNT, ACT_REPAY_INTEREST, 
+      ACT_OVERDUE_INTEREST, ACT_RETURN_FEE, OVERDU_MGMT_FEE, 
+      ACT_OVERDU_MGMT_FEE, BILL_OUT_FLAG, DEL_FLAG, 
+      CREATE_TIME, UPDATE_TIME)
+    values
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+    (#{item.loanNo}, #{item.custId}, '1', '100', '0.96', '6.18', '0.00', #{item.repayDate}, NULL, #{item.repayStatus},
+    '106.14', '0.00', NULL, NULL, NULL, NULL, '0.00', NULL, #{item.billOutFlag}, #{item.delFlag},
+      #{item.createTime}, #{item.updateTime})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.vcc_repay_plan">
+    insert into vcc_repay_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="loanNo != null">
+        LOAN_NO,
+      </if>
+      <if test="custId != null">
+        CUST_ID,
+      </if>
+      <if test="termNo != null">
+        TERM_NO,
+      </if>
+      <if test="repayCapital != null">
+        REPAY_CAPITAL,
+      </if>
+      <if test="repayInterest != null">
+        REPAY_INTEREST,
+      </if>
+      <if test="serviceFee != null">
+        SERVICE_FEE,
+      </if>
+      <if test="returnFee != null">
+        RETURN_FEE,
+      </if>
+      <if test="repayDate != null">
+        REPAY_DATE,
+      </if>
+      <if test="actualPayTime != null">
+        ACTUAL_PAY_TIME,
+      </if>
+      <if test="repayStatus != null">
+        REPAY_STATUS,
+      </if>
+      <if test="repayAmount != null">
+        REPAY_AMOUNT,
+      </if>
+      <if test="overdueInterest != null">
+        OVERDUE_INTEREST,
+      </if>
+      <if test="actRepayAmount != null">
+        ACT_REPAY_AMOUNT,
+      </if>
+      <if test="actRepayInterest != null">
+        ACT_REPAY_INTEREST,
+      </if>
+      <if test="actOverdueInterest != null">
+        ACT_OVERDUE_INTEREST,
+      </if>
+      <if test="actReturnFee != null">
+        ACT_RETURN_FEE,
+      </if>
+      <if test="overduMgmtFee != null">
+        OVERDU_MGMT_FEE,
+      </if>
+      <if test="actOverduMgmtFee != null">
+        ACT_OVERDU_MGMT_FEE,
+      </if>
+      <if test="billOutFlag != null">
+        BILL_OUT_FLAG,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="loanNo != null">
+        #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="termNo != null">
+        #{termNo,jdbcType=INTEGER},
+      </if>
+      <if test="repayCapital != null">
+        #{repayCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="repayInterest != null">
+        #{repayInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceFee != null">
+        #{serviceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="returnFee != null">
+        #{returnFee,jdbcType=DECIMAL},
+      </if>
+      <if test="repayDate != null">
+        #{repayDate,jdbcType=DATE},
+      </if>
+      <if test="actualPayTime != null">
+        #{actualPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayStatus != null">
+        #{repayStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAmount != null">
+        #{repayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueInterest != null">
+        #{overdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="actRepayAmount != null">
+        #{actRepayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="actRepayInterest != null">
+        #{actRepayInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="actOverdueInterest != null">
+        #{actOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="actReturnFee != null">
+        #{actReturnFee,jdbcType=DECIMAL},
+      </if>
+      <if test="overduMgmtFee != null">
+        #{overduMgmtFee,jdbcType=DECIMAL},
+      </if>
+      <if test="actOverduMgmtFee != null">
+        #{actOverduMgmtFee,jdbcType=DECIMAL},
+      </if>
+      <if test="billOutFlag != null">
+        #{billOutFlag,jdbcType=CHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.vcc_repay_plan">
+    update vcc_repay_plan
+    <set>
+      <if test="loanNo != null">
+        LOAN_NO = #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        CUST_ID = #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="termNo != null">
+        TERM_NO = #{termNo,jdbcType=INTEGER},
+      </if>
+      <if test="repayCapital != null">
+        REPAY_CAPITAL = #{repayCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="repayInterest != null">
+        REPAY_INTEREST = #{repayInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceFee != null">
+        SERVICE_FEE = #{serviceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="returnFee != null">
+        RETURN_FEE = #{returnFee,jdbcType=DECIMAL},
+      </if>
+      <if test="repayDate != null">
+        REPAY_DATE = #{repayDate,jdbcType=DATE},
+      </if>
+      <if test="actualPayTime != null">
+        ACTUAL_PAY_TIME = #{actualPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayStatus != null">
+        REPAY_STATUS = #{repayStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAmount != null">
+        REPAY_AMOUNT = #{repayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueInterest != null">
+        OVERDUE_INTEREST = #{overdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="actRepayAmount != null">
+        ACT_REPAY_AMOUNT = #{actRepayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="actRepayInterest != null">
+        ACT_REPAY_INTEREST = #{actRepayInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="actOverdueInterest != null">
+        ACT_OVERDUE_INTEREST = #{actOverdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="actReturnFee != null">
+        ACT_RETURN_FEE = #{actReturnFee,jdbcType=DECIMAL},
+      </if>
+      <if test="overduMgmtFee != null">
+        OVERDU_MGMT_FEE = #{overduMgmtFee,jdbcType=DECIMAL},
+      </if>
+      <if test="actOverduMgmtFee != null">
+        ACT_OVERDU_MGMT_FEE = #{actOverduMgmtFee,jdbcType=DECIMAL},
+      </if>
+      <if test="billOutFlag != null">
+        BILL_OUT_FLAG = #{billOutFlag,jdbcType=CHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.vcc_repay_plan">
+    update vcc_repay_plan
+    set LOAN_NO = #{loanNo,jdbcType=VARCHAR},
+      CUST_ID = #{custId,jdbcType=BIGINT},
+      TERM_NO = #{termNo,jdbcType=INTEGER},
+      REPAY_CAPITAL = #{repayCapital,jdbcType=DECIMAL},
+      REPAY_INTEREST = #{repayInterest,jdbcType=DECIMAL},
+      SERVICE_FEE = #{serviceFee,jdbcType=DECIMAL},
+      RETURN_FEE = #{returnFee,jdbcType=DECIMAL},
+      REPAY_DATE = #{repayDate,jdbcType=DATE},
+      ACTUAL_PAY_TIME = #{actualPayTime,jdbcType=TIMESTAMP},
+      REPAY_STATUS = #{repayStatus,jdbcType=VARCHAR},
+      REPAY_AMOUNT = #{repayAmount,jdbcType=DECIMAL},
+      OVERDUE_INTEREST = #{overdueInterest,jdbcType=DECIMAL},
+      ACT_REPAY_AMOUNT = #{actRepayAmount,jdbcType=DECIMAL},
+      ACT_REPAY_INTEREST = #{actRepayInterest,jdbcType=DECIMAL},
+      ACT_OVERDUE_INTEREST = #{actOverdueInterest,jdbcType=DECIMAL},
+      ACT_RETURN_FEE = #{actReturnFee,jdbcType=DECIMAL},
+      OVERDU_MGMT_FEE = #{overduMgmtFee,jdbcType=DECIMAL},
+      ACT_OVERDU_MGMT_FEE = #{actOverduMgmtFee,jdbcType=DECIMAL},
+      BILL_OUT_FLAG = #{billOutFlag,jdbcType=CHAR},
+      DEL_FLAG = #{delFlag,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

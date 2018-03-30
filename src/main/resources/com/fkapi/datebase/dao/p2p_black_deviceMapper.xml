@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_black_deviceMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.p2p_black_device">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="DEVICE_CODE" jdbcType="VARCHAR" property="deviceCode" />
+    <result column="ADD_REASON" jdbcType="VARCHAR" property="addReason" />
+    <result column="ADD_SOURCE" jdbcType="VARCHAR" property="addSource" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, DEVICE_CODE, ADD_REASON, ADD_SOURCE, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from p2p_black_device
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByDviceCode" parameterType="java.lang.String">
+    delete from p2p_black_device
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_black_device">
+    insert into p2p_black_device (DEVICE_CODE, ADD_REASON, 
+      ADD_SOURCE, CREATE_TIME)
+    values (#{deviceCode,jdbcType=VARCHAR}, #{addReason,jdbcType=VARCHAR}, 
+      #{addSource,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+</mapper>

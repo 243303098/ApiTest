@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_loan_claim_auditMapper">
+	<resultMap id="p2p_loan_claim_auditMapper"
+		type="com.fkapi.datebase.domain.p2p_loan_claim_audit">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="PROJECT_NO" jdbcType="VARCHAR" property="projectNo" />
+		<result column="OPERATE_TYPE" jdbcType="VARCHAR" property="operateType" />
+		<result column="REMARK" jdbcType="VARCHAR" property="remark" />
+		<result column="OPERATOR" jdbcType="BIGINT" property="operator" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+	</resultMap>
+	<sql id="p2p_loan_claim_audit">
+		ID, PROJECT_NO, OPERATE_TYPE, REMARK, OPERATOR,
+		CREATE_TIME, DESCRIPTION
+	</sql>
+	<select id="selectAuditReByProAndCust" parameterType="p2p_loan_claim_audit"
+		resultMap="p2p_loan_claim_auditMapper">
+		select
+		<include refid="p2p_loan_claim_audit" />
+		from p2p_loan_claim_audit 
+		where OPERATOR = #{operator} and REMARK = #{remark}
+	</select>
+	<delete id="deleteByOperator" parameterType="java.lang.Long">
+		delete from
+		p2p_loan_claim_audit
+		where OPERATOR = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="p2p_loan_claim_audit">
+		insert into
+		p2p_loan_claim_audit (ID, PROJECT_NO, OPERATE_TYPE,
+		REMARK, OPERATOR,
+		CREATE_TIME,
+		DESCRIPTION)
+		values (#{id,jdbcType=BIGINT},
+		#{projectNo,jdbcType=VARCHAR},
+		#{operateType,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR}, #{operator,jdbcType=BIGINT},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{description,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="p2p_loan_claim_audit">
+		insert into p2p_loan_claim_audit
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="projectNo != null">
+				PROJECT_NO,
+			</if>
+			<if test="operateType != null">
+				OPERATE_TYPE,
+			</if>
+			<if test="remark != null">
+				REMARK,
+			</if>
+			<if test="operator != null">
+				OPERATOR,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="description != null">
+				DESCRIPTION,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="projectNo != null">
+				#{projectNo,jdbcType=VARCHAR},
+			</if>
+			<if test="operateType != null">
+				#{operateType,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				#{operator,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="p2p_loan_claim_audit">
+		update p2p_loan_claim_audit
+		<set>
+			<if test="projectNo != null">
+				PROJECT_NO = #{projectNo,jdbcType=VARCHAR},
+			</if>
+			<if test="operateType != null">
+				OPERATE_TYPE = #{operateType,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				OPERATOR = #{operator,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="description != null">
+				DESCRIPTION = #{description,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="p2p_loan_claim_audit">
+		update
+		p2p_loan_claim_audit
+		set PROJECT_NO = #{projectNo,jdbcType=VARCHAR},
+		OPERATE_TYPE = #{operateType,jdbcType=VARCHAR},
+		REMARK =
+		#{remark,jdbcType=VARCHAR},
+		OPERATOR = #{operator,jdbcType=BIGINT},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		DESCRIPTION =
+		#{description,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

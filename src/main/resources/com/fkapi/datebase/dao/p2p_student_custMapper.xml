@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_student_custMapper">
+	<resultMap id="p2p_student_cust" type="com.fkapi.datebase.domain.p2p_student_cust">
+		<id column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="SIGN_TXT" jdbcType="VARCHAR" property="signTxt" />
+		<result column="SCHOOL_NAME" jdbcType="VARCHAR" property="schoolName" />
+		<result column="COLLEGE" jdbcType="VARCHAR" property="college" />
+		<result column="MAJOR" jdbcType="VARCHAR" property="major" />
+		<result column="ENTER_YEAR" jdbcType="INTEGER" property="enterYear" />
+		<result column="DREAMS" jdbcType="VARCHAR" property="dreams" />
+		<result column="RELATIONSHIP" jdbcType="VARCHAR" property="relationship" />
+		<result column="BIRTH_SECRET" jdbcType="CHAR" property="birthSecret" />
+		<result column="SCHOOL_NAME_SECRET" jdbcType="CHAR" property="schoolNameSecret" />
+		<result column="SEX_SECRET" jdbcType="CHAR" property="sexSecret" />
+		<result column="RELATIONSHIP_SECRET" jdbcType="CHAR"
+			property="relationshipSecret" />
+		<result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+		<result column="CITY" jdbcType="VARCHAR" property="city" />
+		<result column="PARENT_SECRET" jdbcType="CHAR" property="parentSecret" />
+		<result column="APP_MARKET" jdbcType="VARCHAR" property="appMarket" />
+		<result column="TALK_FLAG" jdbcType="CHAR" property="talkFlag" />
+		<result column="CADRE" jdbcType="VARCHAR" property="cadre" />
+		<result column="LAST_UPDATE_TIME" jdbcType="TIMESTAMP"
+			property="lastUpdateTime" />
+		<result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+		<result column="SCHOOL_ID" jdbcType="BIGINT" property="schoolId" />
+		<result column="IS_ADULT" jdbcType="BIT" property="isAdult" />
+		<result column="GRADUATE_TIME" jdbcType="TIMESTAMP" property="graduateTime" />
+	</resultMap>
+	<sql id="p2p_student_cust">
+		CUST_ID, SIGN_TXT, SCHOOL_NAME, COLLEGE, MAJOR, ENTER_YEAR,
+		DREAMS,
+		RELATIONSHIP,
+		BIRTH_SECRET, SCHOOL_NAME_SECRET, SEX_SECRET,
+		RELATIONSHIP_SECRET, PROVINCE, CITY,
+		PARENT_SECRET, APP_MARKET,
+		TALK_FLAG, CADRE, LAST_UPDATE_TIME,
+		CARD_NO, SCHOOL_ID,
+		IS_ADULT,
+		GRADUATE_TIME
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="p2p_student_cust">
+		select
+		<include refid="p2p_student_cust" />
+		from p2p_student_cust
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteBySchoolAndMajor" parameterType="com.fkapi.datebase.domain.p2p_student_cust">
+		delete from
+		p2p_student_cust
+		where SCHOOL_NAME = #{schoolName,jdbcType=VARCHAR}
+		AND MAJOR = #{major,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="java.util.List">
+		insert into p2p_student_cust (CUST_ID, SIGN_TXT, SCHOOL_NAME,
+		COLLEGE,
+		MAJOR, ENTER_YEAR,
+		DREAMS, RELATIONSHIP, BIRTH_SECRET,
+		SCHOOL_NAME_SECRET, SEX_SECRET, RELATIONSHIP_SECRET,
+		PROVINCE, CITY,
+		PARENT_SECRET,
+		APP_MARKET, TALK_FLAG, CADRE,
+		LAST_UPDATE_TIME, CARD_NO,
+		SCHOOL_ID,
+		IS_ADULT, GRADUATE_TIME)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, NULL, #{item.schoolName}, #{item.college}, #{item.major}, #{item.enterYear}, NULL,
+			NULL, NULL,
+			'0', NULL, NULL, #{item.province}, #{item.city}, '0', NULL, 'N', NULL,
+			#{item.lastUpdateTime}, NULL, #{item.schoolId}, 1,
+			NULL)
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_student_cust">
+		insert into p2p_student_cust
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="signTxt != null">
+				SIGN_TXT,
+			</if>
+			<if test="schoolName != null">
+				SCHOOL_NAME,
+			</if>
+			<if test="college != null">
+				COLLEGE,
+			</if>
+			<if test="major != null">
+				MAJOR,
+			</if>
+			<if test="enterYear != null">
+				ENTER_YEAR,
+			</if>
+			<if test="dreams != null">
+				DREAMS,
+			</if>
+			<if test="relationship != null">
+				RELATIONSHIP,
+			</if>
+			<if test="birthSecret != null">
+				BIRTH_SECRET,
+			</if>
+			<if test="schoolNameSecret != null">
+				SCHOOL_NAME_SECRET,
+			</if>
+			<if test="sexSecret != null">
+				SEX_SECRET,
+			</if>
+			<if test="relationshipSecret != null">
+				RELATIONSHIP_SECRET,
+			</if>
+			<if test="province != null">
+				PROVINCE,
+			</if>
+			<if test="city != null">
+				CITY,
+			</if>
+			<if test="parentSecret != null">
+				PARENT_SECRET,
+			</if>
+			<if test="appMarket != null">
+				APP_MARKET,
+			</if>
+			<if test="talkFlag != null">
+				TALK_FLAG,
+			</if>
+			<if test="cadre != null">
+				CADRE,
+			</if>
+			<if test="lastUpdateTime != null">
+				LAST_UPDATE_TIME,
+			</if>
+			<if test="cardNo != null">
+				CARD_NO,
+			</if>
+			<if test="schoolId != null">
+				SCHOOL_ID,
+			</if>
+			<if test="isAdult != null">
+				IS_ADULT,
+			</if>
+			<if test="graduateTime != null">
+				GRADUATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="signTxt != null">
+				#{signTxt,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolName != null">
+				#{schoolName,jdbcType=VARCHAR},
+			</if>
+			<if test="college != null">
+				#{college,jdbcType=VARCHAR},
+			</if>
+			<if test="major != null">
+				#{major,jdbcType=VARCHAR},
+			</if>
+			<if test="enterYear != null">
+				#{enterYear,jdbcType=INTEGER},
+			</if>
+			<if test="dreams != null">
+				#{dreams,jdbcType=VARCHAR},
+			</if>
+			<if test="relationship != null">
+				#{relationship,jdbcType=VARCHAR},
+			</if>
+			<if test="birthSecret != null">
+				#{birthSecret,jdbcType=CHAR},
+			</if>
+			<if test="schoolNameSecret != null">
+				#{schoolNameSecret,jdbcType=CHAR},
+			</if>
+			<if test="sexSecret != null">
+				#{sexSecret,jdbcType=CHAR},
+			</if>
+			<if test="relationshipSecret != null">
+				#{relationshipSecret,jdbcType=CHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="parentSecret != null">
+				#{parentSecret,jdbcType=CHAR},
+			</if>
+			<if test="appMarket != null">
+				#{appMarket,jdbcType=VARCHAR},
+			</if>
+			<if test="talkFlag != null">
+				#{talkFlag,jdbcType=CHAR},
+			</if>
+			<if test="cadre != null">
+				#{cadre,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateTime != null">
+				#{lastUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolId != null">
+				#{schoolId,jdbcType=BIGINT},
+			</if>
+			<if test="isAdult != null">
+				#{isAdult,jdbcType=BIT},
+			</if>
+			<if test="graduateTime != null">
+				#{graduateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_student_cust">
+		update p2p_student_cust
+		<set>
+			<if test="signTxt != null">
+				SIGN_TXT = #{signTxt,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolName != null">
+				SCHOOL_NAME = #{schoolName,jdbcType=VARCHAR},
+			</if>
+			<if test="college != null">
+				COLLEGE = #{college,jdbcType=VARCHAR},
+			</if>
+			<if test="major != null">
+				MAJOR = #{major,jdbcType=VARCHAR},
+			</if>
+			<if test="enterYear != null">
+				ENTER_YEAR = #{enterYear,jdbcType=INTEGER},
+			</if>
+			<if test="dreams != null">
+				DREAMS = #{dreams,jdbcType=VARCHAR},
+			</if>
+			<if test="relationship != null">
+				RELATIONSHIP = #{relationship,jdbcType=VARCHAR},
+			</if>
+			<if test="birthSecret != null">
+				BIRTH_SECRET = #{birthSecret,jdbcType=CHAR},
+			</if>
+			<if test="schoolNameSecret != null">
+				SCHOOL_NAME_SECRET = #{schoolNameSecret,jdbcType=CHAR},
+			</if>
+			<if test="sexSecret != null">
+				SEX_SECRET = #{sexSecret,jdbcType=CHAR},
+			</if>
+			<if test="relationshipSecret != null">
+				RELATIONSHIP_SECRET =
+				#{relationshipSecret,jdbcType=CHAR},
+			</if>
+			<if test="province != null">
+				PROVINCE = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				CITY = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="parentSecret != null">
+				PARENT_SECRET = #{parentSecret,jdbcType=CHAR},
+			</if>
+			<if test="appMarket != null">
+				APP_MARKET = #{appMarket,jdbcType=VARCHAR},
+			</if>
+			<if test="talkFlag != null">
+				TALK_FLAG = #{talkFlag,jdbcType=CHAR},
+			</if>
+			<if test="cadre != null">
+				CADRE = #{cadre,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateTime != null">
+				LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="schoolId != null">
+				SCHOOL_ID = #{schoolId,jdbcType=BIGINT},
+			</if>
+			<if test="isAdult != null">
+				IS_ADULT = #{isAdult,jdbcType=BIT},
+			</if>
+			<if test="graduateTime != null">
+				GRADUATE_TIME = #{graduateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_student_cust">
+		update
+		p2p_student_cust
+		set SIGN_TXT = #{signTxt,jdbcType=VARCHAR},
+		SCHOOL_NAME = #{schoolName,jdbcType=VARCHAR},
+		COLLEGE =
+		#{college,jdbcType=VARCHAR},
+		MAJOR = #{major,jdbcType=VARCHAR},
+		ENTER_YEAR = #{enterYear,jdbcType=INTEGER},
+		DREAMS =
+		#{dreams,jdbcType=VARCHAR},
+		RELATIONSHIP =
+		#{relationship,jdbcType=VARCHAR},
+		BIRTH_SECRET =
+		#{birthSecret,jdbcType=CHAR},
+		SCHOOL_NAME_SECRET =
+		#{schoolNameSecret,jdbcType=CHAR},
+		SEX_SECRET =
+		#{sexSecret,jdbcType=CHAR},
+		RELATIONSHIP_SECRET =
+		#{relationshipSecret,jdbcType=CHAR},
+		PROVINCE =
+		#{province,jdbcType=VARCHAR},
+		CITY = #{city,jdbcType=VARCHAR},
+		PARENT_SECRET = #{parentSecret,jdbcType=CHAR},
+		APP_MARKET =
+		#{appMarket,jdbcType=VARCHAR},
+		TALK_FLAG = #{talkFlag,jdbcType=CHAR},
+		CADRE = #{cadre,jdbcType=VARCHAR},
+		LAST_UPDATE_TIME =
+		#{lastUpdateTime,jdbcType=TIMESTAMP},
+		CARD_NO =
+		#{cardNo,jdbcType=VARCHAR},
+		SCHOOL_ID = #{schoolId,jdbcType=BIGINT},
+		IS_ADULT = #{isAdult,jdbcType=BIT},
+		GRADUATE_TIME =
+		#{graduateTime,jdbcType=TIMESTAMP}
+		where CUST_ID =
+		#{custId,jdbcType=BIGINT}
+	</update>
+</mapper>

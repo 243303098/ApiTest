@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_account_checkMapper">
+  <resultMap id="p2p_account_checkMapper" type="com.fkapi.datebase.domain.p2p_account_check">
+    <id column="OPEN_ACCT_USER_NO" jdbcType="VARCHAR" property="openAcctUserNo" />
+    <id column="ACCT_TYPE" jdbcType="VARCHAR" property="acctType" />
+    <result column="ACCT_NO" jdbcType="VARCHAR" property="acctNo" />
+  </resultMap>
+  <sql id="p2p_account_check">
+    OPEN_ACCT_USER_NO, ACCT_TYPE, ACCT_NO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_account_checkKey" resultMap="p2p_account_checkMapper">
+    select 
+    <include refid="p2p_account_check" />
+    from p2p_account_check
+    where OPEN_ACCT_USER_NO = #{openAcctUserNo,jdbcType=VARCHAR}
+      and ACCT_TYPE = #{acctType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByAcctNo" parameterType="java.lang.String">
+    delete from p2p_account_check
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_account_check">
+    insert into p2p_account_check (OPEN_ACCT_USER_NO, ACCT_TYPE, ACCT_NO
+      )
+    values 
+    <foreach collection="list" item="item" index="index"
+			separator=",">
+    (#{item.openAcctUserNo}, 'CUST', #{item.acctNo})
+      </foreach>
+  </insert>
+</mapper>

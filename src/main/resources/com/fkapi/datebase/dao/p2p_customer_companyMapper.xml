@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_customer_companyMapper">
+	<resultMap id="p2p_customer_companyMapper"
+		type="com.fkapi.datebase.domain.p2p_customer_company">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="COMP_NAME" jdbcType="VARCHAR" property="compName" />
+		<result column="COMP_ADDR" jdbcType="VARCHAR" property="compAddr" />
+		<result column="COMP_TEL" jdbcType="VARCHAR" property="compTel" />
+		<result column="INDUSTRY_TYPE" jdbcType="VARCHAR" property="industryType" />
+		<result column="POSITION" jdbcType="VARCHAR" property="position" />
+		<result column="IN_TIME" jdbcType="DATE" property="inTime" />
+		<result column="DEPARTURE_TIME" jdbcType="DATE" property="departureTime" />
+		<result column="SALARY" jdbcType="DECIMAL" property="salary" />
+		<result column="ACTUAL_SALARY" jdbcType="DECIMAL" property="actualSalary" />
+		<result column="OTHER_INCOMING" jdbcType="DECIMAL" property="otherIncoming" />
+		<result column="SOCIAL_SECURY_STATUS" jdbcType="VARCHAR"
+			property="socialSecuryStatus" />
+		<result column="SOCIAL_SECURY_TYPE" jdbcType="VARCHAR"
+			property="socialSecuryType" />
+		<result column="SOCIAL_SECURY_BASE" jdbcType="DECIMAL"
+			property="socialSecuryBase" />
+		<result column="SOCIAL_SECURY_AMOUNT" jdbcType="DECIMAL"
+			property="socialSecuryAmount" />
+		<result column="ACCUMULATION_FUND_STATUS" jdbcType="VARCHAR"
+			property="accumulationFundStatus" />
+		<result column="ACCUMULATION_FUND_BASE" jdbcType="DECIMAL"
+			property="accumulationFundBase" />
+		<result column="ACCUMULATION_FUND_AMOUNT" jdbcType="DECIMAL"
+			property="accumulationFundAmount" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="COMP_ADDR_PROVINCE_CODE" jdbcType="VARCHAR"
+			property="compAddrProvinceCode" />
+		<result column="COMP_ADDR_CITY_CODE" jdbcType="VARCHAR"
+			property="compAddrCityCode" />
+	</resultMap>
+	<sql id="p2p_customer_company">
+		ID, CUST_ID, COMP_NAME, COMP_ADDR, COMP_TEL, INDUSTRY_TYPE, POSITION,
+		IN_TIME, DEPARTURE_TIME,
+		SALARY, ACTUAL_SALARY, OTHER_INCOMING, SOCIAL_SECURY_STATUS,
+		SOCIAL_SECURY_TYPE,
+		SOCIAL_SECURY_BASE, SOCIAL_SECURY_AMOUNT, ACCUMULATION_FUND_STATUS,
+		ACCUMULATION_FUND_BASE,
+		ACCUMULATION_FUND_AMOUNT, CREATE_TIME, UPDATE_TIME, COMP_ADDR_PROVINCE_CODE,
+		COMP_ADDR_CITY_CODE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="p2p_customer_companyMapper">
+		select
+		<include refid="p2p_customer_company" />
+		from p2p_customer_company
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from p2p_customer_company
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_customer_company">
+		insert into p2p_customer_company (CUST_ID, COMP_NAME,
+		COMP_ADDR, COMP_TEL, INDUSTRY_TYPE,
+		POSITION, IN_TIME, DEPARTURE_TIME,
+		SALARY, ACTUAL_SALARY, OTHER_INCOMING,
+		SOCIAL_SECURY_STATUS, SOCIAL_SECURY_TYPE, SOCIAL_SECURY_BASE,
+		SOCIAL_SECURY_AMOUNT, ACCUMULATION_FUND_STATUS,
+		ACCUMULATION_FUND_BASE, ACCUMULATION_FUND_AMOUNT,
+		CREATE_TIME, UPDATE_TIME, COMP_ADDR_PROVINCE_CODE,
+		COMP_ADDR_CITY_CODE)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+		(#{item.custId}, #{item.compName}, #{item.compAddr}, NULL, NULL, NULL, NULL, NULL, NULL,
+		NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2017-04-24
+		15:30:14', NULL, #{item.compAddrProvinceCode}, #{item.compAddrCityCode})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_customer_company">
+		insert into p2p_customer_company
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="compName != null">
+				COMP_NAME,
+			</if>
+			<if test="compAddr != null">
+				COMP_ADDR,
+			</if>
+			<if test="compTel != null">
+				COMP_TEL,
+			</if>
+			<if test="industryType != null">
+				INDUSTRY_TYPE,
+			</if>
+			<if test="position != null">
+				POSITION,
+			</if>
+			<if test="inTime != null">
+				IN_TIME,
+			</if>
+			<if test="departureTime != null">
+				DEPARTURE_TIME,
+			</if>
+			<if test="salary != null">
+				SALARY,
+			</if>
+			<if test="actualSalary != null">
+				ACTUAL_SALARY,
+			</if>
+			<if test="otherIncoming != null">
+				OTHER_INCOMING,
+			</if>
+			<if test="socialSecuryStatus != null">
+				SOCIAL_SECURY_STATUS,
+			</if>
+			<if test="socialSecuryType != null">
+				SOCIAL_SECURY_TYPE,
+			</if>
+			<if test="socialSecuryBase != null">
+				SOCIAL_SECURY_BASE,
+			</if>
+			<if test="socialSecuryAmount != null">
+				SOCIAL_SECURY_AMOUNT,
+			</if>
+			<if test="accumulationFundStatus != null">
+				ACCUMULATION_FUND_STATUS,
+			</if>
+			<if test="accumulationFundBase != null">
+				ACCUMULATION_FUND_BASE,
+			</if>
+			<if test="accumulationFundAmount != null">
+				ACCUMULATION_FUND_AMOUNT,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="compAddrProvinceCode != null">
+				COMP_ADDR_PROVINCE_CODE,
+			</if>
+			<if test="compAddrCityCode != null">
+				COMP_ADDR_CITY_CODE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="compName != null">
+				#{compName,jdbcType=VARCHAR},
+			</if>
+			<if test="compAddr != null">
+				#{compAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="compTel != null">
+				#{compTel,jdbcType=VARCHAR},
+			</if>
+			<if test="industryType != null">
+				#{industryType,jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				#{position,jdbcType=VARCHAR},
+			</if>
+			<if test="inTime != null">
+				#{inTime,jdbcType=DATE},
+			</if>
+			<if test="departureTime != null">
+				#{departureTime,jdbcType=DATE},
+			</if>
+			<if test="salary != null">
+				#{salary,jdbcType=DECIMAL},
+			</if>
+			<if test="actualSalary != null">
+				#{actualSalary,jdbcType=DECIMAL},
+			</if>
+			<if test="otherIncoming != null">
+				#{otherIncoming,jdbcType=DECIMAL},
+			</if>
+			<if test="socialSecuryStatus != null">
+				#{socialSecuryStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="socialSecuryType != null">
+				#{socialSecuryType,jdbcType=VARCHAR},
+			</if>
+			<if test="socialSecuryBase != null">
+				#{socialSecuryBase,jdbcType=DECIMAL},
+			</if>
+			<if test="socialSecuryAmount != null">
+				#{socialSecuryAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="accumulationFundStatus != null">
+				#{accumulationFundStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="accumulationFundBase != null">
+				#{accumulationFundBase,jdbcType=DECIMAL},
+			</if>
+			<if test="accumulationFundAmount != null">
+				#{accumulationFundAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="compAddrProvinceCode != null">
+				#{compAddrProvinceCode,jdbcType=VARCHAR},
+			</if>
+			<if test="compAddrCityCode != null">
+				#{compAddrCityCode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_customer_company">
+		update p2p_customer_company
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="compName != null">
+				COMP_NAME = #{compName,jdbcType=VARCHAR},
+			</if>
+			<if test="compAddr != null">
+				COMP_ADDR = #{compAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="compTel != null">
+				COMP_TEL = #{compTel,jdbcType=VARCHAR},
+			</if>
+			<if test="industryType != null">
+				INDUSTRY_TYPE = #{industryType,jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				POSITION = #{position,jdbcType=VARCHAR},
+			</if>
+			<if test="inTime != null">
+				IN_TIME = #{inTime,jdbcType=DATE},
+			</if>
+			<if test="departureTime != null">
+				DEPARTURE_TIME = #{departureTime,jdbcType=DATE},
+			</if>
+			<if test="salary != null">
+				SALARY = #{salary,jdbcType=DECIMAL},
+			</if>
+			<if test="actualSalary != null">
+				ACTUAL_SALARY = #{actualSalary,jdbcType=DECIMAL},
+			</if>
+			<if test="otherIncoming != null">
+				OTHER_INCOMING = #{otherIncoming,jdbcType=DECIMAL},
+			</if>
+			<if test="socialSecuryStatus != null">
+				SOCIAL_SECURY_STATUS = #{socialSecuryStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="socialSecuryType != null">
+				SOCIAL_SECURY_TYPE = #{socialSecuryType,jdbcType=VARCHAR},
+			</if>
+			<if test="socialSecuryBase != null">
+				SOCIAL_SECURY_BASE = #{socialSecuryBase,jdbcType=DECIMAL},
+			</if>
+			<if test="socialSecuryAmount != null">
+				SOCIAL_SECURY_AMOUNT = #{socialSecuryAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="accumulationFundStatus != null">
+				ACCUMULATION_FUND_STATUS = #{accumulationFundStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="accumulationFundBase != null">
+				ACCUMULATION_FUND_BASE = #{accumulationFundBase,jdbcType=DECIMAL},
+			</if>
+			<if test="accumulationFundAmount != null">
+				ACCUMULATION_FUND_AMOUNT = #{accumulationFundAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="compAddrProvinceCode != null">
+				COMP_ADDR_PROVINCE_CODE = #{compAddrProvinceCode,jdbcType=VARCHAR},
+			</if>
+			<if test="compAddrCityCode != null">
+				COMP_ADDR_CITY_CODE = #{compAddrCityCode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_customer_company">
+		update p2p_customer_company
+		set CUST_ID = #{custId,jdbcType=BIGINT},
+		COMP_NAME = #{compName,jdbcType=VARCHAR},
+		COMP_ADDR = #{compAddr,jdbcType=VARCHAR},
+		COMP_TEL = #{compTel,jdbcType=VARCHAR},
+		INDUSTRY_TYPE = #{industryType,jdbcType=VARCHAR},
+		POSITION = #{position,jdbcType=VARCHAR},
+		IN_TIME = #{inTime,jdbcType=DATE},
+		DEPARTURE_TIME = #{departureTime,jdbcType=DATE},
+		SALARY = #{salary,jdbcType=DECIMAL},
+		ACTUAL_SALARY = #{actualSalary,jdbcType=DECIMAL},
+		OTHER_INCOMING = #{otherIncoming,jdbcType=DECIMAL},
+		SOCIAL_SECURY_STATUS = #{socialSecuryStatus,jdbcType=VARCHAR},
+		SOCIAL_SECURY_TYPE = #{socialSecuryType,jdbcType=VARCHAR},
+		SOCIAL_SECURY_BASE = #{socialSecuryBase,jdbcType=DECIMAL},
+		SOCIAL_SECURY_AMOUNT = #{socialSecuryAmount,jdbcType=DECIMAL},
+		ACCUMULATION_FUND_STATUS = #{accumulationFundStatus,jdbcType=VARCHAR},
+		ACCUMULATION_FUND_BASE = #{accumulationFundBase,jdbcType=DECIMAL},
+		ACCUMULATION_FUND_AMOUNT = #{accumulationFundAmount,jdbcType=DECIMAL},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+		COMP_ADDR_PROVINCE_CODE = #{compAddrProvinceCode,jdbcType=VARCHAR},
+		COMP_ADDR_CITY_CODE = #{compAddrCityCode,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

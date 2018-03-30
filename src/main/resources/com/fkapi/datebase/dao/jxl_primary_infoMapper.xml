@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.jxl_primary_infoMapper">
+	<resultMap id="jxl_primary_infoMapper" type="com.fkapi.datebase.domain.jxl_primary_info">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="AUTH_LOG_ID" jdbcType="BIGINT" property="authLogId" />
+		<result column="AUTH_TYPE" jdbcType="VARCHAR" property="authType" />
+		<result column="STATUS" jdbcType="VARCHAR" property="status" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="REQ_ARGS" jdbcType="VARCHAR" property="reqArgs" />
+		<result column="ERROR_CODE" jdbcType="VARCHAR" property="errorCode" />
+		<result column="ERROR_MSG" jdbcType="VARCHAR" property="errorMsg" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	<sql id="jxl_primary_info">
+		ID, CUST_ID, AUTH_LOG_ID, AUTH_TYPE, STATUS, UPDATE_TIME, REQ_ARGS,
+		ERROR_CODE, ERROR_MSG,
+		CREATE_TIME
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="jxl_primary_infoMapper">
+		select
+		<include refid="jxl_primary_info" />
+		from jxl_primary_info
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from jxl_primary_info
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.jxl_primary_info">
+		insert into jxl_primary_info (CUST_ID, AUTH_LOG_ID,
+		AUTH_TYPE, STATUS, UPDATE_TIME,
+		REQ_ARGS, ERROR_CODE, ERROR_MSG,
+		CREATE_TIME)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, #{item.authLogId}, '1', 'success', #{item.updateTime},
+			'[{token=3d5901fbb0e2479b812d36928b919192}, {env=www}]', '31200',
+			'请求用户数据成功', #{item.createTime})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.jxl_primary_info">
+		insert into jxl_primary_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="authLogId != null">
+				AUTH_LOG_ID,
+			</if>
+			<if test="authType != null">
+				AUTH_TYPE,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="reqArgs != null">
+				REQ_ARGS,
+			</if>
+			<if test="errorCode != null">
+				ERROR_CODE,
+			</if>
+			<if test="errorMsg != null">
+				ERROR_MSG,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="authLogId != null">
+				#{authLogId,jdbcType=BIGINT},
+			</if>
+			<if test="authType != null">
+				#{authType,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="reqArgs != null">
+				#{reqArgs,jdbcType=VARCHAR},
+			</if>
+			<if test="errorCode != null">
+				#{errorCode,jdbcType=VARCHAR},
+			</if>
+			<if test="errorMsg != null">
+				#{errorMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.jxl_primary_info">
+		update jxl_primary_info
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="authLogId != null">
+				AUTH_LOG_ID = #{authLogId,jdbcType=BIGINT},
+			</if>
+			<if test="authType != null">
+				AUTH_TYPE = #{authType,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="reqArgs != null">
+				REQ_ARGS = #{reqArgs,jdbcType=VARCHAR},
+			</if>
+			<if test="errorCode != null">
+				ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+			</if>
+			<if test="errorMsg != null">
+				ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.jxl_primary_info">
+		update jxl_primary_info
+		set CUST_ID = #{custId,jdbcType=BIGINT},
+		AUTH_LOG_ID = #{authLogId,jdbcType=BIGINT},
+		AUTH_TYPE = #{authType,jdbcType=VARCHAR},
+		STATUS = #{status,jdbcType=VARCHAR},
+		UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+		REQ_ARGS = #{reqArgs,jdbcType=VARCHAR},
+		ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+		ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

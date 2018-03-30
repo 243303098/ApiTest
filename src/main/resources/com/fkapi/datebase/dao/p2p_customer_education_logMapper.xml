@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_customer_education_logMapper">
+	<resultMap id="BaseResultMap"
+		type="com.fkapi.datebase.domain.p2p_customer_education_log">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="cust_id" jdbcType="BIGINT" property="custId" />
+		<result column="school_name" jdbcType="VARCHAR" property="schoolName" />
+		<result column="education" jdbcType="VARCHAR" property="education" />
+		<result column="entrance_time" jdbcType="TIMESTAMP" property="entranceTime" />
+		<result column="graduation_time" jdbcType="TIMESTAMP" property="graduationTime" />
+		<result column="auth_status" jdbcType="VARCHAR" property="authStatus" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="education_source" jdbcType="INTEGER" property="educationSource" />
+		<result column="education_source_channel" jdbcType="INTEGER"
+			property="educationSourceChannel" />
+		<result column="has_exception" jdbcType="BIT" property="hasException" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, create_time, update_time, cust_id, school_name, education,
+		entrance_time, graduation_time,
+		auth_status, city, education_source, education_source_channel, has_exception
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from p2p_customer_education_log
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from
+		p2p_customer_education_log
+		where cust_id = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="com.fkapi.datebase.domain.p2p_customer_education_log">
+		insert into p2p_customer_education_log (create_time, update_time,
+		cust_id, school_name, education,
+		entrance_time, graduation_time, auth_status,
+		city, education_source, education_source_channel,
+		has_exception)
+		values
+		<foreach collection="list" index="index" item="item"
+			separator=",">
+			(#{item.createTime}, NULL, #{item.custId},
+			#{item.schoolName}, #{item.education},
+			#{item.entranceTime},
+			#{item.graduationTime}, #{item.authStatus},
+			#{item.city}, '-1','-1','')
+		</foreach>
+	</insert>
+</mapper>

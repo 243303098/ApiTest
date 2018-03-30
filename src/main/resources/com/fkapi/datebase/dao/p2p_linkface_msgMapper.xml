@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_linkface_msgMapper">
+	<resultMap id="p2p_linkface_msg" type="com.fkapi.datebase.domain.p2p_linkface_msg">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="REAL_NAME" jdbcType="VARCHAR" property="realName" />
+		<result column="ID_CARD" jdbcType="VARCHAR" property="idCard" />
+		<result column="SEX" jdbcType="VARCHAR" property="sex" />
+		<result column="NATION" jdbcType="VARCHAR" property="nation" />
+		<result column="ID_CARD_ADDR" jdbcType="VARCHAR" property="idCardAddr" />
+		<result column="AUTHORITY" jdbcType="VARCHAR" property="authority" />
+		<result column="TIME_LIMIT" jdbcType="VARCHAR" property="timeLimit" />
+		<result column="YEAR" jdbcType="VARCHAR" property="year" />
+		<result column="MONTH" jdbcType="VARCHAR" property="month" />
+		<result column="DAY" jdbcType="VARCHAR" property="day" />
+		<result column="BANK_NO" jdbcType="VARCHAR" property="bankNo" />
+		<result column="MEMO" jdbcType="VARCHAR" property="memo" />
+		<result column="EXT1" jdbcType="VARCHAR" property="ext1" />
+		<result column="EXT2" jdbcType="VARCHAR" property="ext2" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	<sql id="p2p_linkface_msg">
+		ID, CUST_ID, REAL_NAME, ID_CARD, SEX, NATION, ID_CARD_ADDR, AUTHORITY,
+		TIME_LIMIT,
+		YEAR, MONTH, DAY, BANK_NO, MEMO, EXT1, EXT2, CREATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="p2p_linkface_msg">
+		select
+		<include refid="p2p_linkface_msg" />
+		from p2p_linkface_msg
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from p2p_linkface_msg
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_linkface_msg">
+		insert into p2p_linkface_msg (CUST_ID, REAL_NAME,
+		ID_CARD, SEX, NATION,
+		ID_CARD_ADDR, AUTHORITY, TIME_LIMIT,
+		YEAR, MONTH, DAY, BANK_NO,
+		MEMO, EXT1, EXT2, CREATE_TIME
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+		(#{item.custId}, #{item.realName}, #{item.idCard}, '男', '汉',
+		'广西桂林市象山区同心村委322号', NULL, NULL, '1985', '03', '18', NULL, NULL,
+		'LINK', NULL, '2016-12-25 16:17:15')
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_linkface_msg">
+		insert into p2p_linkface_msg
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="realName != null">
+				REAL_NAME,
+			</if>
+			<if test="idCard != null">
+				ID_CARD,
+			</if>
+			<if test="sex != null">
+				SEX,
+			</if>
+			<if test="nation != null">
+				NATION,
+			</if>
+			<if test="idCardAddr != null">
+				ID_CARD_ADDR,
+			</if>
+			<if test="authority != null">
+				AUTHORITY,
+			</if>
+			<if test="timeLimit != null">
+				TIME_LIMIT,
+			</if>
+			<if test="year != null">
+				YEAR,
+			</if>
+			<if test="month != null">
+				MONTH,
+			</if>
+			<if test="day != null">
+				DAY,
+			</if>
+			<if test="bankNo != null">
+				BANK_NO,
+			</if>
+			<if test="memo != null">
+				MEMO,
+			</if>
+			<if test="ext1 != null">
+				EXT1,
+			</if>
+			<if test="ext2 != null">
+				EXT2,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="idCard != null">
+				#{idCard,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="nation != null">
+				#{nation,jdbcType=VARCHAR},
+			</if>
+			<if test="idCardAddr != null">
+				#{idCardAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="authority != null">
+				#{authority,jdbcType=VARCHAR},
+			</if>
+			<if test="timeLimit != null">
+				#{timeLimit,jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				#{year,jdbcType=VARCHAR},
+			</if>
+			<if test="month != null">
+				#{month,jdbcType=VARCHAR},
+			</if>
+			<if test="day != null">
+				#{day,jdbcType=VARCHAR},
+			</if>
+			<if test="bankNo != null">
+				#{bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="ext1 != null">
+				#{ext1,jdbcType=VARCHAR},
+			</if>
+			<if test="ext2 != null">
+				#{ext2,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_linkface_msg">
+		update p2p_linkface_msg
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="realName != null">
+				REAL_NAME = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="idCard != null">
+				ID_CARD = #{idCard,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="nation != null">
+				NATION = #{nation,jdbcType=VARCHAR},
+			</if>
+			<if test="idCardAddr != null">
+				ID_CARD_ADDR = #{idCardAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="authority != null">
+				AUTHORITY = #{authority,jdbcType=VARCHAR},
+			</if>
+			<if test="timeLimit != null">
+				TIME_LIMIT = #{timeLimit,jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				YEAR = #{year,jdbcType=VARCHAR},
+			</if>
+			<if test="month != null">
+				MONTH = #{month,jdbcType=VARCHAR},
+			</if>
+			<if test="day != null">
+				DAY = #{day,jdbcType=VARCHAR},
+			</if>
+			<if test="bankNo != null">
+				BANK_NO = #{bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="memo != null">
+				MEMO = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="ext1 != null">
+				EXT1 = #{ext1,jdbcType=VARCHAR},
+			</if>
+			<if test="ext2 != null">
+				EXT2 = #{ext2,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_linkface_msg">
+		update p2p_linkface_msg
+		set CUST_ID = #{custId,jdbcType=BIGINT},
+		REAL_NAME = #{realName,jdbcType=VARCHAR},
+		ID_CARD = #{idCard,jdbcType=VARCHAR},
+		SEX = #{sex,jdbcType=VARCHAR},
+		NATION = #{nation,jdbcType=VARCHAR},
+		ID_CARD_ADDR = #{idCardAddr,jdbcType=VARCHAR},
+		AUTHORITY = #{authority,jdbcType=VARCHAR},
+		TIME_LIMIT = #{timeLimit,jdbcType=VARCHAR},
+		YEAR = #{year,jdbcType=VARCHAR},
+		MONTH = #{month,jdbcType=VARCHAR},
+		DAY = #{day,jdbcType=VARCHAR},
+		BANK_NO = #{bankNo,jdbcType=VARCHAR},
+		MEMO = #{memo,jdbcType=VARCHAR},
+		EXT1 = #{ext1,jdbcType=VARCHAR},
+		EXT2 = #{ext2,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

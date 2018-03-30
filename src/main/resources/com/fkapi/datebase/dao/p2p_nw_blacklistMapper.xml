@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_nw_blacklistMapper">
+  <resultMap id="p2p_nw_blacklistMapper" type="com.fkapi.datebase.domain.p2p_nw_blacklist">
+    <id column="CUST_ID" jdbcType="BIGINT" property="custId" />
+    <id column="PROJECT_NO" jdbcType="VARCHAR" property="projectNo" />
+    <result column="LOAN_SUB_SRC" jdbcType="VARCHAR" property="loanSubSrc" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="OVERDUE_TIME" jdbcType="TIMESTAMP" property="overdueTime" />
+    <result column="OVERDUE_CAPITAL" jdbcType="DECIMAL" property="overdueCapital" />
+    <result column="PAYOFF_TIME" jdbcType="TIMESTAMP" property="payoffTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="p2p_nw_blacklist">
+    CUST_ID, PROJECT_NO, LOAN_SUB_SRC, REMARK, OVERDUE_TIME, OVERDUE_CAPITAL, PAYOFF_TIME, 
+    CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByCustId" parameterType="com.fkapi.datebase.domain.p2p_nw_blacklistKey" resultMap="p2p_nw_blacklistMapper">
+    select 
+    <include refid="p2p_nw_blacklist" />
+    from p2p_nw_blacklist
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByCustId" parameterType="com.fkapi.datebase.domain.p2p_nw_blacklistKey">
+    delete from p2p_nw_blacklist
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_nw_blacklist">
+    insert into p2p_nw_blacklist (CUST_ID, PROJECT_NO, LOAN_SUB_SRC, 
+      REMARK, OVERDUE_TIME, OVERDUE_CAPITAL, 
+      PAYOFF_TIME, CREATE_TIME, UPDATE_TIME
+      )
+    values 
+    <foreach collection="list" item="item" index="index"
+			separator=",">
+     (#{item.custId}, #{item.projectNo}, 'NDK', '牛大咖逾期大于等于9天', '2016-12-30 00:00:00', '100.00', NULL, '2017-01-10 16:36:58', '2017-01-10 16:36:58');
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_nw_blacklist">
+    insert into p2p_nw_blacklist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="custId != null">
+        CUST_ID,
+      </if>
+      <if test="projectNo != null">
+        PROJECT_NO,
+      </if>
+      <if test="loanSubSrc != null">
+        LOAN_SUB_SRC,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="overdueTime != null">
+        OVERDUE_TIME,
+      </if>
+      <if test="overdueCapital != null">
+        OVERDUE_CAPITAL,
+      </if>
+      <if test="payoffTime != null">
+        PAYOFF_TIME,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="custId != null">
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="projectNo != null">
+        #{projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanSubSrc != null">
+        #{loanSubSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueTime != null">
+        #{overdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overdueCapital != null">
+        #{overdueCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="payoffTime != null">
+        #{payoffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_nw_blacklist">
+    update p2p_nw_blacklist
+    <set>
+      <if test="loanSubSrc != null">
+        LOAN_SUB_SRC = #{loanSubSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueTime != null">
+        OVERDUE_TIME = #{overdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overdueCapital != null">
+        OVERDUE_CAPITAL = #{overdueCapital,jdbcType=DECIMAL},
+      </if>
+      <if test="payoffTime != null">
+        PAYOFF_TIME = #{payoffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+      and PROJECT_NO = #{projectNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_nw_blacklist">
+    update p2p_nw_blacklist
+    set LOAN_SUB_SRC = #{loanSubSrc,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      OVERDUE_TIME = #{overdueTime,jdbcType=TIMESTAMP},
+      OVERDUE_CAPITAL = #{overdueCapital,jdbcType=DECIMAL},
+      PAYOFF_TIME = #{payoffTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+      and PROJECT_NO = #{projectNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

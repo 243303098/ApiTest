@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="YiCai"
+           tests="2"
+           failures="1"
+           errors="0"
+           skipped="0"
+           time="75.781">
+  <properties />
+            <testcase name="excute" time="37.030" classname="com.fkapi.excutecase.ExcuteYiCaiCase">
+                <failure type="java.lang.Throwable"
+                  message="(null)"
+              >
+<![CDATA[java.lang.Throwable
+  message : expected [AUDIT_PASS] but found [AUDIT_RETURN] in method : .excute(ExcuteYiCaiCase:93)
+  com.fkapi.excutecase.ExcuteYiCaiCase.excute(ExcuteYiCaiCase.java:93)
+]]>
+      </failure>
+
+          </testcase>
+  
+  
+            <testcase name="excute" time="38.751" classname="com.fkapi.excutecase.ExcuteYiCaiCase" />
+      
+</testsuite>

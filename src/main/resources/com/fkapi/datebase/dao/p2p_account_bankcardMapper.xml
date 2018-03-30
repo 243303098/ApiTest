@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_account_bankcardMapper">
+	<resultMap id="p2p_account_bankcardMapper"
+		type="com.fkapi.datebase.domain.p2p_account_bankcard">
+		<id column="ACCT_NO" jdbcType="VARCHAR" property="acctNo" />
+		<id column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+		<result column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+		<result column="BANK_NAME" jdbcType="VARCHAR" property="bankName" />
+		<result column="BIND_TIME" jdbcType="TIMESTAMP" property="bindTime" />
+		<result column="STATUS" jdbcType="VARCHAR" property="status" />
+		<result column="IS_DEFAULT" jdbcType="CHAR" property="isDefault" />
+		<result column="EXPRESS_FLAG" jdbcType="CHAR" property="expressFlag" />
+	</resultMap>
+	<sql id="p2p_account_bankcard">
+		ACCT_NO, CARD_NO, BANK_CODE, BANK_NAME, BIND_TIME, STATUS, IS_DEFAULT,
+		EXPRESS_FLAG
+	</sql>
+	<select id="selectByAcctNo" parameterType="com.fkapi.datebase.domain.p2p_account_bankcardKey"
+		resultMap="p2p_account_bankcardMapper">
+		select
+		<include refid="p2p_account_bankcard" />
+		from p2p_account_bankcard
+		where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByAcctNoAndCardNo" parameterType="com.fkapi.datebase.domain.p2p_account_bankcardKey">
+		<foreach collection="list" item="item" index="index"
+			separator="or">
+			delete from p2p_account_bankcard
+			where ACCT_NO = #{item.acctNo,jdbcType=VARCHAR}
+			or CARD_NO = #{item.cardNo,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_account_bankcard">
+		insert into p2p_account_bankcard (ACCT_NO, CARD_NO, BANK_CODE,
+		BANK_NAME, BIND_TIME, STATUS,
+		IS_DEFAULT, EXPRESS_FLAG)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.acctNo}, #{item.cardNo}, 'PCBC', NULL, #{item.bindTime}, 'BIND_OK', 'N', 'N')
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_account_bankcard">
+		insert into p2p_account_bankcard
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="acctNo != null">
+				ACCT_NO,
+			</if>
+			<if test="cardNo != null">
+				CARD_NO,
+			</if>
+			<if test="bankCode != null">
+				BANK_CODE,
+			</if>
+			<if test="bankName != null">
+				BANK_NAME,
+			</if>
+			<if test="bindTime != null">
+				BIND_TIME,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="isDefault != null">
+				IS_DEFAULT,
+			</if>
+			<if test="expressFlag != null">
+				EXPRESS_FLAG,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="acctNo != null">
+				#{acctNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode != null">
+				#{bankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bindTime != null">
+				#{bindTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="isDefault != null">
+				#{isDefault,jdbcType=CHAR},
+			</if>
+			<if test="expressFlag != null">
+				#{expressFlag,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_account_bankcard">
+		update p2p_account_bankcard
+		<set>
+			<if test="bankCode != null">
+				BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				BANK_NAME = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bindTime != null">
+				BIND_TIME = #{bindTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="isDefault != null">
+				IS_DEFAULT = #{isDefault,jdbcType=CHAR},
+			</if>
+			<if test="expressFlag != null">
+				EXPRESS_FLAG = #{expressFlag,jdbcType=CHAR},
+			</if>
+		</set>
+		where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+		and CARD_NO = #{cardNo,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_account_bankcard">
+		update p2p_account_bankcard
+		set BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+		BANK_NAME = #{bankName,jdbcType=VARCHAR},
+		BIND_TIME = #{bindTime,jdbcType=TIMESTAMP},
+		STATUS = #{status,jdbcType=VARCHAR},
+		IS_DEFAULT = #{isDefault,jdbcType=CHAR},
+		EXPRESS_FLAG = #{expressFlag,jdbcType=CHAR}
+		where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+		and CARD_NO = #{cardNo,jdbcType=VARCHAR}
+	</update>
+</mapper>

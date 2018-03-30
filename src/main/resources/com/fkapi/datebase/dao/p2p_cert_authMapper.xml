@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_cert_authMapper">
+	<resultMap id="p2p_cert_auth" type="com.fkapi.datebase.domain.p2p_cert_auth">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+		<result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+		<result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+		<result column="CERT_NO" jdbcType="VARCHAR" property="certNo" />
+		<result column="AUTH_STATUS" jdbcType="VARCHAR" property="authStatus" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="AUTH_COUNT" jdbcType="INTEGER" property="authCount" />
+		<result column="AUTH_TIME" jdbcType="TIMESTAMP" property="authTime" />
+	</resultMap>
+	<sql id="p2p_cert_auth">
+		ID, CUST_ID, CUST_NAME, CERT_TYPE, CERT_NO, AUTH_STATUS, CREATE_TIME,
+		AUTH_COUNT,
+		AUTH_TIME
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.Long"
+		resultMap="p2p_cert_auth">
+		select
+		<include refid="p2p_cert_auth" />
+		from p2p_cert_auth
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from p2p_cert_auth
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="java.util.List">
+		insert into p2p_cert_auth (CUST_ID, CUST_NAME,
+		CERT_TYPE, CERT_NO, AUTH_STATUS,
+		CREATE_TIME, AUTH_COUNT, AUTH_TIME
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, #{item.custName}, '10', #{item.certNo}, #{item.authStatus}, #{item.createTime}, '2', #{item.authTime})
+		</foreach>
+	</insert>
+
+	<update id="updateByCustId" parameterType="com.fkapi.datebase.domain.p2p_cert_auth">
+		update p2p_cert_auth
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="custName != null">
+				CUST_NAME = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="certType != null">
+				CERT_TYPE = #{certType,jdbcType=VARCHAR},
+			</if>
+			<if test="certNo != null">
+				CERT_NO = #{certNo,jdbcType=VARCHAR},
+			</if>
+			<if test="authStatus != null">
+				AUTH_STATUS = #{authStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="authCount != null">
+				AUTH_COUNT = #{authCount,jdbcType=INTEGER},
+			</if>
+			<if test="authTime != null">
+				AUTH_TIME = #{authTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where CUST_ID = #{custId,jdbcType=BIGINT}
+	</update>
+	
+</mapper>

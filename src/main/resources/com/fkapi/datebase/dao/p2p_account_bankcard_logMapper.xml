@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_account_bankcard_logMapper">
+	<resultMap id="p2p_account_bankcard_logMapper"
+		type="com.fkapi.datebase.domain.p2p_account_bankcard_log">
+		<id column="ID" jdbcType="CHAR" property="id" />
+		<result column="ACCT_NO" jdbcType="VARCHAR" property="acctNo" />
+		<result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+		<result column="BIND_TIME" jdbcType="TIMESTAMP" property="bindTime" />
+		<result column="STATUS" jdbcType="VARCHAR" property="status" />
+		<result column="REAL_NAME" jdbcType="VARCHAR" property="realName" />
+		<result column="CERT_TYPE" jdbcType="VARCHAR" property="certType" />
+		<result column="CERT_NO" jdbcType="VARCHAR" property="certNo" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="OPERATOR" jdbcType="BIGINT" property="operator" />
+		<result column="FILE_ID" jdbcType="VARCHAR" property="fileId" />
+		<result column="REMARK" jdbcType="VARCHAR" property="remark" />
+		<result column="UNBIND_TYPE" jdbcType="CHAR" property="unbindType" />
+		<result column="PAY_CHL" jdbcType="VARCHAR" property="payChl" />
+	</resultMap>
+	<sql id="p2p_account_bankcard_log">
+		ID, ACCT_NO, CARD_NO, BIND_TIME, STATUS, REAL_NAME, CERT_TYPE, CERT_NO,
+		CREATE_TIME,
+		OPERATOR, FILE_ID, REMARK, UNBIND_TYPE, PAY_CHL
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="p2p_account_bankcard_logMapper">
+		select
+		<include refid="p2p_account_bankcard_log" />
+		from p2p_account_bankcard_log
+		where ID = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByAcctNoAndCardNo" parameterType="com.fkapi.datebase.domain.p2p_account_bankcard_log">
+	<foreach collection="list" item="item" index="index"
+			separator="or">
+		delete from p2p_account_bankcard_log
+		where ACCT_NO = #{item.acctNo,jdbcType=VARCHAR}
+		or CARD_NO = #{item.cardNo,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_account_bankcard_log">
+		insert into p2p_account_bankcard_log (ID, ACCT_NO, CARD_NO,
+		BIND_TIME, STATUS, REAL_NAME,
+		CERT_TYPE, CERT_NO, CREATE_TIME,
+		OPERATOR, FILE_ID, REMARK,
+		UNBIND_TYPE, PAY_CHL)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+		(#{item.id},#{item.acctNo}, #{item.cardNo},
+		#{item.bindTime}, 'BIND_OK', #{item.realName}, '10', #{item.certNo},
+		#{item.createTime}, NULL, NULL, NULL, NULL, 'HUIFU')
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_account_bankcard_log">
+		insert into p2p_account_bankcard_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="acctNo != null">
+				ACCT_NO,
+			</if>
+			<if test="cardNo != null">
+				CARD_NO,
+			</if>
+			<if test="bindTime != null">
+				BIND_TIME,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="realName != null">
+				REAL_NAME,
+			</if>
+			<if test="certType != null">
+				CERT_TYPE,
+			</if>
+			<if test="certNo != null">
+				CERT_NO,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="operator != null">
+				OPERATOR,
+			</if>
+			<if test="fileId != null">
+				FILE_ID,
+			</if>
+			<if test="remark != null">
+				REMARK,
+			</if>
+			<if test="unbindType != null">
+				UNBIND_TYPE,
+			</if>
+			<if test="payChl != null">
+				PAY_CHL,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="acctNo != null">
+				#{acctNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bindTime != null">
+				#{bindTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="certType != null">
+				#{certType,jdbcType=VARCHAR},
+			</if>
+			<if test="certNo != null">
+				#{certNo,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operator != null">
+				#{operator,jdbcType=BIGINT},
+			</if>
+			<if test="fileId != null">
+				#{fileId,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="unbindType != null">
+				#{unbindType,jdbcType=CHAR},
+			</if>
+			<if test="payChl != null">
+				#{payChl,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_account_bankcard_log">
+		update p2p_account_bankcard_log
+		<set>
+			<if test="acctNo != null">
+				ACCT_NO = #{acctNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bindTime != null">
+				BIND_TIME = #{bindTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				REAL_NAME = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="certType != null">
+				CERT_TYPE = #{certType,jdbcType=VARCHAR},
+			</if>
+			<if test="certNo != null">
+				CERT_NO = #{certNo,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operator != null">
+				OPERATOR = #{operator,jdbcType=BIGINT},
+			</if>
+			<if test="fileId != null">
+				FILE_ID = #{fileId,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="unbindType != null">
+				UNBIND_TYPE = #{unbindType,jdbcType=CHAR},
+			</if>
+			<if test="payChl != null">
+				PAY_CHL = #{payChl,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_account_bankcard_log">
+		update p2p_account_bankcard_log
+		set ACCT_NO = #{acctNo,jdbcType=VARCHAR},
+		CARD_NO = #{cardNo,jdbcType=VARCHAR},
+		BIND_TIME = #{bindTime,jdbcType=TIMESTAMP},
+		STATUS = #{status,jdbcType=VARCHAR},
+		REAL_NAME = #{realName,jdbcType=VARCHAR},
+		CERT_TYPE = #{certType,jdbcType=VARCHAR},
+		CERT_NO = #{certNo,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		OPERATOR = #{operator,jdbcType=BIGINT},
+		FILE_ID = #{fileId,jdbcType=VARCHAR},
+		REMARK = #{remark,jdbcType=VARCHAR},
+		UNBIND_TYPE = #{unbindType,jdbcType=CHAR},
+		PAY_CHL = #{payChl,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+</mapper>

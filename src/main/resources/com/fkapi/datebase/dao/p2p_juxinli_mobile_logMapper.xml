@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_juxinli_mobile_logMapper">
+  <resultMap id="p2p_juxinli_mobile_log" type="com.fkapi.datebase.domain.p2p_juxinli_mobile_log">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+    <result column="REQ_NO" jdbcType="VARCHAR" property="reqNo" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="TYPE" jdbcType="CHAR" property="type" />
+    <result column="AUTH_ID" jdbcType="BIGINT" property="authId" />
+    <result column="TOKEN" jdbcType="VARCHAR" property="token" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="p2p_juxinli_mobile_log">
+    ID, CUST_ID, REQ_NO, STATUS, MOBILE, PASSWORD, CREATE_TIME, MEMO, TYPE, AUTH_ID, 
+    TOKEN, UPDATE_TIME
+  </sql>
+  <select id="selectByCustId" parameterType="java.lang.Long" resultMap="p2p_juxinli_mobile_log">
+    select 
+    <include refid="p2p_juxinli_mobile_log" />
+    from p2p_juxinli_mobile_log
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByCustId" parameterType="java.lang.Long">
+    delete from p2p_juxinli_mobile_log
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_juxinli_mobile_log">
+    insert into p2p_juxinli_mobile_log (CUST_ID, REQ_NO, 
+      STATUS, MOBILE, PASSWORD, 
+      CREATE_TIME, MEMO, TYPE, 
+      AUTH_ID, TOKEN, UPDATE_TIME
+      )
+    values 
+    <foreach collection="list" item="item" index="index"
+			separator=",">
+    	(#{item.custId}, '-1', #{item.status}, #{item.mobile}, '-1', #{item.createTime}, '手动新增测试数据', '1', #{item.authId}, '手动新增测试数据', #{item.updateTime})
+    </foreach>
+  </insert>
+</mapper>

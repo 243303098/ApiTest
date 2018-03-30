@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.risk_audit_logMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.risk_audit_log">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="PROJECT_NO" jdbcType="VARCHAR" property="projectNo" />
+    <result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+    <result column="AUDIT_RESULT" jdbcType="VARCHAR" property="auditResult" />
+    <result column="EXECUTE_MILLISECOND" jdbcType="BIGINT" property="executeMillisecond" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PROJECT_NO, CUST_ID, AUDIT_RESULT, EXECUTE_MILLISECOND, CREATE_TIME
+  </sql>
+  <select id="selectByCustId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from risk_audit_log
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByCustId" parameterType="java.lang.Long">
+    delete from risk_audit_log
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.risk_audit_log">
+    insert into risk_audit_log (ID, PROJECT_NO, CUST_ID, 
+      AUDIT_RESULT, EXECUTE_MILLISECOND, CREATE_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{projectNo,jdbcType=VARCHAR}, #{custId,jdbcType=BIGINT}, 
+      #{auditResult,jdbcType=VARCHAR}, #{executeMillisecond,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.risk_audit_log">
+    insert into risk_audit_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="projectNo != null">
+        PROJECT_NO,
+      </if>
+      <if test="custId != null">
+        CUST_ID,
+      </if>
+      <if test="auditResult != null">
+        AUDIT_RESULT,
+      </if>
+      <if test="executeMillisecond != null">
+        EXECUTE_MILLISECOND,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectNo != null">
+        #{projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="auditResult != null">
+        #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="executeMillisecond != null">
+        #{executeMillisecond,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.risk_audit_log">
+    update risk_audit_log
+    <set>
+      <if test="projectNo != null">
+        PROJECT_NO = #{projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        CUST_ID = #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="auditResult != null">
+        AUDIT_RESULT = #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="executeMillisecond != null">
+        EXECUTE_MILLISECOND = #{executeMillisecond,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.risk_audit_log">
+    update risk_audit_log
+    set PROJECT_NO = #{projectNo,jdbcType=VARCHAR},
+      CUST_ID = #{custId,jdbcType=BIGINT},
+      AUDIT_RESULT = #{auditResult,jdbcType=VARCHAR},
+      EXECUTE_MILLISECOND = #{executeMillisecond,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

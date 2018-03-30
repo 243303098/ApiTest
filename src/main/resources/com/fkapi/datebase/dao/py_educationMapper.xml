@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.py_educationMapper">
+	<resultMap id="py_education" type="com.fkapi.datebase.domain.py_education">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="cust_id" jdbcType="BIGINT" property="custId" />
+		<result column="req_name" jdbcType="VARCHAR" property="reqName" />
+		<result column="req_document_no" jdbcType="VARCHAR" property="reqDocumentNo" />
+		<result column="college" jdbcType="VARCHAR" property="college" />
+		<result column="level_no" jdbcType="VARCHAR" property="levelNo" />
+		<result column="start_time" jdbcType="VARCHAR" property="startTime" />
+		<result column="graduate_time" jdbcType="VARCHAR" property="graduateTime" />
+		<result column="study_style" jdbcType="VARCHAR" property="studyStyle" />
+		<result column="study_type" jdbcType="VARCHAR" property="studyType" />
+		<result column="specialty" jdbcType="VARCHAR" property="specialty" />
+		<result column="is_key_subject" jdbcType="VARCHAR" property="isKeySubject" />
+		<result column="degree" jdbcType="VARCHAR" property="degree" />
+		<result column="study_result" jdbcType="VARCHAR" property="studyResult" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	<sql id="py_education">
+		id, cust_id, req_name, req_document_no, college, level_no, start_time,
+		graduate_time,
+		study_style, study_type, specialty, is_key_subject, degree, study_result,create_time
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="py_education">
+		select
+		<include refid="py_education" />
+		from py_education
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.Long">
+		delete from py_education
+		where cust_id = #{custId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.py_education">
+		insert into py_education (cust_id, req_name,
+		req_document_no, college, level_no,
+		start_time, graduate_time, study_style,
+		study_type, specialty, is_key_subject,
+		degree, study_result, create_time)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.custId}, #{item.reqName}, #{item.reqDocumentNo}, #{item.college},
+			'107321200902002333', #{item.startTime}, #{item.graduateTime}, '全日制',
+			'', '数学', 'N', #{item.degree}, '毕业', NULl)
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.py_education">
+		insert into py_education
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="custId != null">
+				cust_id,
+			</if>
+			<if test="reqName != null">
+				req_name,
+			</if>
+			<if test="reqDocumentNo != null">
+				req_document_no,
+			</if>
+			<if test="college != null">
+				college,
+			</if>
+			<if test="levelNo != null">
+				level_no,
+			</if>
+			<if test="startTime != null">
+				start_time,
+			</if>
+			<if test="graduateTime != null">
+				graduate_time,
+			</if>
+			<if test="studyStyle != null">
+				study_style,
+			</if>
+			<if test="studyType != null">
+				study_type,
+			</if>
+			<if test="specialty != null">
+				specialty,
+			</if>
+			<if test="isKeySubject != null">
+				is_key_subject,
+			</if>
+			<if test="degree != null">
+				degree,
+			</if>
+			<if test="studyResult != null">
+				study_result,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=BIGINT},
+			</if>
+			<if test="reqName != null">
+				#{reqName,jdbcType=VARCHAR},
+			</if>
+			<if test="reqDocumentNo != null">
+				#{reqDocumentNo,jdbcType=VARCHAR},
+			</if>
+			<if test="college != null">
+				#{college,jdbcType=VARCHAR},
+			</if>
+			<if test="levelNo != null">
+				#{levelNo,jdbcType=VARCHAR},
+			</if>
+			<if test="startTime != null">
+				#{startTime,jdbcType=VARCHAR},
+			</if>
+			<if test="graduateTime != null">
+				#{graduateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="studyStyle != null">
+				#{studyStyle,jdbcType=VARCHAR},
+			</if>
+			<if test="studyType != null">
+				#{studyType,jdbcType=VARCHAR},
+			</if>
+			<if test="specialty != null">
+				#{specialty,jdbcType=VARCHAR},
+			</if>
+			<if test="isKeySubject != null">
+				#{isKeySubject,jdbcType=VARCHAR},
+			</if>
+			<if test="degree != null">
+				#{degree,jdbcType=VARCHAR},
+			</if>
+			<if test="studyResult != null">
+				#{studyResult,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.py_education">
+		update py_education
+		<set>
+			<if test="custId != null">
+				cust_id = #{custId,jdbcType=BIGINT},
+			</if>
+			<if test="reqName != null">
+				req_name = #{reqName,jdbcType=VARCHAR},
+			</if>
+			<if test="reqDocumentNo != null">
+				req_document_no = #{reqDocumentNo,jdbcType=VARCHAR},
+			</if>
+			<if test="college != null">
+				college = #{college,jdbcType=VARCHAR},
+			</if>
+			<if test="levelNo != null">
+				level_no = #{levelNo,jdbcType=VARCHAR},
+			</if>
+			<if test="startTime != null">
+				start_time = #{startTime,jdbcType=VARCHAR},
+			</if>
+			<if test="graduateTime != null">
+				graduate_time = #{graduateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="studyStyle != null">
+				study_style = #{studyStyle,jdbcType=VARCHAR},
+			</if>
+			<if test="studyType != null">
+				study_type = #{studyType,jdbcType=VARCHAR},
+			</if>
+			<if test="specialty != null">
+				specialty = #{specialty,jdbcType=VARCHAR},
+			</if>
+			<if test="isKeySubject != null">
+				is_key_subject = #{isKeySubject,jdbcType=VARCHAR},
+			</if>
+			<if test="degree != null">
+				degree = #{degree,jdbcType=VARCHAR},
+			</if>
+			<if test="studyResult != null">
+				study_result = #{studyResult,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.py_education">
+		update py_education
+		set cust_id = #{custId,jdbcType=BIGINT},
+		req_name = #{reqName,jdbcType=VARCHAR},
+		req_document_no = #{reqDocumentNo,jdbcType=VARCHAR},
+		college = #{college,jdbcType=VARCHAR},
+		level_no = #{levelNo,jdbcType=VARCHAR},
+		start_time = #{startTime,jdbcType=VARCHAR},
+		graduate_time = #{graduateTime,jdbcType=VARCHAR},
+		study_style = #{studyStyle,jdbcType=VARCHAR},
+		study_type = #{studyType,jdbcType=VARCHAR},
+		specialty = #{specialty,jdbcType=VARCHAR},
+		is_key_subject = #{isKeySubject,jdbcType=VARCHAR},
+		degree = #{degree,jdbcType=VARCHAR},
+		study_result = #{studyResult,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

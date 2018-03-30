@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.ex_StudentCreditInfoMapper">
+	<resultMap id="ex_StudentCreditInfoMapper"
+		type="com.fkapi.datebase.domain.ex_StudentCreditInfo">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="platFromUserNo" jdbcType="VARCHAR" property="platfromuserno" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+		<result column="documentNo" jdbcType="VARCHAR" property="documentno" />
+		<result column="nation" jdbcType="VARCHAR" property="nation" />
+		<result column="birth" jdbcType="DATE" property="birth" />
+		<result column="college" jdbcType="VARCHAR" property="college" />
+		<result column="classes" jdbcType="VARCHAR" property="classes" />
+		<result column="colgLevel" jdbcType="VARCHAR" property="colglevel" />
+		<result column="faculty" jdbcType="VARCHAR" property="faculty" />
+		<result column="professional" jdbcType="VARCHAR" property="professional" />
+		<result column="studentId" jdbcType="VARCHAR" property="studentid" />
+		<result column="modality" jdbcType="VARCHAR" property="modality" />
+		<result column="entranceTime" jdbcType="DATE" property="entrancetime" />
+		<result column="educational" jdbcType="VARCHAR" property="educational" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+	</resultMap>
+	<sql id="ex_StudentCreditInfo">
+		id, platFromUserNo, sex, documentNo, nation, birth, college, classes,
+		colgLevel,
+		faculty, professional, studentId, modality, entranceTime, educational, type,
+		status,
+		createTime
+	</sql>
+	<select id="selectByCustId" parameterType="java.lang.String"
+		resultMap="ex_StudentCreditInfoMapper">
+		select
+		<include refid="ex_StudentCreditInfo" />
+		from ex_StudentCreditInfo
+		where platFromUserNo = #{platfromuserno,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByCustId" parameterType="java.lang.String">
+		delete from ex_StudentCreditInfo
+		where platFromUserNo = #{platfromuserno,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="java.util.List">
+		insert into ex_StudentCreditInfo (platFromUserNo, sex,
+		documentNo, nation, birth,
+		college, classes, colgLevel,
+		faculty, professional, studentId,
+		modality, entranceTime, educational,
+		type, status, createTime
+		)
+		values 
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+		(#{item.platfromuserno}, '男', #{item.documentno}, '汉族', '1984-08-11',
+		#{item.college}, 'B0603292', #{item.colglevel}, '电子信息与电气工程学院', '控制理论与控制工程',
+		'1060329080', '普通全日制', #{item.entrancetime}, #{item.educational}, '普通',
+		#{item.status}, #{item.createtime})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.ex_StudentCreditInfo">
+		insert into ex_StudentCreditInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="platfromuserno != null">
+				platFromUserNo,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="documentno != null">
+				documentNo,
+			</if>
+			<if test="nation != null">
+				nation,
+			</if>
+			<if test="birth != null">
+				birth,
+			</if>
+			<if test="college != null">
+				college,
+			</if>
+			<if test="classes != null">
+				classes,
+			</if>
+			<if test="colglevel != null">
+				colgLevel,
+			</if>
+			<if test="faculty != null">
+				faculty,
+			</if>
+			<if test="professional != null">
+				professional,
+			</if>
+			<if test="studentid != null">
+				studentId,
+			</if>
+			<if test="modality != null">
+				modality,
+			</if>
+			<if test="entrancetime != null">
+				entranceTime,
+			</if>
+			<if test="educational != null">
+				educational,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createtime != null">
+				createTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="platfromuserno != null">
+				#{platfromuserno,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="documentno != null">
+				#{documentno,jdbcType=VARCHAR},
+			</if>
+			<if test="nation != null">
+				#{nation,jdbcType=VARCHAR},
+			</if>
+			<if test="birth != null">
+				#{birth,jdbcType=DATE},
+			</if>
+			<if test="college != null">
+				#{college,jdbcType=VARCHAR},
+			</if>
+			<if test="classes != null">
+				#{classes,jdbcType=VARCHAR},
+			</if>
+			<if test="colglevel != null">
+				#{colglevel,jdbcType=VARCHAR},
+			</if>
+			<if test="faculty != null">
+				#{faculty,jdbcType=VARCHAR},
+			</if>
+			<if test="professional != null">
+				#{professional,jdbcType=VARCHAR},
+			</if>
+			<if test="studentid != null">
+				#{studentid,jdbcType=VARCHAR},
+			</if>
+			<if test="modality != null">
+				#{modality,jdbcType=VARCHAR},
+			</if>
+			<if test="entrancetime != null">
+				#{entrancetime,jdbcType=DATE},
+			</if>
+			<if test="educational != null">
+				#{educational,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByCustId" parameterType="com.fkapi.datebase.domain.ex_StudentCreditInfo">
+		update ex_StudentCreditInfo
+		<set>
+			<if test="platfromuserno != null">
+				platFromUserNo = #{platfromuserno,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="documentno != null">
+				documentNo = #{documentno,jdbcType=VARCHAR},
+			</if>
+			<if test="nation != null">
+				nation = #{nation,jdbcType=VARCHAR},
+			</if>
+			<if test="birth != null">
+				birth = #{birth,jdbcType=DATE},
+			</if>
+			<if test="college != null">
+				college = #{college,jdbcType=VARCHAR},
+			</if>
+			<if test="classes != null">
+				classes = #{classes,jdbcType=VARCHAR},
+			</if>
+			<if test="colglevel != null">
+				colgLevel = #{colglevel,jdbcType=VARCHAR},
+			</if>
+			<if test="faculty != null">
+				faculty = #{faculty,jdbcType=VARCHAR},
+			</if>
+			<if test="professional != null">
+				professional = #{professional,jdbcType=VARCHAR},
+			</if>
+			<if test="studentid != null">
+				studentId = #{studentid,jdbcType=VARCHAR},
+			</if>
+			<if test="modality != null">
+				modality = #{modality,jdbcType=VARCHAR},
+			</if>
+			<if test="entrancetime != null">
+				entranceTime = #{entrancetime,jdbcType=DATE},
+			</if>
+			<if test="educational != null">
+				educational = #{educational,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createTime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where platFromUserNo = #{platfromuserno,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.ex_StudentCreditInfo">
+		update ex_StudentCreditInfo
+		set platFromUserNo = #{platfromuserno,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=VARCHAR},
+		documentNo = #{documentno,jdbcType=VARCHAR},
+		nation = #{nation,jdbcType=VARCHAR},
+		birth = #{birth,jdbcType=DATE},
+		college = #{college,jdbcType=VARCHAR},
+		classes = #{classes,jdbcType=VARCHAR},
+		colgLevel = #{colglevel,jdbcType=VARCHAR},
+		faculty = #{faculty,jdbcType=VARCHAR},
+		professional = #{professional,jdbcType=VARCHAR},
+		studentId = #{studentid,jdbcType=VARCHAR},
+		modality = #{modality,jdbcType=VARCHAR},
+		entranceTime = #{entrancetime,jdbcType=DATE},
+		educational = #{educational,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		createTime = #{createtime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

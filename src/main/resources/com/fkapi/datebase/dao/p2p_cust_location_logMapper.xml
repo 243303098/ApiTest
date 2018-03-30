@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_cust_location_logMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.p2p_cust_location_log">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="CUST_ID" jdbcType="BIGINT" property="custId" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="MOBILE_SIGN" jdbcType="VARCHAR" property="mobileSign" />
+    <result column="MOBILE_OS" jdbcType="VARCHAR" property="mobileOs" />
+    <result column="LONGITUDE" jdbcType="VARCHAR" property="longitude" />
+    <result column="LATITUDE" jdbcType="VARCHAR" property="latitude" />
+    <result column="LOCATIONAL" jdbcType="VARCHAR" property="locational" />
+    <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+    <result column="DEVICE_MODEL" jdbcType="VARCHAR" property="deviceModel" />
+    <result column="DEVICE_VERSION" jdbcType="VARCHAR" property="deviceVersion" />
+    <result column="DEVICE_PHONE_NUM" jdbcType="VARCHAR" property="devicePhoneNum" />
+    <result column="DEVICE_SIM" jdbcType="VARCHAR" property="deviceSim" />
+    <result column="DEVICE_MAC" jdbcType="VARCHAR" property="deviceMac" />
+    <result column="APP_VERSION" jdbcType="VARCHAR" property="appVersion" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CUST_ID, IP, MOBILE_SIGN, MOBILE_OS, LONGITUDE, LATITUDE, LOCATIONAL, CITY_CODE, 
+    DEVICE_MODEL, DEVICE_VERSION, DEVICE_PHONE_NUM, DEVICE_SIM, DEVICE_MAC, APP_VERSION, 
+    CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from p2p_cust_location_log
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByCustId" parameterType="java.lang.Long">
+    delete from p2p_cust_location_log
+    where CUST_ID = #{custId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_cust_location_log">
+    insert into p2p_cust_location_log (CUST_ID, IP,
+      MOBILE_SIGN, MOBILE_OS, LONGITUDE, 
+      LATITUDE, LOCATIONAL, CITY_CODE, 
+      DEVICE_MODEL, DEVICE_VERSION, DEVICE_PHONE_NUM, 
+      DEVICE_SIM, DEVICE_MAC, APP_VERSION, 
+      CREATE_TIME)
+    values
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+      (#{item.custId}, NULL, #{item.mobileSign}, 'ANDROID', #{item.longitude}, #{item.latitude}, '上海市黄浦区建德路9号', #{item.cityCode}, 'ZTE Grand S II
+      LTE', '4.3 , 18', 'Unknown', '89860114831007854369', #{item.deviceMac}, '2.1.3', #{item.createTime})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_cust_location_log">
+    insert into p2p_cust_location_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="custId != null">
+        CUST_ID,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="mobileSign != null">
+        MOBILE_SIGN,
+      </if>
+      <if test="mobileOs != null">
+        MOBILE_OS,
+      </if>
+      <if test="longitude != null">
+        LONGITUDE,
+      </if>
+      <if test="latitude != null">
+        LATITUDE,
+      </if>
+      <if test="locational != null">
+        LOCATIONAL,
+      </if>
+      <if test="cityCode != null">
+        CITY_CODE,
+      </if>
+      <if test="deviceModel != null">
+        DEVICE_MODEL,
+      </if>
+      <if test="deviceVersion != null">
+        DEVICE_VERSION,
+      </if>
+      <if test="devicePhoneNum != null">
+        DEVICE_PHONE_NUM,
+      </if>
+      <if test="deviceSim != null">
+        DEVICE_SIM,
+      </if>
+      <if test="deviceMac != null">
+        DEVICE_MAC,
+      </if>
+      <if test="appVersion != null">
+        APP_VERSION,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileSign != null">
+        #{mobileSign,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileOs != null">
+        #{mobileOs,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="locational != null">
+        #{locational,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceModel != null">
+        #{deviceModel,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceVersion != null">
+        #{deviceVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="devicePhoneNum != null">
+        #{devicePhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSim != null">
+        #{deviceSim,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceMac != null">
+        #{deviceMac,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null">
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_cust_location_log">
+    update p2p_cust_location_log
+    <set>
+      <if test="custId != null">
+        CUST_ID = #{custId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileSign != null">
+        MOBILE_SIGN = #{mobileSign,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileOs != null">
+        MOBILE_OS = #{mobileOs,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        LONGITUDE = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        LATITUDE = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="locational != null">
+        LOCATIONAL = #{locational,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceModel != null">
+        DEVICE_MODEL = #{deviceModel,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceVersion != null">
+        DEVICE_VERSION = #{deviceVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="devicePhoneNum != null">
+        DEVICE_PHONE_NUM = #{devicePhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSim != null">
+        DEVICE_SIM = #{deviceSim,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceMac != null">
+        DEVICE_MAC = #{deviceMac,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null">
+        APP_VERSION = #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_cust_location_log">
+    update p2p_cust_location_log
+    set CUST_ID = #{custId,jdbcType=BIGINT},
+      IP = #{ip,jdbcType=VARCHAR},
+      MOBILE_SIGN = #{mobileSign,jdbcType=VARCHAR},
+      MOBILE_OS = #{mobileOs,jdbcType=VARCHAR},
+      LONGITUDE = #{longitude,jdbcType=VARCHAR},
+      LATITUDE = #{latitude,jdbcType=VARCHAR},
+      LOCATIONAL = #{locational,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      DEVICE_MODEL = #{deviceModel,jdbcType=VARCHAR},
+      DEVICE_VERSION = #{deviceVersion,jdbcType=VARCHAR},
+      DEVICE_PHONE_NUM = #{devicePhoneNum,jdbcType=VARCHAR},
+      DEVICE_SIM = #{deviceSim,jdbcType=VARCHAR},
+      DEVICE_MAC = #{deviceMac,jdbcType=VARCHAR},
+      APP_VERSION = #{appVersion,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

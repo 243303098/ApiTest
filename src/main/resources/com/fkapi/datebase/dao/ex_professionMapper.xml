@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.ex_professionMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.ex_profession">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="college_id" jdbcType="BIGINT" property="collegeId" />
+    <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
+    <result column="profession_name" jdbcType="VARCHAR" property="professionName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, college_id, college_name, profession_name
+  </sql>
+  <select id="selectByCollegeNameAndProfessionName" parameterType="com.fkapi.datebase.domain.ex_profession" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ex_profession
+    where college_name = #{collegeName,jdbcType=VARCHAR} AND profession_name = #{professionName,jdbcType=BIGINT}
+  </select>
+</mapper>

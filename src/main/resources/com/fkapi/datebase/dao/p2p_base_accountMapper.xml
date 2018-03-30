@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_base_accountMapper">
+  <resultMap id="p2p_base_accountMapper" type="com.fkapi.datebase.domain.p2p_base_account">
+    <id column="ACCT_NO" jdbcType="VARCHAR" property="acctNo" />
+    <result column="ACCT_NAME" jdbcType="VARCHAR" property="acctName" />
+    <result column="ACCT_BAL" jdbcType="DECIMAL" property="acctBal" />
+    <result column="OPEN_ORG_CODE" jdbcType="VARCHAR" property="openOrgCode" />
+    <result column="OPEN_ORG_NAME" jdbcType="VARCHAR" property="openOrgName" />
+    <result column="OPEN_TIME" jdbcType="DATE" property="openTime" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ACCT_KIND" jdbcType="VARCHAR" property="acctKind" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="VERSION" jdbcType="BIGINT" property="version" />
+  </resultMap>
+  <sql id="p2p_base_account">
+    ACCT_NO, ACCT_NAME, ACCT_BAL, OPEN_ORG_CODE, OPEN_ORG_NAME, OPEN_TIME, REMARK, ACCT_KIND, 
+    CREATE_TIME, VERSION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="p2p_base_accountMapper">
+    select 
+    <include refid="p2p_base_account" />
+    from p2p_base_account
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByAcctNo" parameterType="java.lang.String">
+    delete from p2p_base_account
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_base_account">
+    insert into p2p_base_account (ACCT_NO, ACCT_NAME, ACCT_BAL, 
+      OPEN_ORG_CODE, OPEN_ORG_NAME, OPEN_TIME, 
+      REMARK, ACCT_KIND, CREATE_TIME, 
+      VERSION)
+    values 
+    <foreach collection="list" item="item" index="index"
+			separator=",">
+    (#{item.acctNo}, #{item.acctName}, '0', 'TPOM051418', '新网', #{item.openTime}, NULL, 'CUST', #{item.createTime}, '11')
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_base_account">
+    insert into p2p_base_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="acctNo != null">
+        ACCT_NO,
+      </if>
+      <if test="acctName != null">
+        ACCT_NAME,
+      </if>
+      <if test="acctBal != null">
+        ACCT_BAL,
+      </if>
+      <if test="openOrgCode != null">
+        OPEN_ORG_CODE,
+      </if>
+      <if test="openOrgName != null">
+        OPEN_ORG_NAME,
+      </if>
+      <if test="openTime != null">
+        OPEN_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="acctKind != null">
+        ACCT_KIND,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="acctNo != null">
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctName != null">
+        #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctBal != null">
+        #{acctBal,jdbcType=DECIMAL},
+      </if>
+      <if test="openOrgCode != null">
+        #{openOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="openOrgName != null">
+        #{openOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null">
+        #{openTime,jdbcType=DATE},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="acctKind != null">
+        #{acctKind,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_base_account">
+    update p2p_base_account
+    <set>
+      <if test="acctName != null">
+        ACCT_NAME = #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctBal != null">
+        ACCT_BAL = #{acctBal,jdbcType=DECIMAL},
+      </if>
+      <if test="openOrgCode != null">
+        OPEN_ORG_CODE = #{openOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="openOrgName != null">
+        OPEN_ORG_NAME = #{openOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null">
+        OPEN_TIME = #{openTime,jdbcType=DATE},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="acctKind != null">
+        ACCT_KIND = #{acctKind,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_base_account">
+    update p2p_base_account
+    set ACCT_NAME = #{acctName,jdbcType=VARCHAR},
+      ACCT_BAL = #{acctBal,jdbcType=DECIMAL},
+      OPEN_ORG_CODE = #{openOrgCode,jdbcType=VARCHAR},
+      OPEN_ORG_NAME = #{openOrgName,jdbcType=VARCHAR},
+      OPEN_TIME = #{openTime,jdbcType=DATE},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ACCT_KIND = #{acctKind,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=BIGINT}
+    where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

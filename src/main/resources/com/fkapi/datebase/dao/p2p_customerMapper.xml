@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_customerMapper">
+	<resultMap id="p2p_customer" type="com.fkapi.datebase.domain.p2p_customer">
+		<id column="ID" jdbcType="BIGINT" property="id" />
+		<result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+		<result column="LOGIN_PASSWORD" jdbcType="VARCHAR" property="loginPassword" />
+		<result column="RECOMMEND_CODE" jdbcType="VARCHAR" property="recommendCode" />
+		<result column="CUST_STATUS" jdbcType="VARCHAR" property="custStatus" />
+		<result column="PWD_ERROR_COUNTER" jdbcType="INTEGER" property="pwdErrorCounter" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="LAST_LOGIN_TIME" jdbcType="TIMESTAMP" property="lastLoginTime" />
+		<result column="LAST_UPDATE_TIME" jdbcType="TIMESTAMP"
+			property="lastUpdateTime" />
+		<result column="PAY_PWD" jdbcType="VARCHAR" property="payPwd" />
+		<result column="REG_SOURCE" jdbcType="VARCHAR" property="regSource" />
+		<result column="REG_DEVICE" jdbcType="VARCHAR" property="regDevice" />
+		<result column="REG_OS" jdbcType="VARCHAR" property="regOs" />
+		<result column="REFEREE" jdbcType="BIGINT" property="referee" />
+		<result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+		<result column="LOGIN_IP" jdbcType="VARCHAR" property="loginIp" />
+		<result column="LOCK_TIME" jdbcType="TIMESTAMP" property="lockTime" />
+		<result column="LOGIN_COUNT" jdbcType="INTEGER" property="loginCount" />
+		<result column="CUST_TYPE" jdbcType="VARCHAR" property="custType" />
+		<result column="MOBILE" jdbcType="CHAR" property="mobile" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="CUST_KIND" jdbcType="VARCHAR" property="custKind" />
+		<result column="ACTIVITY_SRC" jdbcType="VARCHAR" property="activitySrc" />
+		<result column="BELONG_PLATFORM" jdbcType="VARCHAR" property="belongPlatform" />
+		<result column="RANDOM_NO" jdbcType="VARCHAR" property="randomNo" />
+		<result column="RESET_TIME" jdbcType="TIMESTAMP" property="resetTime" />
+		<result column="AUTO_PWD" jdbcType="CHAR" property="autoPwd" />
+		<result column="AUTO_INVEST_AUTH" jdbcType="CHAR" property="autoInvestAuth" />
+		<result column="DIREC_TRF_AUTH" jdbcType="CHAR" property="direcTrfAuth" />
+	</resultMap>
+	<sql id="p2p_customer">
+		ID, LOGIN_NAME, LOGIN_PASSWORD, RECOMMEND_CODE,
+		CUST_STATUS,
+		PWD_ERROR_COUNTER, CREATE_TIME,
+		LAST_LOGIN_TIME,
+		LAST_UPDATE_TIME, PAY_PWD, REG_SOURCE, REG_DEVICE, REG_OS, REFEREE,
+		NICK_NAME, LOGIN_IP, LOCK_TIME, LOGIN_COUNT, CUST_TYPE, MOBILE, EMAIL,
+		CUST_KIND,
+		ACTIVITY_SRC, BELONG_PLATFORM, RANDOM_NO, RESET_TIME,
+		AUTO_PWD, AUTO_INVEST_AUTH,
+		DIREC_TRF_AUTH
+	</sql>
+	<select id="selectByLoginName" parameterType="java.lang.String"
+		resultMap="p2p_customer">
+		select
+		<include refid="p2p_customer" />
+		from p2p_customer
+		where LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByLoginName" parameterType="java.lang.String">
+		delete from
+		p2p_customer
+		where LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="java.util.List">
+		insert into p2p_customer (LOGIN_NAME, LOGIN_PASSWORD,
+		RECOMMEND_CODE,
+		CUST_STATUS, PWD_ERROR_COUNTER,
+		CREATE_TIME,LAST_LOGIN_TIME,
+		LAST_UPDATE_TIME,
+		PAY_PWD, REG_SOURCE, REG_DEVICE,
+		REG_OS, REFEREE,
+		NICK_NAME,
+		LOGIN_IP, LOCK_TIME, LOGIN_COUNT,
+		CUST_TYPE,
+		MOBILE
+		, EMAIL,
+		CUST_KIND, ACTIVITY_SRC, BELONG_PLATFORM,
+		RANDOM_NO,
+		RESET_TIME,
+		AUTO_PWD,
+		AUTO_INVEST_AUTH, DIREC_TRF_AUTH
+		)
+		values
+			<foreach collection="list" item="item" index="index"
+				separator=",">
+				(#{item.loginName}, 'dd6e5e5918e94d997c686fcebc56922f',
+				NULL, '10', '0', #{item.createTime}, <if test="#{item.lastLoginTime} != null">#{item.lastLoginTime}</if>, NULL,
+				NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'P',<if test="#{item.mobile} != null">#{item.mobile}</if>,
+				NULL, 'NEW_CUST', NULL, #{item.belongPlatform}, NULL, NULL, #{item.autoPwd}, 'N',
+				'N')
+			</foreach>
+	</insert>
+	<update id="updateByLoginName" parameterType="com.fkapi.datebase.domain.p2p_customer">
+		update p2p_customer
+		<set>
+			<if test="loginName != null">
+				LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="loginPassword != null">
+				LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="recommendCode != null">
+				RECOMMEND_CODE = #{recommendCode,jdbcType=VARCHAR},
+			</if>
+			<if test="custStatus != null">
+				CUST_STATUS = #{custStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="pwdErrorCounter != null">
+				PWD_ERROR_COUNTER = #{pwdErrorCounter,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastLoginTime != null">
+				LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastUpdateTime != null">
+				LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="payPwd != null">
+				PAY_PWD = #{payPwd,jdbcType=VARCHAR},
+			</if>
+			<if test="regSource != null">
+				REG_SOURCE = #{regSource,jdbcType=VARCHAR},
+			</if>
+			<if test="regDevice != null">
+				REG_DEVICE = #{regDevice,jdbcType=VARCHAR},
+			</if>
+			<if test="regOs != null">
+				REG_OS = #{regOs,jdbcType=VARCHAR},
+			</if>
+			<if test="referee != null">
+				REFEREE = #{referee,jdbcType=BIGINT},
+			</if>
+			<if test="nickName != null">
+				NICK_NAME = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="loginIp != null">
+				LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="lockTime != null">
+				LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginCount != null">
+				LOGIN_COUNT = #{loginCount,jdbcType=INTEGER},
+			</if>
+			<if test="custType != null">
+				CUST_TYPE = #{custType,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=CHAR},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="custKind != null">
+				CUST_KIND = #{custKind,jdbcType=VARCHAR},
+			</if>
+			<if test="activitySrc != null">
+				ACTIVITY_SRC = #{activitySrc,jdbcType=VARCHAR},
+			</if>
+			<if test="belongPlatform != null">
+				BELONG_PLATFORM = #{belongPlatform,jdbcType=VARCHAR},
+			</if>
+			<if test="randomNo != null">
+				RANDOM_NO = #{randomNo,jdbcType=VARCHAR},
+			</if>
+			<if test="resetTime != null">
+				RESET_TIME = #{resetTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="autoPwd != null">
+				AUTO_PWD = #{autoPwd,jdbcType=CHAR},
+			</if>
+			<if test="autoInvestAuth != null">
+				AUTO_INVEST_AUTH = #{autoInvestAuth,jdbcType=CHAR},
+			</if>
+			<if test="direcTrfAuth != null">
+				DIREC_TRF_AUTH = #{direcTrfAuth,jdbcType=CHAR},
+			</if>
+		</set>
+		where LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_customer">
+		update
+		p2p_customer
+		set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+		LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+		RECOMMEND_CODE =
+		#{recommendCode,jdbcType=VARCHAR},
+		CUST_STATUS =
+		#{custStatus,jdbcType=VARCHAR},
+		PWD_ERROR_COUNTER =
+		#{pwdErrorCounter,jdbcType=INTEGER},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		LAST_LOGIN_TIME =
+		#{lastLoginTime,jdbcType=TIMESTAMP},
+		LAST_UPDATE_TIME =
+		#{lastUpdateTime,jdbcType=TIMESTAMP},
+		PAY_PWD =
+		#{payPwd,jdbcType=VARCHAR},
+		REG_SOURCE = #{regSource,jdbcType=VARCHAR},
+		REG_DEVICE = #{regDevice,jdbcType=VARCHAR},
+		REG_OS =
+		#{regOs,jdbcType=VARCHAR},
+		REFEREE = #{referee,jdbcType=BIGINT},
+		NICK_NAME = #{nickName,jdbcType=VARCHAR},
+		LOGIN_IP =
+		#{loginIp,jdbcType=VARCHAR},
+		LOCK_TIME =
+		#{lockTime,jdbcType=TIMESTAMP},
+		LOGIN_COUNT =
+		#{loginCount,jdbcType=INTEGER},
+		CUST_TYPE =
+		#{custType,jdbcType=VARCHAR},
+		MOBILE = #{mobile,jdbcType=CHAR},
+		EMAIL =
+		#{email,jdbcType=VARCHAR},
+		CUST_KIND = #{custKind,jdbcType=VARCHAR},
+		ACTIVITY_SRC = #{activitySrc,jdbcType=VARCHAR},
+		BELONG_PLATFORM =
+		#{belongPlatform,jdbcType=VARCHAR},
+		RANDOM_NO =
+		#{randomNo,jdbcType=VARCHAR},
+		RESET_TIME =
+		#{resetTime,jdbcType=TIMESTAMP},
+		AUTO_PWD = #{autoPwd,jdbcType=CHAR},
+		AUTO_INVEST_AUTH = #{autoInvestAuth,jdbcType=CHAR},
+		DIREC_TRF_AUTH =
+		#{direcTrfAuth,jdbcType=CHAR},
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_third_accountMapper">
+	<resultMap id="p2p_third_accountMapper" type="com.fkapi.datebase.domain.p2p_third_account">
+		<id column="ACCT_NO" jdbcType="VARCHAR" property="acctNo" />
+		<result column="REF_NO" jdbcType="VARCHAR" property="refNo" />
+		<result column="ACCT_KIND" jdbcType="VARCHAR" property="acctKind" />
+		<result column="THIRD_ACCT_NO" jdbcType="VARCHAR" property="thirdAcctNo" />
+		<result column="THIRD_USER_ID" jdbcType="VARCHAR" property="thirdUserId" />
+		<result column="ACTIVE_FLAG" jdbcType="CHAR" property="activeFlag" />
+		<result column="OPEN_FLAG" jdbcType="CHAR" property="openFlag" />
+		<result column="USER_ROLE" jdbcType="VARCHAR" property="userRole" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	<sql id="p2p_third_account">
+		ACCT_NO, REF_NO, ACCT_KIND, THIRD_ACCT_NO, THIRD_USER_ID, ACTIVE_FLAG,
+		OPEN_FLAG,
+		USER_ROLE, CREATE_TIME, UPDATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="p2p_third_accountMapper">
+		select
+		<include refid="p2p_third_account" />
+		from p2p_third_account
+		where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByCustIdAndAcctNo" parameterType="com.fkapi.datebase.domain.p2p_third_account">
+	<foreach collection="list" item="item" index="index"
+			separator="or">
+		delete from p2p_third_account
+		where REF_NO = #{item.refNo,jdbcType=VARCHAR}
+		or ACCT_NO = #{item.acctNo,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+	<insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_third_account">
+		insert into p2p_third_account (ACCT_NO, REF_NO, ACCT_KIND,
+		THIRD_ACCT_NO, THIRD_USER_ID, ACTIVE_FLAG,
+		OPEN_FLAG, USER_ROLE, CREATE_TIME,
+		UPDATE_TIME)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.acctNo}, #{item.refNo}, 'CUST', #{item.thirdAcctNo},
+			#{item.thirdUserId}, 'Y', 'Y', #{item.userRole}, #{item.createTime}, #{item.updateTime})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_third_account">
+		insert into p2p_third_account
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="acctNo != null">
+				ACCT_NO,
+			</if>
+			<if test="refNo != null">
+				REF_NO,
+			</if>
+			<if test="acctKind != null">
+				ACCT_KIND,
+			</if>
+			<if test="thirdAcctNo != null">
+				THIRD_ACCT_NO,
+			</if>
+			<if test="thirdUserId != null">
+				THIRD_USER_ID,
+			</if>
+			<if test="activeFlag != null">
+				ACTIVE_FLAG,
+			</if>
+			<if test="openFlag != null">
+				OPEN_FLAG,
+			</if>
+			<if test="userRole != null">
+				USER_ROLE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="acctNo != null">
+				#{acctNo,jdbcType=VARCHAR},
+			</if>
+			<if test="refNo != null">
+				#{refNo,jdbcType=VARCHAR},
+			</if>
+			<if test="acctKind != null">
+				#{acctKind,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdAcctNo != null">
+				#{thirdAcctNo,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdUserId != null">
+				#{thirdUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="activeFlag != null">
+				#{activeFlag,jdbcType=CHAR},
+			</if>
+			<if test="openFlag != null">
+				#{openFlag,jdbcType=CHAR},
+			</if>
+			<if test="userRole != null">
+				#{userRole,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_third_account">
+		update p2p_third_account
+		<set>
+			<if test="refNo != null">
+				REF_NO = #{refNo,jdbcType=VARCHAR},
+			</if>
+			<if test="acctKind != null">
+				ACCT_KIND = #{acctKind,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdAcctNo != null">
+				THIRD_ACCT_NO = #{thirdAcctNo,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdUserId != null">
+				THIRD_USER_ID = #{thirdUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="activeFlag != null">
+				ACTIVE_FLAG = #{activeFlag,jdbcType=CHAR},
+			</if>
+			<if test="openFlag != null">
+				OPEN_FLAG = #{openFlag,jdbcType=CHAR},
+			</if>
+			<if test="userRole != null">
+				USER_ROLE = #{userRole,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_third_account">
+		update p2p_third_account
+		set REF_NO = #{refNo,jdbcType=VARCHAR},
+		ACCT_KIND = #{acctKind,jdbcType=VARCHAR},
+		THIRD_ACCT_NO = #{thirdAcctNo,jdbcType=VARCHAR},
+		THIRD_USER_ID = #{thirdUserId,jdbcType=VARCHAR},
+		ACTIVE_FLAG = #{activeFlag,jdbcType=CHAR},
+		OPEN_FLAG = #{openFlag,jdbcType=CHAR},
+		USER_ROLE = #{userRole,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+		where ACCT_NO = #{acctNo,jdbcType=VARCHAR}
+	</update>
+</mapper>

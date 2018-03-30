@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fkapi.datebase.dao.p2p_loan_claim_extMapper">
+  <resultMap id="BaseResultMap" type="com.fkapi.datebase.domain.p2p_loan_claim_ext">
+    <id column="PROJECT_NO" jdbcType="VARCHAR" property="projectNo" />
+    <result column="ACT_OVERDUE_FLAG" jdbcType="CHAR" property="actOverdueFlag" />
+    <result column="FAIL_SCALE_TIME" jdbcType="TIMESTAMP" property="failScaleTime" />
+    <result column="PENGYUAN_REQ_STATUS" jdbcType="VARCHAR" property="pengyuanReqStatus" />
+    <result column="PRODUCT_PRICE" jdbcType="DECIMAL" property="productPrice" />
+    <result column="REBATE_RATE" jdbcType="DECIMAL" property="rebateRate" />
+    <result column="BDF_PRJ_TYPE" jdbcType="VARCHAR" property="bdfPrjType" />
+    <result column="FAIL_SCALE_KIND" jdbcType="VARCHAR" property="failScaleKind" />
+    <result column="GROUP_SIGN" jdbcType="VARCHAR" property="groupSign" />
+    <result column="SEGMENT" jdbcType="INTEGER" property="segment" />
+    <result column="GROUP_SIGN_2" jdbcType="VARCHAR" property="groupSign2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PROJECT_NO, ACT_OVERDUE_FLAG, FAIL_SCALE_TIME, PENGYUAN_REQ_STATUS, PRODUCT_PRICE, 
+    REBATE_RATE, BDF_PRJ_TYPE, FAIL_SCALE_KIND, GROUP_SIGN, SEGMENT, GROUP_SIGN_2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from p2p_loan_claim_ext
+    where PROJECT_NO = #{projectNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from p2p_loan_claim_ext
+    where PROJECT_NO = #{projectNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fkapi.datebase.domain.p2p_loan_claim_ext">
+    insert into p2p_loan_claim_ext (PROJECT_NO, ACT_OVERDUE_FLAG, FAIL_SCALE_TIME, 
+      PENGYUAN_REQ_STATUS, PRODUCT_PRICE, REBATE_RATE, 
+      BDF_PRJ_TYPE, FAIL_SCALE_KIND, GROUP_SIGN, 
+      SEGMENT, GROUP_SIGN_2)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (#{item.projectNo}, '1', NULL, '0', '0.00', '0.0000', #{item.bdfPrjType}, 'NO_FAIL', NULL, '0', NULL)
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.fkapi.datebase.domain.p2p_loan_claim_ext">
+    insert into p2p_loan_claim_ext
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projectNo != null">
+        PROJECT_NO,
+      </if>
+      <if test="actOverdueFlag != null">
+        ACT_OVERDUE_FLAG,
+      </if>
+      <if test="failScaleTime != null">
+        FAIL_SCALE_TIME,
+      </if>
+      <if test="pengyuanReqStatus != null">
+        PENGYUAN_REQ_STATUS,
+      </if>
+      <if test="productPrice != null">
+        PRODUCT_PRICE,
+      </if>
+      <if test="rebateRate != null">
+        REBATE_RATE,
+      </if>
+      <if test="bdfPrjType != null">
+        BDF_PRJ_TYPE,
+      </if>
+      <if test="failScaleKind != null">
+        FAIL_SCALE_KIND,
+      </if>
+      <if test="groupSign != null">
+        GROUP_SIGN,
+      </if>
+      <if test="segment != null">
+        SEGMENT,
+      </if>
+      <if test="groupSign2 != null">
+        GROUP_SIGN_2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projectNo != null">
+        #{projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="actOverdueFlag != null">
+        #{actOverdueFlag,jdbcType=CHAR},
+      </if>
+      <if test="failScaleTime != null">
+        #{failScaleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pengyuanReqStatus != null">
+        #{pengyuanReqStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null">
+        #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="rebateRate != null">
+        #{rebateRate,jdbcType=DECIMAL},
+      </if>
+      <if test="bdfPrjType != null">
+        #{bdfPrjType,jdbcType=VARCHAR},
+      </if>
+      <if test="failScaleKind != null">
+        #{failScaleKind,jdbcType=VARCHAR},
+      </if>
+      <if test="groupSign != null">
+        #{groupSign,jdbcType=VARCHAR},
+      </if>
+      <if test="segment != null">
+        #{segment,jdbcType=INTEGER},
+      </if>
+      <if test="groupSign2 != null">
+        #{groupSign2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fkapi.datebase.domain.p2p_loan_claim_ext">
+    update p2p_loan_claim_ext
+    <set>
+      <if test="actOverdueFlag != null">
+        ACT_OVERDUE_FLAG = #{actOverdueFlag,jdbcType=CHAR},
+      </if>
+      <if test="failScaleTime != null">
+        FAIL_SCALE_TIME = #{failScaleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pengyuanReqStatus != null">
+        PENGYUAN_REQ_STATUS = #{pengyuanReqStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null">
+        PRODUCT_PRICE = #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="rebateRate != null">
+        REBATE_RATE = #{rebateRate,jdbcType=DECIMAL},
+      </if>
+      <if test="bdfPrjType != null">
+        BDF_PRJ_TYPE = #{bdfPrjType,jdbcType=VARCHAR},
+      </if>
+      <if test="failScaleKind != null">
+        FAIL_SCALE_KIND = #{failScaleKind,jdbcType=VARCHAR},
+      </if>
+      <if test="groupSign != null">
+        GROUP_SIGN = #{groupSign,jdbcType=VARCHAR},
+      </if>
+      <if test="segment != null">
+        SEGMENT = #{segment,jdbcType=INTEGER},
+      </if>
+      <if test="groupSign2 != null">
+        GROUP_SIGN_2 = #{groupSign2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PROJECT_NO = #{projectNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fkapi.datebase.domain.p2p_loan_claim_ext">
+    update p2p_loan_claim_ext
+    set ACT_OVERDUE_FLAG = #{actOverdueFlag,jdbcType=CHAR},
+      FAIL_SCALE_TIME = #{failScaleTime,jdbcType=TIMESTAMP},
+      PENGYUAN_REQ_STATUS = #{pengyuanReqStatus,jdbcType=VARCHAR},
+      PRODUCT_PRICE = #{productPrice,jdbcType=DECIMAL},
+      REBATE_RATE = #{rebateRate,jdbcType=DECIMAL},
+      BDF_PRJ_TYPE = #{bdfPrjType,jdbcType=VARCHAR},
+      FAIL_SCALE_KIND = #{failScaleKind,jdbcType=VARCHAR},
+      GROUP_SIGN = #{groupSign,jdbcType=VARCHAR},
+      SEGMENT = #{segment,jdbcType=INTEGER},
+      GROUP_SIGN_2 = #{groupSign2,jdbcType=VARCHAR}
+    where PROJECT_NO = #{projectNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

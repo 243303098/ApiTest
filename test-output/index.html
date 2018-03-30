@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-Default_suite">
+              <span class="suite-name border-passed">Default suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
+                    <span>C:\Users\Administrator\AppData\Local\Temp\testng-eclipse-622155559\testng-customsuite.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-Default_suite">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-Default_suite">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-Default_suite">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-Default_suite">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Default_suite">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-Default_suite">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">1 method,   1 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Default_suite">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="com.fkapi.vcc.ExcuteVccApplyCase" hash-for-method="excute(P012_通讯录无联系人, 1, allpass, 通讯录无数据, P012, AUDIT_RETURN, AUDIT_RETURN, Passed)">excute(P012_通讯录无联系人, 1, allpass, 通讯录无数据, P012, AUDIT_RETURN, AUDIT_RETURN, Passed)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Default_suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Default_suite" class="panel Default_suite">
+          <div class="suite-Default_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.fkapi.vcc.ExcuteVccApplyCase</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="excute(P012_通讯录无联系人, 1, allpass, 通讯录无数据, P012, AUDIT_RETURN, AUDIT_RETURN, Passed)">
+                  </a> <!-- excute(P012_通讯录无联系人, 1, allpass, 通讯录无数据, P012, AUDIT_RETURN, AUDIT_RETURN, Passed) -->
+                  <span class="method-name">excute</span>
+                  <span class="parameters">(P012_通讯录无联系人, 1, allpass, 通讯录无数据, P012, AUDIT_RETURN, AUDIT_RETURN, Passed)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-passed -->
+        </div> <!-- panel Default_suite -->
+        <div panel-name="test-xml-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\Users\Administrator\AppData\Local\Temp\testng-eclipse-622155559\testng-customsuite.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default suite&quot;&gt;
+  &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.fkapi.vcc.ExcuteVccCase&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Default test --&gt;
+&lt;/suite&gt; &lt;!-- Default suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Default test (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Default_suite');
+function tableData_Default_suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(1);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'excute')
+data.setCell(0, 2, 'com.fkapi.vcc.ExcuteVccCase')
+data.setCell(0, 3, 3883);
+window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 3 seconds</span>
+              <div id="times-div-Default_suite">
+              </div> <!-- times-div-Default_suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">excute(P012_通讯录无联系人, 1, allpass, 通讯录无数据, P012, AUDIT_RETURN, AUDIT_RETURN, Passed)</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output">              </span>
+                <span class="reporter-method-output">----------------------------------当前执行的caseNo为： P012_通讯录无联系人--------------------------------------------</span>
+                <span class="reporter-method-output">               </span>
+                <span class="reporter-method-output">新增loginName为：ceshi01的p2p_customer表的数据成功</span>
+                <span class="reporter-method-output">添加loginName为：ceshi01的p2p_base_customer表的数据成功</span>
+                <span class="reporter-method-output">添加p2p_cert_auth表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_cert_auth表的数据成功</span>
+                <span class="reporter-method-output">添加p2p_cust_account表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}</span>
+                <span class="reporter-method-output">添加certAuth为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}的p2p_cust_account表数据成功</span>
+                <span class="reporter-method-output">添加p2p_account_bankcard表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}</span>
+                <span class="reporter-method-output">添加卡号为：6217001000000000201的p2p_account_bankcard表信息成功</span>
+                <span class="reporter-method-output">添加p2p_base_account表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}</span>
+                <span class="reporter-method-output">添加acctNo为：6217001000000000201的p2p_base_account表信息成功</span>
+                <span class="reporter-method-output">添加p2p_account_bankcard_log表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}</span>
+                <span class="reporter-method-output">添加卡号为：6217001000000000201的p2p_account_bankcard_log表的信息成功</span>
+                <span class="reporter-method-output">添加p2p_third_account表的参数为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}</span>
+                <span class="reporter-method-output">添加custId为： 715005293的p2p_third_account表的数据成功</span>
+                <span class="reporter-method-output">添加acctNo为：6217001000000000201的p2p_account_check表信息成功</span>
+                <span class="reporter-method-output">添加custId为： 715005293的p2p_cust_credit_info表数据成功</span>
+                <span class="reporter-method-output">更新certAuth为： {"cardNo":"6217001000000000201","idNo":"220322199901297363","certAuthStatus":"AS","userRole":"BORROWERS","custName":"王宁"}的数据成功</span>
+                <span class="reporter-method-output">更新phoneAuth为： {"phoneAuthStatus":"AS","mobile":"18000000010"}的数据成功</span>
+                <span class="reporter-method-output">添加p2p_student_cust表的参数为：{"clogLevel":"本科","schoolRollAuthStatus":"AS","entranceTime":"2014-09-01","province":"江苏省","collegeName":"苏州大学","city":"苏州市"}</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_student_cust表的数据成功</span>
+                <span class="reporter-method-output">添加p2p_student_info表的参数为： {"clogLevel":"本科","schoolRollAuthStatus":"AS","entranceTime":"2014-09-01","province":"江苏省","collegeName":"苏州大学","city":"苏州市"}</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_student_info表的数据成功</span>
+                <span class="reporter-method-output">添加ex_StudentCreditInfo表的参数为： {"clogLevel":"本科","schoolRollAuthStatus":"AS","entranceTime":"2014-09-01","province":"江苏省","collegeName":"苏州大学","city":"苏州市"}</span>
+                <span class="reporter-method-output">添加学籍认证信息为：{"clogLevel":"本科","schoolRollAuthStatus":"AS","entranceTime":"2014-09-01","province":"江苏省","collegeName":"苏州大学","city":"苏州市"}的ex_StudentCreditInfo表信息成功</span>
+                <span class="reporter-method-output">更新schoolRollAuth为： {"clogLevel":"本科","schoolRollAuthStatus":"AS","entranceTime":"2014-09-01","province":"江苏省","collegeName":"苏州大学","city":"苏州市"}的数据成功</span>
+                <span class="reporter-method-output">添加p2p_customer_education_log表的参数为： {"clogLevel":"本科","entranceTime":"2011-07-01","educationAuthStatus":"AF","collegeName":"苏州大学"}</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_customer_education_log表的数据成功</span>
+                <span class="reporter-method-output">更新educationAuth为： {"clogLevel":"本科","entranceTime":"2011-07-01","educationAuthStatus":"AF","collegeName":"苏州大学"}的数据成功</span>
+                <span class="reporter-method-output">添加p2p_linkface_auth表的参数为： {"photoAuthStatus":"AS"}</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_linkface_auth表的数据成功</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_linkface_msg表的数据成功</span>
+                <span class="reporter-method-output">更新photoAuth为： {"photoAuthStatus":"AS"}的数据成功</span>
+                <span class="reporter-method-output">添加p2p_customer_contactor表的参数为： { "province":"江苏省", "city":"苏州市", "contractor":[ {"name":"父母","relation":"父母","mobile":"15221526888"}, {"name":"配偶","relation":"配偶","mobile":"15221525888"} ] }</span>
+                <span class="reporter-method-output">添加的联系人信息为： { "province":"江苏省", "city":"苏州市", "contractor":[ {"name":"父母","relation":"父母","mobile":"15221526888"}, {"name":"配偶","relation":"配偶","mobile":"15221525888"} ] }</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_customer_contactor表的数据成功</span>
+                <span class="reporter-method-output">添加p2p_cust_top_contactor表的参数为： { "province":"江苏省", "city":"苏州市", "contractor":[ {"name":"父母","relation":"父母","mobile":"15221526888"}, {"name":"配偶","relation":"配偶","mobile":"15221525888"} ] }</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_cust_top_contactor表的数据成功</span>
+                <span class="reporter-method-output">添加p2p_cust_top_contactor表的参数为： { "province":"江苏省", "city":"苏州市", "contractor":[ {"name":"父母","relation":"父母","mobile":"15221526888"}, {"name":"配偶","relation":"配偶","mobile":"15221525888"} ] }</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_cust_top_contactor表的数据成功</span>
+                <span class="reporter-method-output">添加的通讯认证参数为 ： {"jxlMobileAuthStatus":"AS","authTime":"2017-06-15"}</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_juxinli_mobile_auth表的数据成功</span>
+                <span class="reporter-method-output">添加的通讯认证参数为 ： {"jxlMobileAuthStatus":"AS","authTime":"2017-06-15"}</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_juxinli_mobile_auth表的数据成功</span>
+                <span class="reporter-method-output">添加custId为：715005293的p2p_juxinli_mobile_log表的数据成功</span>
+                <span class="reporter-method-output">添加jxl_primary_info表的参数为： {"jxlMobileAuthStatus":"AS","authTime":"2017-06-15"}</span>
+                <span class="reporter-method-output">添加通讯认证的信息为：{"jxlMobileAuthStatus":"AS","authTime":"2017-06-15"}的jxl_primary_info表信息成功</span>
+                <span class="reporter-method-output">更新addrAuth为： {"fullAddr":"苏州市高新区","addrAuthStatus":"AS","nowCity":"苏州市","nowProvince":"江苏省"}的数据成功</span>
+                <span class="reporter-method-output">请求额度计算接口的custId为： 715005293mobileSign为 ：</span>
+                <span class="reporter-method-output">请求地址为：http://192.168.101.201:26500/VCC/auditCustAdmittance</span>
+                <span class="reporter-method-output">请求成功接口返回:HTTP/1.1 200 OK</span>
+                <span class="reporter-method-output">根据projectNo： custId: 715005293remark: P012获取的风控审批记录为 AUDIT_RETURN</span>
+                <span class="reporter-method-output">期望结果为：AUDIT_RETURN</span>
+                <span class="reporter-method-output">实际结果为：AUDIT_RETURN</span>
+                <span class="reporter-method-output">用例执行结果为：Passed</span>
+                <span class="reporter-method-output">               </span>
+                <span class="reporter-method-output">-----------------------------------caseNo： P012_通讯录无联系人执行完毕---------------------------------------------</span>
+                <span class="reporter-method-output">               </span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.fkapi.vcc.ExcuteVccApplyCase</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">excute(P012_通讯录无联系人, 1, allpass, 通讯录无数据, P012, AUDIT_RETURN, AUDIT_RETURN, Passed)</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- test-method -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

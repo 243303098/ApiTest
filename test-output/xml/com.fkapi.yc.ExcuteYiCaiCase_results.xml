@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="易才风控接口测试"
+           tests="2"
+           failures="2"
+           errors="0"
+           skipped="0"
+           time="6.928">
+  <properties />
+            <testcase name="excute" time="4.718" classname="com.fkapi.yc.ExcuteYiCaiCase">
+                <failure type="java.lang.Throwable"
+                  message="(null)"
+              >
+<![CDATA[java.lang.Throwable
+  message : expected [AUDIT_PASS] but found [AUDIT_RETURN] in method : .excute(ExcuteYiCaiCase:107)
+  com.fkapi.yc.ExcuteYiCaiCase.excute(ExcuteYiCaiCase.java:107)
+]]>
+      </failure>
+
+          </testcase>
+            <testcase name="excute" time="2.210" classname="com.fkapi.yc.ExcuteYiCaiCase">
+                <failure type="java.lang.Throwable"
+                  message="(null)"
+              >
+<![CDATA[java.lang.Throwable
+  message : expected [AUDIT_PASS] but found [AUDIT_RETURN] in method : .excute(ExcuteYiCaiCase:107)
+  com.fkapi.yc.ExcuteYiCaiCase.excute(ExcuteYiCaiCase.java:107)
+]]>
+      </failure>
+
+          </testcase>
+  
+  
+  
+</testsuite>
